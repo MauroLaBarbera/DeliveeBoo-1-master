@@ -1,51 +1,54 @@
 <template>
-    <div class="container">
-
-            <h1 >Dettagli: {{ restaurant.results[0].name }}</h1>
+    <div>
+        <div class="container">
+            <h1 >Details: {{ restaurant.results[0].name }}</h1>
             <div class="mar">
-                <h2 class="mb">Tipologie di cucine:</h2>
+                <h2 class="mb">Type of cuisines:</h2>
                 <Cuisines :cuisines="restaurant.results[0].cuisines" />
             </div>
-            <div class="mar">
-                <img :src="restaurant.image" :alt="restaurant.name" />
+            <div class="row mt-3">
+                <div class="col-md-6">
+                <img class="img-fluid rounded" :src="restaurant.results[0].image" :alt="restaurant.name" />
+                </div>
+                <div class="col-md-6">
                 <p class="mar">{{ restaurant.results[0].description }}</p>
+                </div>
                 <div>
-                    <h3 class="mb">I nostri piatti</h3>
+                    <h3 class="mar">Our Menù</h3>
                     <Plates @addCart="addCart" :plates="{plates}" />
                 </div>
             </div>
 
 
         <!-- Cart -->
-        <div class="cart">
-            <h2>Il tuo Carrello</h2>
+        <div class="cart mt-5">
+            <h2>Your Cart</h2>
 
             <!-- Products -->
             <div v-if="Object.keys(cart).length" >
                 <div v-for="(item, index) in cart" :key="index">
-                    <button  @click="remove(item.name, item.unitPrice)">-</button>
-                    <input class="inputNum" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
-                    <button @click="add(item.name, item.unitPrice)">+</button>
+                    <input class="inputNum col-md-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
                     <span class="name">{{item.name}}</span>
                     <span>€ {{item.price}}</span>
                     <span class="remove" @click="removeAll(item.name, item.price)">X</span>
                 </div>
             </div>
 
-            <div v-else>Il carrello è vuoto</div>
+            <div v-else>Your cart is empty</div>
 
             <!-- Tot -->
-            <h3>Tot: €{{tot.toFixed(2)}}</h3>
-
-            <!-- CheckOut Button -->
-            <router-link :to="{name: 'checkout'}">Cassa</router-link>
+            <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
 
             <!-- Delete Button -->
-            <button @click="deleteCart()">Elimina Carrello</button>
-        </div>
-
+            <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+            <!-- CheckOut Button -->
             <div class="mar">
-                <h3>Contatti</h3>
+            <router-link :to="{name: 'checkout'}">Go to Cart</router-link>
+            </div>
+        </div>
+</div>
+            <div class="mar contacts">
+                <h3>Contacts</h3>
                 <ul>
                     <li><strong>Address: </strong>{{ restaurant.results[0].address }}</li>
                     <li><strong>City: </strong>{{ restaurant.results[0].city }}</li>
@@ -246,6 +249,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.contacts {
+    h3 {
+        padding-left: 2rem;
+    }
+
+    background: #007e8a;
+    color: #fff;
+    margin: 30px 0; 
+    padding: 20px 0; 
+}
+
 .mar {
     margin: 20px 0;
     img {

@@ -11,31 +11,24 @@
             v-for="plate in pla"
             :key="`plate-${plate.id}`"
         >
-            <ul v-if="plate.visibility">
+            <div v-if="plate.visibility">
                 <img :src="plate.image" :alt="plate.name" />
-                <li>
-                    {{ plate.restaurant }}
-                </li>
-                <li>
-                    {{ plate.description }}
-                </li>
+                
+                <p class="mt-2"> <strong >Description: </strong> {{ plate.description }}</p>
 
-                 <li><strong>Price: </strong>{{ plate.price }}€</li>
-                <li>
+                <strong>Price: </strong>{{ plate.price }}€
+                <div class="mt-2">
                     <strong>Avaiable: </strong>
                     <span v-if="plate.visibility === 0"> No </span>
                     <span v-else-if="plate.visibility === 1"> Yes </span>
-                </li>
-                <li v-if=(plate.visibility)>
-                    <button @click="less(plate.price)"> - </button>
-                    <span>{{quantity}}</span>
-                    <button @click="more(plate.price)"> + </button>
-                    <button @click="addPlate(plate)" >Aggiungi al carrello | TOT: {{plate.price.toFixed(2)}} €</button>
-                </li>
-                <li v-else disabled>
-                    <button>Non disponibile</button>
-                </li>
-            </ul>
+                </div>
+                <div class="text-center mt-3" v-if="plate.visibility === 1">
+                    <button class="btn btn-primary " @click="addPlate(plate)" >Add to Cart</button>
+                </div>
+                <div v-else disabled>
+                    <button>Not avaiable</button>
+                </div>
+            </div>
         </div>
         </div>
     </div>
@@ -81,12 +74,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.menu {
-    display: flex;
-    flex-wrap: wrap;
+
     .plate-card {
-        background: white;
-        flex-basis: calc(100% / 4 - 20px);
+        word-wrap: break-word;
+        display: inline-grid;
+        width: calc(100% / 4 - 20px);
+        margin: 10px;
         margin-right: 10px;
         padding: 20px;
         border-radius: 15px;
@@ -96,5 +89,4 @@ export default {
             height: 200px;
         }
     }
-}
 </style>

@@ -12,11 +12,6 @@
                 <a href="/checkout"><i class="fas fa-shopping-cart"></i>Cart</a>
             </li>
             <li class="nav-dx">
-                <a href="/orders"
-                    ><i class="fas fa-concierge-bell"></i>Orders</a
-                >
-            </li>
-            <li class="nav-dx">
                 <a href="/admin"><i class="fas fa-home"></i>Log In</a>
             </li>
         </ul>

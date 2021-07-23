@@ -3,42 +3,40 @@
         <img class="jumbo" src="../img/jumbo.jpeg" alt="" />
         <div class="container">
             <h1>Homepage</h1>
-            <ul v-for="cuisine in cuisines" :key="cuisine.id">
-                <li>
-                    <label :for="cuisine.type">{{ cuisine.type }}</label>
-                    <input
-                        type="checkbox"
-                        :id="cuisine.type"
-                        :value="cuisine.type"
-                        v-model="temp"
-                        @change="getRestaurants($event)"
-                    />
-                </li>
-            </ul>
 
-            <div
-                class="card-rest"
-                v-for="restaurant in restaurants.results"
-                :key="`res-${restaurant.id}`"
-            >
-                <div class="rest">
-                    <ul>
-                        <li>
+            <!-- CHECKBOX CUISINES -->
+            <div class="cuisines">
+                <ul v-for="cuisine in cuisines" :key="cuisine.id">
+                    <li>
+                        <label :for="cuisine.type">{{ cuisine.type }}</label>
+                        <input
+                            type="checkbox"
+                            :id="cuisine.type"
+                            :value="cuisine.type"
+                            v-model="temp"
+                            @change="getRestaurants($event)"
+                        />
+                    </li>
+                </ul>
+            </div>
+
+            <!-- RESTAURANT LIST -->
+            
+                <div class="rest" v-for="restaurant in restaurants.results"
+                    :key="`res-${restaurant.id}`">
+                    <div class="card-rest" >
                             <h2>{{ restaurant.name }}</h2>
-                        </li>
-                        <li>
+                        
                             <img
                                 class="img-fluid img"
                                 :src="restaurant.image"
                                 alt=""
                             />
-                        </li>
-                        <li>
-                            <div class="badge bg-success">
+                        
+                            <span class="badge bg-success">
                                 {{ restaurant.type }}
-                            </div>
-                        </li>
-                        <li>
+                            </span>
+                        
                             <router-link
                                 :to="{
                                     name: 'restaurant-detail',
@@ -46,10 +44,9 @@
                                 }"
                                 >Restaurant Detail</router-link
                             >
-                        </li>
-                    </ul>
+                        
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 </template>
@@ -112,9 +109,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.search-bar {
+.cuisines {
+    border: 1px solid #ccc;
+    border-radius: 5px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 h1 {
@@ -131,17 +132,17 @@ h2 {
     width: 100%;
 }
 
-.card-rest {
-    display: flex;
-    flex-wrap: wrap;
-
-    .rest {
-        flex-basis: calc(100% / 3 - 20px);
+.rest {
+    display: inline;
+}
+    .card-rest {
+        display: inline-grid;
+        width: calc(100% / 4 - 20px);
         margin: 10px;
 
         img {
             border-radius: 5px;
         }
     }
-}
+
 </style>
