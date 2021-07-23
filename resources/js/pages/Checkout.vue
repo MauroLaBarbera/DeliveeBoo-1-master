@@ -1,63 +1,37 @@
 <template>
     <div class="container">
-      <h1>Payment</h1>
-      <div class="cart">
-        <h2>Your Cart</h2>
-        <div v-if="Object.keys(cart).length" >
-            <div v-for="(item, index) in cart" :key="index">
-<<<<<<< HEAD
-                
-                <input class="inputNum col-md-1" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unitPrice)">
-               
-=======
-                <input class="inputNum" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unitPrice)">
->>>>>>> 46d51febb7b7715effee613b791362fd98993bf9
-                <span class="name">{{item.name}}</span>
-                <span>€ {{item.price.toFixed(2)}}</span> 
-                <span class="remove" @click="removeAll(item.name, item.price)">X</span>
+        <div class="col-6 offset-3 my-3">
+            <div class="card bg-light">
+                <div class="card-header">
+                    <h2>Your Cart</h2>
+                </div>
+                <div class="card-body">
+                    <div class="cart">
+                        <div v-if="Object.keys(cart).length" >
+                            <div v-for="(item, index) in cart" :key="index">
+                                
+                                <input class="inputNum col-md-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
+                            
+                                <span class="name">{{item.name}}</span>
+                                <span>€ {{item.price.toFixed(2)}}</span> 
+                                <span class="remove btn btn-danger" @click="removeAll(item.name, item.price)">X</span>
 
+                            </div>
+                        </div>
+                        <div v-else>Your cart is empty</div>
+                        <h3>Tot: €{{tot.toFixed(2)}}</h3>
+                        <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div v-else>Your cart is empty</div>
-        <h3>Tot: €{{tot.toFixed(2)}}</h3>
-        <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
-    </div>
       <div class="container">
         <div class="col-6 offset-3">
-
-            <div class="card bg-light">
-                <form>
-                <div class="mb-3">
-                    <label for="customer_name" class="control-table">Name*</label>
-                    <input type="text" name="customer_name" class="form-control" id="customer_name" value="" required maxlength="50">
-                </div>
-                <div class="mb-3">
-                    <label for="customer_last_name" class="control-table">Surname*</label>
-                    <input type="text" name="customer_last_name" class="form-control" id="customer_last_name" value="" required maxlength="50">
-                </div>
-                <div class="mb-3">
-                    <label for="customer_email" class="control-table">Email*</label>
-                    <input type="text" name="customer_email" class="form-control" id="customer_email" value="" required maxlength="50">
-                </div>
-                <div class="mb-3">
-                    <label for="customer_phone" class="control-table">Telephone number*</label>
-                    <input id="customer_phone" type="text" class="form-control" name="customer_phone" value="" required autocomplete="address" maxlength="50" autofocus>
-                </div>
-                <div class="mb-3">
-                    <label for="customer_address" class="control-table">Address*</label>
-                    <input id="customer_address" type="text" class="form-control" name="customer_address" value="" required autocomplete="vat_number" minlength="11" maxlength="11" autofocus>
-                </div>
-                <div class="text-center">
-                <button type="submit" class="btn btn-primary  btn-block mb-3">Sign in</button>
-                </div>
-            </form>
-            </div>
-
             <div class="card bg-light">
                 <div class="card-header">Payment Information</div>
                 <div class="card-body">
                     <div class="alert alert-success" v-if="nonce">
-                        Successfully generated nonce.
+                        Thank you for your order!
                     </div>
                     <form>
                         <div class="form-group">
@@ -88,7 +62,7 @@
             <div class="text-center">
                 <button
                     class="btn btn-primary btn-block mt-3"
-                    @click.prevent="payWithCreditCard"
+                    @click="payWithCreditCard"
                 >
                     Pay with Credit Card
                 </button>
@@ -166,7 +140,6 @@ export default {
 
                 for(let item in this.cart){
                     this.tot+=this.cart[item].price;
-
                 };
             }
         },
@@ -219,6 +192,8 @@ export default {
                     .then(payload => {
                         console.log(payload);
                         this.nonce = payload.nonce;
+                        window.localStorage.clear();
+                        location.reload()
                     })
                     .catch(err => {
                         console.error(err);
@@ -231,7 +206,7 @@ export default {
 </script>
 
 <style>
-body {
-    padding: 5px;
-}
+    body {
+        padding: 5px;
+    }
 </style>

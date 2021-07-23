@@ -12,7 +12,7 @@
                 <a href="/checkout"><i class="fas fa-shopping-cart"></i>Cart</a>
             </li>
             <li class="nav-dx">
-                <a href="/admin"><i class="fas fa-home"></i>Log In</a>
+                <a href="/admin" target="_blank"><i class="fas fa-home"></i>Log In</a>
             </li>
         </ul>
     </header>

@@ -5,10 +5,10 @@
             <h1>Homepage</h1>
 
             <!-- CHECKBOX CUISINES -->
-            <div class="cuisines">
+            <div class="cuisines mb-5">
                 <ul v-for="cuisine in cuisines" :key="cuisine.id">
                     <li>
-                        <label :for="cuisine.type">{{ cuisine.type }}</label>
+                        <label class="btn btn-success" :for="cuisine.type">{{ cuisine.type }}</label>
                         <input
                             type="checkbox"
                             :id="cuisine.type"
@@ -24,20 +24,15 @@
             
                 <div class="rest" v-for="restaurant in restaurants.results"
                     :key="`res-${restaurant.id}`">
-                    <div class="card-rest" >
+                    <div class="card-rest card bg-light" >
                             <h2>{{ restaurant.name }}</h2>
                         
                             <img
-                                class="img-fluid img"
+                                class="img-fluid img my-2"
                                 :src="restaurant.image"
                                 alt=""
                             />
-                        
-                            <span class="badge bg-success">
-                                {{ restaurant.type }}
-                            </span>
-                        
-                            <router-link
+                            <router-link class="btn btn-warning"
                                 :to="{
                                     name: 'restaurant-detail',
                                     params: { name: restaurant.id }
@@ -139,6 +134,7 @@ h2 {
         display: inline-grid;
         width: calc(100% / 4 - 20px);
         margin: 10px;
+        padding: 1rem;
 
         img {
             border-radius: 5px;

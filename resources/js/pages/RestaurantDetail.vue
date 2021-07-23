@@ -21,32 +21,33 @@
 
 
         <!-- Cart -->
-        <div class="cart mt-5">
-            <h2>Your Cart</h2>
-
-            <!-- Products -->
-            <div v-if="Object.keys(cart).length" >
-                <div v-for="(item, index) in cart" :key="index">
-                    <input class="inputNum col-md-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
-                    <span class="name">{{item.name}}</span>
-                    <span>€ {{item.price}}</span>
-                    <span class="remove" @click="removeAll(item.name, item.price)">X</span>
-                </div>
+        <div class="cart mt-5 card bg-light col-5">
+            <div class="card-header">
+                <h2>Your Cart</h2>
             </div>
-
-            <div v-else>Your cart is empty</div>
-
-            <!-- Tot -->
-            <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
-
+            <div class="card-body">
+                <!-- Products -->
+                <div v-if="Object.keys(cart).length" >
+                    <div v-for="(item, index) in cart" :key="index">
+                        <span>Choose your quantity here -></span>
+                        <input class="inputNum col-md-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
+                        <span class="name">{{item.name}}</span>
+                        <span>€ {{item.price}}</span>
+                        <span class="remove btn btn-danger" @click="removeAll(item.name, item.price)">X</span>
+                    </div>
+                </div>
+                <div v-else>Your cart is empty</div>
+                <!-- Tot -->
+                <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
             <!-- Delete Button -->
             <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
             <!-- CheckOut Button -->
             <div class="mar">
-            <router-link :to="{name: 'checkout'}">Go to Cart</router-link>
+            <router-link class="btn btn-warning" :to="{name: 'checkout'}">Go to Checkout</router-link>
+            </div>
             </div>
         </div>
-</div>
+        </div>
             <div class="mar contacts">
                 <h3>Contacts</h3>
                 <ul>

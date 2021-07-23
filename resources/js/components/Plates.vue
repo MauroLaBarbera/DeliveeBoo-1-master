@@ -11,35 +11,19 @@
             v-for="plate in pla"
             :key="`plate-${plate.id}`"
         >
-            <div v-if="plate.visibility">
-                <img :src="plate.image" :alt="plate.name" />
-                
+            <div>
+                <p><strong>Name: </strong>{{plate.name}}</p>
+                <img class="img-fluid" v-if="plate.image" :src="plate.image" :alt="plate.name" />
+                <p v-else>No Image for this Plate</p>
                 <p class="mt-2"> <strong >Description: </strong> {{ plate.description }}</p>
-
                 <strong>Price: </strong>{{ plate.price }}€
-                <div class="mt-2">
-                    <strong>Avaiable: </strong>
-                    <span v-if="plate.visibility === 0"> No </span>
-                    <span v-else-if="plate.visibility === 1"> Yes </span>
-<<<<<<< HEAD
-                </div>
-                <div class="text-center mt-3" v-if="plate.visibility === 1">
+                <div class="mt-3" v-if="plate.visibility === 1">
                     <button class="btn btn-primary " @click="addPlate(plate)" >Add to Cart</button>
                 </div>
-                <div v-else disabled>
-                    <button>Not avaiable</button>
-                </div>
+            <div v-else>
+                <button class="avaino btn btn-danger">Not avaiable</button>
             </div>
-=======
-                </li>
-                <li v-if=(plate.visibility)>
-                    <button @click="addPlate(plate)" >Aggiungi al carrello | TOT: {{plate.price.toFixed(2)}} €</button>
-                </li>
-                <li v-else disabled>
-                    <button>Non disponibile</button>
-                </li>
-            </ul>
->>>>>>> 46d51febb7b7715effee613b791362fd98993bf9
+            </div>
         </div>
         </div>
     </div>
@@ -98,9 +82,9 @@ export default {
         padding: 20px;
         border-radius: 15px;
         border: 1px solid #ccc;
-        img {
-            width: 100%;
-            height: 200px;
-        }
+    }
+
+    .avaino {
+        cursor: not-allowed;
     }
 </style>
