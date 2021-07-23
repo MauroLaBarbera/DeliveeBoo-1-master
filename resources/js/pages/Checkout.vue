@@ -5,9 +5,7 @@
         <h2>Il tuo Carrello</h2>
         <div v-if="Object.keys(cart).length" >
             <div v-for="(item, index) in cart" :key="index">
-                <button  @click="remove(item.name, item.unitPrice)">-</button>
                 <input class="inputNum" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unitPrice)">
-                <button @click="add(item.name, item.unitPrice)">+</button>
                 <span class="name">{{item.name}}</span>
                 <span>€ {{item.price.toFixed(2)}}</span> 
                 <span class="remove" @click="removeAll(item.name, item.price)">X</span>
@@ -161,22 +159,6 @@ export default {
 
                 };
             }
-        },
-        add(name, unit){
-            this.cart[name].quantità ++;
-            this.cart[name].price += unit;
-            this.tot += unit;
-            this.store();
-        },
-        remove(name, unit){
-            if(this.cart[name].quantità == 1){
-                delete this.cart[name];
-            } else {
-                this.cart[name].quantità --;
-                this.cart[name].price -= unit;
-            }
-            this.tot -= unit;
-            this.store();
         },
         removeAll(item, price){
             console.log(item);

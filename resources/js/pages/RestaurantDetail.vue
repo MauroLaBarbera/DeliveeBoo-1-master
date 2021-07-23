@@ -11,7 +11,7 @@
                 <p class="mar">{{ restaurant.results[0].description }}</p>
                 <div>
                     <h3 class="mb">I nostri piatti</h3>
-                    <Plates @addCart="addCart" :plates="{plates}" />
+                    <Plates @addCart="addCart" :plates="{plates}" :plate="plate" />
                 </div>
             </div>
 
@@ -75,6 +75,7 @@ export default {
         return {
             restaurant: '',
             plates: [],
+            plate: {},
             visibility: false,
             cart: {},
             tot: 0,
@@ -141,7 +142,7 @@ export default {
          */
         checkId(){
             if(Object.keys(this.cart).length != 0){
-                if(this.cart[Object.keys(this.cart)[0]].restaurant_id == this.plates.restaurant_id) {
+                if(this.cart[Object.keys(this.cart)[0]].restaurant_id == this.plate.restaurant_id) {
                     return true;
                 }else {
                     const resp = confirm('Puoi ordinare da un solo ristorante. Vuoi cancellare il tuo ordine precedente?');

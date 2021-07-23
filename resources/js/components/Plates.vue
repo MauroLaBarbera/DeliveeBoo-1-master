@@ -27,9 +27,6 @@
                     <span v-else-if="plate.visibility === 1"> Yes </span>
                 </li>
                 <li v-if=(plate.visibility)>
-                    <button @click="less(plate.price)"> - </button>
-                    <span>{{quantity}}</span>
-                    <button @click="more(plate.price)"> + </button>
                     <button @click="addPlate(plate)" >Aggiungi al carrello | TOT: {{plate.price.toFixed(2)}} €</button>
                 </li>
                 <li v-else disabled>
@@ -46,7 +43,10 @@
 <script>
 export default {
     name: "Plates",
-    props: ["plates"],
+    props: {
+        plates: Object,
+        plate: Object,
+    },
     data() {
         return {
             cart: {},
