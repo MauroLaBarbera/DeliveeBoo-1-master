@@ -21,6 +21,7 @@
                     <strong>Avaiable: </strong>
                     <span v-if="plate.visibility === 0"> No </span>
                     <span v-else-if="plate.visibility === 1"> Yes </span>
+<<<<<<< HEAD
                 </div>
                 <div class="text-center mt-3" v-if="plate.visibility === 1">
                     <button class="btn btn-primary " @click="addPlate(plate)" >Add to Cart</button>
@@ -29,6 +30,16 @@
                     <button>Not avaiable</button>
                 </div>
             </div>
+=======
+                </li>
+                <li v-if=(plate.visibility)>
+                    <button @click="addPlate(plate)" >Aggiungi al carrello | TOT: {{plate.price.toFixed(2)}} €</button>
+                </li>
+                <li v-else disabled>
+                    <button>Non disponibile</button>
+                </li>
+            </ul>
+>>>>>>> 46d51febb7b7715effee613b791362fd98993bf9
         </div>
         </div>
     </div>
@@ -39,7 +50,10 @@
 <script>
 export default {
     name: "Plates",
-    props: ["plates"],
+    props: {
+        plates: Object,
+        plate: Object,
+    },
     data() {
         return {
             cart: {},

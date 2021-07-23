@@ -5,9 +5,13 @@
         <h2>Your Cart</h2>
         <div v-if="Object.keys(cart).length" >
             <div v-for="(item, index) in cart" :key="index">
+<<<<<<< HEAD
                 
                 <input class="inputNum col-md-1" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unitPrice)">
                
+=======
+                <input class="inputNum" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unitPrice)">
+>>>>>>> 46d51febb7b7715effee613b791362fd98993bf9
                 <span class="name">{{item.name}}</span>
                 <span>€ {{item.price.toFixed(2)}}</span> 
                 <span class="remove" @click="removeAll(item.name, item.price)">X</span>
@@ -165,22 +169,6 @@ export default {
 
                 };
             }
-        },
-        add(name, unit){
-            this.cart[name].quantità ++;
-            this.cart[name].price += unit;
-            this.tot += unit;
-            this.store();
-        },
-        remove(name, unit){
-            if(this.cart[name].quantità == 1){
-                delete this.cart[name];
-            } else {
-                this.cart[name].quantità --;
-                this.cart[name].price -= unit;
-            }
-            this.tot -= unit;
-            this.store();
         },
         removeAll(item, price){
             console.log(item);
