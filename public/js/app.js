@@ -5905,11 +5905,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -65115,23 +65110,12 @@ var render = function() {
         _c(
           "div",
           [
-            _vm._v("\n<<<<<<< HEAD\n                    "),
             _c("h3", { staticClass: "mar" }, [_vm._v("Our Menù")]),
             _vm._v(" "),
             _c("Plates", {
               attrs: { plates: { plates: _vm.plates } },
               on: { addCart: _vm.addCart }
-            }),
-            _vm._v("\n=======\n                    "),
-            _c("h3", { staticClass: "mb" }, [_vm._v("I nostri piatti")]),
-            _vm._v(" "),
-            _c("Plates", {
-              attrs: { plates: { plates: _vm.plates }, plate: _vm.plate },
-              on: { addCart: _vm.addCart }
-            }),
-            _vm._v(
-              "\n>>>>>>> 46d51febb7b7715effee613b791362fd98993bf9\n                "
-            )
+            })
           ],
           1
         )

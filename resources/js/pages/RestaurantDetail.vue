@@ -14,13 +14,8 @@
                 <p class="mar">{{ restaurant.results[0].description }}</p>
                 </div>
                 <div>
-<<<<<<< HEAD
                     <h3 class="mar">Our Menù</h3>
                     <Plates @addCart="addCart" :plates="{plates}" />
-=======
-                    <h3 class="mb">I nostri piatti</h3>
-                    <Plates @addCart="addCart" :plates="{plates}" :plate="plate" />
->>>>>>> 46d51febb7b7715effee613b791362fd98993bf9
                 </div>
             </div>
 
