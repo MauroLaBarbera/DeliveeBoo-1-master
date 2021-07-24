@@ -5905,6 +5905,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5961,14 +5968,14 @@ __webpack_require__.r(__webpack_exports__);
     addCart: function addCart(plate) {
       if (this.checkId(plate)) {
         if (this.cart[plate.name]) {
-          this.cart[plate.name].quantità++;
+          this.cart[plate.name].quantity++;
           this.cart[plate.name].price += plate.price;
         } else {
           this.cart[plate.name] = {
             restaurant_id: plate.restaurant_id,
             name: plate.name,
-            quantità: 1,
-            prezzo: plate.price,
+            quantity: 1,
+            price: plate.price,
             unit: plate.price
           };
         }
@@ -6020,15 +6027,15 @@ __webpack_require__.r(__webpack_exports__);
 
       if (value > 0) {
         console.log(value);
-        this.cart[name].quantità = value;
-        this.cart[name].prezzo = value * unit;
+        this.cart[name].quantity = value;
+        this.cart[name].price = value * unit;
         this.tot = 0;
         this.setTotal();
         this.store();
       } else {
-        this.cart[name].quantità = 1;
-        this.cart[name].prezzo = value * unit;
-        this.tot = this.cart[name].prezzo;
+        this.cart[name].quantity = 1;
+        this.cart[name].price = value * unit;
+        this.tot = this.cart[name].price;
         this.setTotal();
         this.store();
       }
@@ -6039,7 +6046,7 @@ __webpack_require__.r(__webpack_exports__);
      */
     setTotal: function setTotal() {
       for (var item in this.cart) {
-        this.tot += this.cart[item].prezzo;
+        this.tot += this.cart[item].price;
       }
 
       ;
@@ -31831,7 +31838,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".contacts[data-v-1efe1077] {\n  background: #007e8a;\n  color: #fff;\n  margin: 30px 0;\n  padding: 20px 0;\n}\n.contacts h3[data-v-1efe1077] {\n  padding-left: 2rem;\n}\n.mar[data-v-1efe1077] {\n  margin: 20px 0;\n}\n.mar img[data-v-1efe1077] {\n  border-radius: 5px;\n}\n.mb[data-v-1efe1077] {\n  margin-bottom: 10px;\n}", ""]);
+exports.push([module.i, ".contacts[data-v-1efe1077] {\n  background: #007e8a;\n  color: #fff;\n  margin: 30px 0;\n  padding: 20px 0;\n}\n.contacts h3[data-v-1efe1077] {\n  padding-left: 2rem;\n}\n.mar[data-v-1efe1077] {\n  margin: 20px 0;\n}\n.mar img[data-v-1efe1077] {\n  border-radius: 5px;\n}\n.mb[data-v-1efe1077] {\n  margin-bottom: 10px;\n}\n.avaiano[data-v-1efe1077] {\n  cursor: not-allowed;\n}\n.click[data-v-1efe1077] {\n  cursor: pointer;\n}", ""]);
 
 // exports
 
@@ -64280,7 +64287,7 @@ var render = function() {
                             expression: "item.quantity"
                           }
                         ],
-                        staticClass: "inputNum col-md-1",
+                        staticClass: "inputNum col-md-1 my-1",
                         attrs: { type: "number", min: "1" },
                         domProps: { value: item.quantity },
                         on: {
@@ -64311,14 +64318,14 @@ var render = function() {
                       _c(
                         "span",
                         {
-                          staticClass: "remove btn btn-danger",
+                          staticClass: "remove",
                           on: {
                             click: function($event) {
                               return _vm.removeAll(item.name, item.price)
                             }
                           }
                         },
-                        [_vm._v("X")]
+                        [_c("i", { staticClass: " click fas fa-trash-alt" })]
                       )
                     ])
                   }),
@@ -64793,42 +64800,67 @@ var render = function() {
                 {
                   key: "plate-" + index,
                   staticClass:
-                    "col-md-5 offset-md-1 col-sm-12 dish d-flex justify-content-between"
+                    "col-md-5 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"
                 },
                 [
+                  _c("div", { staticClass: "card-header" }, [
+                    _c("p", [
+                      _c("strong", [_vm._v("Name:")]),
+                      _vm._v(_vm._s(plate.name))
+                    ])
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "div",
                     {
-                      staticClass: "d-flex flex-column justify-content-center"
+                      staticClass:
+                        "d-flex flex-column justify-content-center card-body"
                     },
                     [
-                      plate.visibility
-                        ? _c("div", { staticClass: "d-flex" }, [
-                            _c("div", [
-                              _vm._v("€ " + _vm._s(plate.price.toFixed(2)))
-                            ]),
-                            _vm._v(" "),
-                            _c("i", {
-                              staticClass: "fas fa-plus-circle add",
-                              on: {
-                                click: function($event) {
-                                  return _vm.addCart(plate)
-                                }
-                              }
+                      _c("p", [
+                        _c("strong", [_vm._v("Description:")]),
+                        _vm._v(_vm._s(plate.description))
+                      ]),
+                      _vm._v(" "),
+                      plate.image
+                        ? _c("div", { staticClass: "img my-2" }, [
+                            _c("img", {
+                              staticClass: "img-fluid",
+                              attrs: { src: plate.image, alt: plate.name }
                             })
                           ])
-                        : _c("div", [_vm._v("Non Disponibile")])
+                        : _c("div", [_vm._v("No Image avaiable")]),
+                      _vm._v(" "),
+                      plate.visibility
+                        ? _c(
+                            "div",
+                            { staticClass: "d-flex align-items-baseline mt-3" },
+                            [
+                              _c("div", [
+                                _vm._v("€ " + _vm._s(plate.price.toFixed(2)))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "btn btn-primary mx-3",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addCart(plate)
+                                    }
+                                  }
+                                },
+                                [_vm._v("Add to Cart")]
+                              )
+                            ]
+                          )
+                        : _c("div", [
+                            _c("p", { staticClass: "btn btn-danger avaiano" }, [
+                              _vm._v("Not Avaiable")
+                            ])
+                          ])
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "img" }, [
-                    plate.image
-                      ? _c("img", {
-                          staticClass: "img-fluid",
-                          attrs: { src: plate.image, alt: plate.name }
-                        })
-                      : _vm._e()
-                  ])
+                  )
                 ]
               )
             }),
@@ -64851,13 +64883,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: item.quantità,
-                          expression: "item.quantità"
+                          value: item.quantity,
+                          expression: "item.quantity"
                         }
                       ],
-                      staticClass: "inputNum",
+                      staticClass: "inputNum my-1",
                       attrs: { type: "number", min: "1" },
-                      domProps: { value: item.quantità },
+                      domProps: { value: item.quantity },
                       on: {
                         change: function($event) {
                           return _vm.updateQuantity(
@@ -64870,7 +64902,7 @@ var render = function() {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(item, "quantità", $event.target.value)
+                          _vm.$set(item, "quantity", $event.target.value)
                         }
                       }
                     }),
@@ -64879,7 +64911,7 @@ var render = function() {
                       _vm._v(_vm._s(item.name))
                     ]),
                     _vm._v(" "),
-                    _c("span", [_vm._v("€ " + _vm._s(item.prezzo.toFixed(2)))]),
+                    _c("span", [_vm._v("€ " + _vm._s(item.price.toFixed(2)))]),
                     _vm._v(" "),
                     _c(
                       "span",
@@ -64887,11 +64919,11 @@ var render = function() {
                         staticClass: "remove",
                         on: {
                           click: function($event) {
-                            return _vm.removeAll(item.name, item.prezzo)
+                            return _vm.removeAll(item.name, item.price)
                           }
                         }
                       },
-                      [_c("i", { staticClass: "fas fa-times" })]
+                      [_c("i", { staticClass: " click fas fa-trash-alt" })]
                     )
                   ])
                 }),
