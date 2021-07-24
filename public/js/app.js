@@ -5318,6 +5318,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CheckOut',
@@ -5395,13 +5396,13 @@ __webpack_require__.r(__webpack_exports__);
 
       if (value > 0) {
         console.log(value);
-        this.cart[name].quantità = value;
+        this.cart[name].quantity = value;
         this.cart[name].price = value * unit;
         this.tot = 0;
         this.setTotal();
         this.store();
       } else {
-        this.cart[name].quantità = 1;
+        this.cart[name].quantity = 1;
         this.cart[name].price = unit;
         this.tot = 0;
         this.setTotal();
@@ -5908,6 +5909,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -5964,14 +5966,15 @@ __webpack_require__.r(__webpack_exports__);
     addCart: function addCart(plate) {
       if (this.checkId(plate)) {
         if (this.cart[plate.name]) {
-          this.cart[plate.name].quantità++;
+          this.cart[plate.name].quantity++;
           this.cart[plate.name].price += plate.price;
+          console.log(this.cart);
         } else {
           this.cart[plate.name] = {
             restaurant_id: plate.restaurant_id,
             name: plate.name,
-            quantità: 1,
-            prezzo: plate.price,
+            quantity: 1,
+            price: plate.price,
             unit: plate.price
           };
         }
@@ -6023,15 +6026,15 @@ __webpack_require__.r(__webpack_exports__);
 
       if (value > 0) {
         console.log(value);
-        this.cart[name].quantità = value;
-        this.cart[name].prezzo = value * unit;
+        this.cart[name].quantity = value;
+        this.cart[name].price = value * unit;
         this.tot = 0;
         this.setTotal();
         this.store();
       } else {
-        this.cart[name].quantità = 1;
-        this.cart[name].prezzo = value * unit;
-        this.tot = this.cart[name].prezzo;
+        this.cart[name].quantity = 1;
+        this.cart[name].price = value * unit;
+        this.tot = this.cart[name].price;
         this.setTotal();
         this.store();
       }
@@ -6042,7 +6045,7 @@ __webpack_require__.r(__webpack_exports__);
      */
     setTotal: function setTotal() {
       for (var item in this.cart) {
-        this.tot += this.cart[item].prezzo;
+        this.tot += this.cart[item].price;
       }
 
       ;
@@ -64274,6 +64277,11 @@ var render = function() {
                   "div",
                   _vm._l(_vm.cart, function(item, index) {
                     return _c("div", { key: index }, [
+                      _vm._v(
+                        "\n                              " +
+                          _vm._s(item) +
+                          "\n                              "
+                      ),
                       _c("input", {
                         directives: [
                           {
@@ -64291,7 +64299,7 @@ var render = function() {
                             return _vm.updateQuantity(
                               $event,
                               item.name,
-                              item.unitPrice
+                              item.price
                             )
                           },
                           input: function($event) {
@@ -64308,7 +64316,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("span", [
-                        _vm._v("€ " + _vm._s(item.prezzo.toFixed(2)))
+                        _vm._v("€ " + _vm._s(item.price.toFixed(2)))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -64317,7 +64325,7 @@ var render = function() {
                           staticClass: "remove",
                           on: {
                             click: function($event) {
-                              return _vm.removeAll(item.name, item.prezzo)
+                              return _vm.removeAll(item.name, item.price)
                             }
                           }
                         },
@@ -64910,9 +64918,13 @@ var render = function() {
                       _c("span", { staticClass: "name" }, [
                         _vm._v(_vm._s(item.name))
                       ]),
-                      _vm._v(" "),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(item) +
+                          "\n                    "
+                      ),
                       _c("span", [
-                        _vm._v("€ " + _vm._s(item.prezzo.toFixed(2)))
+                        _vm._v("€ " + _vm._s(item.price.toFixed(2)))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -64921,7 +64933,7 @@ var render = function() {
                           staticClass: "remove",
                           on: {
                             click: function($event) {
-                              return _vm.removeAll(item.name, item.prezzo)
+                              return _vm.removeAll(item.name, item.price)
                             }
                           }
                         },
