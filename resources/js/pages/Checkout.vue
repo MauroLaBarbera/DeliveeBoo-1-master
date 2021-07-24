@@ -9,13 +9,10 @@
                     <div class="cart">
                         <div v-if="Object.keys(cart).length" >
                             <div v-for="(item, index) in cart" :key="index">
-                                
                                 <input class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
-                            
                                 <span class="name">{{item.name}}</span>
                                 <span>€ {{item.price.toFixed(2)}}</span> 
                                 <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
-
                             </div>
                         </div>
                         <div v-else>Your cart is empty</div>
