@@ -31860,7 +31860,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n    padding: 5px;\n}\n", ""]);
+exports.push([module.i, "\nbody {\n    padding: 5px;\n}\n.form-control{\n        height: 30px;\n}\n", ""]);
 
 // exports
 
