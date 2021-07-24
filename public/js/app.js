@@ -5912,6 +5912,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -5951,6 +5953,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("http://localhost:8000/api/restaurants/id/".concat(parseInt(this.$route.params.name))).then(function (res) {
         _this2.restaurant = res.data;
+        console.log(_this2.restaurant.results.name);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -64756,16 +64759,18 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Details: " + _vm._s(_vm.restaurant.results[0].name))]),
+      _c("h1", [_vm._v("Details: " + _vm._s(_vm.restaurant.results.name))]),
       _vm._v(" "),
       _c(
         "div",
         { staticClass: "mar" },
         [
-          _c("h2", { staticClass: "mb" }, [_vm._v("Type of cuisines:")]),
+          _c("h2", { staticClass: "mb" }, [
+            _vm._v("Type of cuisines: " + _vm._s(_vm.restaurant.results.type))
+          ]),
           _vm._v(" "),
           _c("Cuisines", {
-            attrs: { cuisines: _vm.restaurant.results[0].cuisines }
+            attrs: { cuisines: _vm.restaurant.results.cuisines }
           })
         ],
         1
@@ -64776,7 +64781,7 @@ var render = function() {
           _c("img", {
             staticClass: "img-fluid rounded",
             attrs: {
-              src: _vm.restaurant.results[0].image,
+              src: _vm.restaurant.results.image,
               alt: _vm.restaurant.name
             }
           })
@@ -64784,7 +64789,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c("p", { staticClass: "mar" }, [
-            _vm._v(_vm._s(_vm.restaurant.results[0].description))
+            _vm._v(_vm._s(_vm.restaurant.results.description))
           ])
         ]),
         _vm._v(" "),
@@ -64914,17 +64919,13 @@ var render = function() {
                         _vm._v(_vm._s(item.name))
                       ]),
                       _vm._v(" "),
-                      _c("span", [
-                        _vm._v("€ " + _vm._s(item.price.toFixed(2)))
-                      ]),
-                      _vm._v(" "),
                       _c(
                         "span",
                         {
                           staticClass: "remove",
                           on: {
                             click: function($event) {
-                              return _vm.removeAll(item.name, item.price)
+                              return _vm.removeAll(item.name, item.unitPrice)
                             }
                           }
                         },
@@ -64979,24 +64980,23 @@ var render = function() {
       _c("ul", [
         _c("li", [
           _c("strong", [_vm._v("Address: ")]),
-          _vm._v(_vm._s(_vm.restaurant.results[0].address))
+          _vm._v(_vm._s(_vm.restaurant.results.address))
         ]),
         _vm._v(" "),
         _c("li", [
           _c("strong", [_vm._v("City: ")]),
-          _vm._v(_vm._s(_vm.restaurant.results[0].city))
+          _vm._v(_vm._s(_vm.restaurant.results.city))
         ]),
         _vm._v(" "),
         _c("li", [
           _c("strong", [_vm._v("Cap: ")]),
-          _vm._v(_vm._s(_vm.restaurant.results[0].cap))
+          _vm._v(_vm._s(_vm.restaurant.results.cap))
         ]),
         _vm._v(" "),
         _c("li", [
           _c("strong", [_vm._v("Phone number: ")]),
           _vm._v(
-            _vm._s(_vm.restaurant.results[0].phone_number) +
-              "\n                "
+            _vm._s(_vm.restaurant.results.phone_number) + "\n                "
           )
         ])
       ])
@@ -81424,8 +81424,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\mauro\Desktop\Progetto finale\DeliveeBoo-1-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\mauro\Desktop\Progetto finale\DeliveeBoo-1-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ManueldG\Desktop\ultima\DeliveeBoo-1-master\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\ManueldG\Desktop\ultima\DeliveeBoo-1-master\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -31,15 +31,19 @@ class RestaurantController extends Controller
 
                 ->join('restaurants', 'restaurants.id', '=', 'cuisine_restaurant.restaurant_id')
                 ->join('cuisines', 'cuisines.id', '=', 'cuisine_restaurant.cuisine_id')
-                ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number')
+                ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number','cuisines.type')
                 ->distinct()
                 ->limit(20)
                 ->where('restaurants.id',$id)
                 ->get();
 
+        $tmp = '';
+        foreach($restaurants as $val)
+        $tmp = $val->type.' '.$tmp;
+        $restaurants[0]->type = $tmp;
 
         return response()->json(['success' => true,
-            'results' => $restaurants]);
+            'results' => $restaurants[0]]);
     }
 
      public function cuisine($type){

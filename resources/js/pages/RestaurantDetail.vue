@@ -1,17 +1,18 @@
 <template>
     <div>
         <div class="container">
-            <h1 >Details: {{ restaurant.results[0].name }}</h1>
+
+            <h1 >Details: {{ restaurant.results.name }}</h1>
             <div class="mar">
-                <h2 class="mb">Type of cuisines:</h2>
-                <Cuisines :cuisines="restaurant.results[0].cuisines" />
+                <h2 class="mb">Type of cuisines: {{restaurant.results.type}}</h2>
+                <Cuisines :cuisines="restaurant.results.cuisines" />
             </div>
             <div class="row mt-3">
                 <div class="col-md-6">
-                <img class="img-fluid rounded" :src="restaurant.results[0].image" :alt="restaurant.name" />
+                <img class="img-fluid rounded" :src="restaurant.results.image" :alt="restaurant.name" />
                 </div>
                 <div class="col-md-6">
-                <p class="mar">{{ restaurant.results[0].description }}</p>
+                <p class="mar">{{ restaurant.results.description }}</p>
                 </div>
                 <div>
                     <h3 class="my-5 text-center">Our Menù</h3>
@@ -50,8 +51,9 @@
                     <div v-for="(item, index) in cart" :key="index">
                         <input class="inputNum my-1 col-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
                         <span class="name">{{item.name}}</span>
-                        <span>€ {{item.price.toFixed(2)}}</span>
-                        <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
+
+                        <!--<span>€ {{item.unitPrice.toFixed(2)}}</span>-->
+                        <span class="remove" @click="removeAll(item.name, item.unitPrice)"><i class=" click fas fa-trash-alt"></i></span>
                     </div>
                 </div>
                 <div v-else>Your cart is empty</div>
@@ -69,12 +71,12 @@
             <div class="mar contacts">
                 <h3>Contacts</h3>
                 <ul>
-                    <li><strong>Address: </strong>{{ restaurant.results[0].address }}</li>
-                    <li><strong>City: </strong>{{ restaurant.results[0].city }}</li>
-                    <li><strong>Cap: </strong>{{ restaurant.results[0].cap }}</li>
+                    <li><strong>Address: </strong>{{ restaurant.results.address }}</li>
+                    <li><strong>City: </strong>{{ restaurant.results.city }}</li>
+                    <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
                     <li>
                         <strong>Phone number: </strong
-                        >{{ restaurant.results[0].phone_number }}
+                        >{{ restaurant.results.phone_number }}
                     </li>
                 </ul>
             </div>
@@ -130,7 +132,9 @@ export default {
                     `http://localhost:8000/api/restaurants/id/${parseInt(this.$route.params.name)}`
                 )
                 .then(res => {
+
                     this.restaurant = res.data;
+                    console.log(this.restaurant.results.name);
                 })
                 .catch(err => {
                     console.log(err);
@@ -265,8 +269,8 @@ export default {
 
     background: #007e8a;
     color: #fff;
-    margin: 30px 0; 
-    padding: 20px 0; 
+    margin: 30px 0;
+    padding: 20px 0;
 }
 
     i {
