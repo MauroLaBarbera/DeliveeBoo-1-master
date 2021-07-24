@@ -66,7 +66,7 @@
                     </div>
 
                 </div>
-                <div v-if="Object.keys(cart).length>=0">Your cart is empty
+                <div v-show="Object.keys(cart).length===0">Your cart is empty
 
 
 

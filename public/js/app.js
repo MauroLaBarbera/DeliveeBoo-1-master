@@ -65007,9 +65007,20 @@ var render = function() {
               2
             ),
             _vm._v(" "),
-            Object.keys(_vm.cart).length >= 0
-              ? _c("div", [_vm._v("Your cart is empty\n\n\n\n            ")])
-              : _vm._e()
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: Object.keys(_vm.cart).length === 0,
+                    expression: "Object.keys(cart).length===0"
+                  }
+                ]
+              },
+              [_vm._v("Your cart is empty\n\n\n\n            ")]
+            )
           ])
         ]
       )
