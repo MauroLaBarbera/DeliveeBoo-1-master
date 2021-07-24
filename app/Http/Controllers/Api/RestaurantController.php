@@ -50,35 +50,30 @@ ORDER BY `Plate1` ASC
             'results' => $restaurants]);
     }
 
-    public function cuisine($type){
+     public function cuisine($type)
+    {
+        $str = explode('-', $type);
 
-            $str = explode('-', $type);
-            /*
-            $restaurants = DB::table('cuisine_restaurant')
+        $restaurants = DB::table('cuisine_restaurant')
                 ->join('restaurants', 'restaurants.id', '=', 'cuisine_restaurant.restaurant_id')
-                ->join('cuisines', 'cuisines.id', '=', 'cuisine_restaurant.cuisine_id')
-                ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number')
-                ->distinct()
-                ->limit(5)
-                ->where('cuisines.type',$str)
-                ->where()
-                ->get();*/
 
-                $restaurants = DB::table('cuisine_restaurant')
-                ->join('restaurants', 'restaurants.id', '=', 'cuisine_restaurant.restaurant_id')
-                ->join('cuisines', 'cuisines.id', '=', 'cuisine_restaurant.cuisine_id')
-                ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number','cuisines.type')
-                ->limit(5)
-                ->where('cuisines.type',$str)
+                ->join('cuisines AS cucina', 'cucina.id', '=', 'cuisine_restaurant.cuisine_id')
+
+                ->select('restaurants.*')
+
+                ->whereIn('cucina.type', $str)
+
+                ->groupBy('restaurant_id')
+
+                ->having(DB::raw('count(restaurant_id)'),'=',count($str))
+
                 ->get();
 
-            //$restaurant = Restaurant::where('name', $name)->with(['cuisines','plates'])->first();
-            foreach($restaurants as $restaurant)
-            $restaurant->cuisine=$str;
 
-            return response()->json(['success' => true,
+
+        return response()->json(['success' => true,
             'results' => $restaurants]);
-            //return response()->json($restaurants);
+
     }
 }
 
