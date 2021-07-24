@@ -5962,7 +5962,7 @@ __webpack_require__.r(__webpack_exports__);
     addCart: function addCart(plate) {
       if (this.checkId(plate)) {
         if (this.cart[plate.name]) {
-          this.cart[plate.name].quantity++;
+          this.cart[plate.name].quantità++;
           this.cart[plate.name].price += plate.price;
         } else {
           this.cart[plate.name] = {
