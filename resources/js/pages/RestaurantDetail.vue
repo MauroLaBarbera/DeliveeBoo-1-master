@@ -17,22 +17,15 @@
                     <h3 class="mar">Our Menù</h3>
                     <!-- ADD PLATE -->
                     <div class="row">
-                        <div class="col-md-5 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"  v-for="(plate, index) in plates" :key="`plate-${index}`">
-                            <div class="card-header">
-                                <p><strong>Name:</strong>{{plate.name}}</p>
-                            </div>
-                            <div class="d-flex flex-column justify-content-center card-body">
-                                <p><strong>Description:</strong>{{plate.description}}</p>
-                                <div v-if="plate.image" class="img my-2"><img class="img-fluid"  :src="plate.image" :alt="plate.name"/></div>
-                                <div v-else>No Image avaiable</div>
-                                <div v-if="plate.visibility" class="d-flex align-items-baseline mt-3">
+                        <div class="col-md-5 offset-md-1 col-sm-12 dish d-flex justify-content-between"  v-for="(plate, index) in plates" :key="`plate-${index}`">
+                            <div class="d-flex flex-column justify-content-center">
+                                <div v-if="plate.visibility" class="d-flex">
                                     <div>€ {{plate.price.toFixed(2)}}</div>
-                                    <p class="btn btn-primary mx-3" @click="addCart(plate)">Add to Cart</p>
+                                    <i class="fas fa-plus-circle add" @click="addCart(plate)"></i>
                                 </div>
-                                <div v-else>
-                                    <p class="btn btn-danger avaiano">Not Avaiable</p>
-                                </div>
+                                <div v-else>Non Disponibile</div>
                             </div>
+                            <div class="img"><img class="img-fluid" v-if="plate.image" :src="plate.image" :alt="plate.name"/></div>
                         </div>
                     </div>
                 </div>
@@ -48,10 +41,10 @@
                 <!-- Products -->
                 <div v-if="Object.keys(cart).length" >
                     <div v-for="(item, index) in cart" :key="index">
-                        <input class="inputNum my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
+                        <input class="inputNum" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unit)">
                         <span class="name">{{item.name}}</span>
-                        <span>€ {{item.price.toFixed(2)}}</span>
-                        <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
+                        <span>€ {{item.prezzo.toFixed(2)}}</span>
+                        <span class="remove" @click="removeAll(item.name, item.prezzo)"><i class="fas fa-times"></i></span>
                     </div>
                 </div>
                 <div v-else>Your cart is empty</div>
@@ -149,14 +142,14 @@ export default {
         addCart(plate) {
             if(this.checkId(plate)) {
                 if(this.cart[plate.name]){
-                    this.cart[plate.name].quantity++;
+                    this.cart[plate.name].quantità++;
                     this.cart[plate.name].price += plate.price;
                 } else {
                     this.cart[plate.name] = {
                         restaurant_id: plate.restaurant_id,
                         name: plate.name,
-                        quantity: 1,
-                        price: plate.price,
+                        quantità: 1,
+                        prezzo: plate.price,
                         unit: plate.price
                     };
                 }
@@ -205,15 +198,15 @@ export default {
             const value = parseFloat(e.target.value);
             if(value>0){
                 console.log(value);
-                this.cart[name].quantity = value;
-                this.cart[name].price = (value * unit);
+                this.cart[name].quantità = value;
+                this.cart[name].prezzo = (value * unit);
                 this.tot = 0;
                 this.setTotal();
                 this.store();
             } else {
-                this.cart[name].quantity = 1;
-                this.cart[name].price = (value * unit);
-                this.tot = this.cart[name].price;
+                this.cart[name].quantità = 1;
+                this.cart[name].prezzo = (value * unit);
+                this.tot = this.cart[name].prezzo;
                 this.setTotal();
                 this.store();
             }
@@ -224,7 +217,7 @@ export default {
          */
         setTotal(){
             for(let item in this.cart){
-                this.tot+=this.cart[item].price;
+                this.tot+=this.cart[item].prezzo;
             };
         },
 
@@ -271,13 +264,4 @@ export default {
 .mb {
     margin-bottom: 10px;
 }
-
-.avaiano {
-    cursor: not-allowed;
-}
-
-.click {
-    cursor: pointer;
-}
-
 </style>
