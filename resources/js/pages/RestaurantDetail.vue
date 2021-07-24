@@ -14,12 +14,18 @@
                 <p class="mar">{{ restaurant.results[0].description }}</p>
                 </div>
                 <div>
-                    <h3 class="mar">Our Menù</h3>
+                    <h3 class="my-5 text-center">Our Menù</h3>
                     <!-- ADD PLATE -->
                     <div class="row">
-                        <div class="col-md-5 offset-md-1 col-sm-12 dish d-flex justify-content-between"  v-for="(plate, index) in plates" :key="`plate-${index}`">
-                            <div class="d-flex flex-column justify-content-center">
-                                <div v-if="plate.visibility" class="d-flex">
+                        <div class="col-md-3 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"  v-for="(plate, index) in plates" :key="`plate-${index}`">
+                                <div v-if="plate.image" class="img my-2"><img class="img-fluid"  :src="plate.image" :alt="plate.name"/></div>
+                                <div v-else>No Image avaiable</div>
+                            <div class="card-header">
+                                <p><strong>Name: </strong>{{plate.name}}</p>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center card-body">
+                                <p><strong>Description: </strong>{{plate.description}}</p>
+                                <div v-if="plate.visibility" class="d-flex align-items-baseline mt-3">
                                     <div>€ {{plate.price.toFixed(2)}}</div>
                                     <i class="fas fa-plus-circle add" @click="addCart(plate)"></i>
                                 </div>
@@ -33,15 +39,15 @@
 
 
         <!-- Cart -->
-        <div class="cart mt-5 card bg-light col-5">
+        <div class="cart mt-5 card bg-light col-5 offset-4 text-center">
             <div class="card-header">
-                <h2>Your Cart</h2>
+                <h2>Your Cart <i class="fas fa-shopping-basket"></i></h2>
             </div>
             <div class="card-body">
                 <!-- Products -->
                 <div v-if="Object.keys(cart).length" >
                     <div v-for="(item, index) in cart" :key="index">
-                        <input class="inputNum" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unit)">
+                        <input class="inputNum my-1 col-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
                         <span class="name">{{item.name}}</span>
                         <span>€ {{item.prezzo.toFixed(2)}}</span>
                         <span class="remove" @click="removeAll(item.name, item.prezzo)"><i class="fas fa-times"></i></span>
@@ -51,7 +57,7 @@
                 <!-- Tot -->
                 <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
             <!-- Delete Button -->
-            <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+            <button class="btn btn-danger my-2" @click="deleteCart()">Delete Cart</button>
             <!-- CheckOut Button -->
             <div class="mar">
             <router-link class="btn btn-warning" :to="{name: 'checkout'}">Go to Checkout</router-link>
@@ -244,6 +250,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.img {
+    img {
+    width: 100%;
+    height: 200px;
+}
+}
+
 .contacts {
     h3 {
         padding-left: 2rem;
@@ -255,13 +268,7 @@ export default {
     padding: 20px 0; 
 }
 
-.mar {
-    margin: 20px 0;
-    img {
-        border-radius: 5px;
+    i {
+        color: #007e8a;
     }
-}
-.mb {
-    margin-bottom: 10px;
-}
 </style>
