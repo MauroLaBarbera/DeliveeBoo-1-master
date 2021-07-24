@@ -64302,7 +64302,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("span", [
-                        _vm._v("€ " + _vm._s(item.price.toFixed(2)))
+                        _vm._v("€ " + _vm._s(item.prezzo.toFixed(2)))
                       ]),
                       _vm._v(" "),
                       _c(
@@ -64311,7 +64311,7 @@ var render = function() {
                           staticClass: "remove",
                           on: {
                             click: function($event) {
-                              return _vm.removeAll(item.name, item.price)
+                              return _vm.removeAll(item.name, item.prezzo)
                             }
                           }
                         },
