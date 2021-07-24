@@ -15,6 +15,7 @@
                 </div>
                 <div>
                     <h3 class="mar">Our Menù</h3>
+                    <!-- ADD PLATE -->
                     <div class="row">
                         <div class="col-md-5 offset-md-1 col-sm-12 dish d-flex justify-content-between"  v-for="(plate, index) in plates" :key="`plate-${index}`">
                             <div class="d-flex flex-column justify-content-center">
@@ -40,9 +41,7 @@
                 <!-- Products -->
                 <div v-if="Object.keys(cart).length" >
                     <div v-for="(item, index) in cart" :key="index">
-                        <button class="custom-btn btn-9 arrow" @click="remove(item.name, item.unit)"><i class="fas fa-minus"></i></button>
                         <input class="inputNum" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unit)">
-                        <button class="custom-btn btn-9 arrow" @click="add(item.name, item.unit)"><i class="fas fa-plus"></i></button>
                         <span class="name">{{item.name}}</span>
                         <span>€ {{item.prezzo.toFixed(2)}}</span>
                         <span class="remove" @click="removeAll(item.name, item.prezzo)"><i class="fas fa-times"></i></span>
@@ -182,30 +181,6 @@ export default {
         },
 
         /**
-         * Add Button in Cart
-         */
-        add(name, unit){
-            this.cart[name].quantità ++;
-            this.cart[name].price += unit;
-            this.tot += unit;
-            this.store();
-        },
-
-        /**
-         * Remove Button in Cart
-         */
-        remove(name, unit){
-            if(this.cart[name].quantità == 1){
-                delete this.cart[name];
-            } else {
-                this.cart[name].quantità --;
-                this.cart[name].price -= unit;
-            }
-            this.tot -= unit;
-            this.store();
-        },
-
-        /**
          * Remove one record in Cart
          */
         removeAll(item, price){
@@ -224,14 +199,14 @@ export default {
             if(value>0){
                 console.log(value);
                 this.cart[name].quantità = value;
-                this.cart[name].price = (value * unit);
+                this.cart[name].prezzo = (value * unit);
                 this.tot = 0;
                 this.setTotal();
                 this.store();
             } else {
                 this.cart[name].quantità = 1;
-                this.cart[name].price = unit;
-                this.tot = 0;
+                this.cart[name].prezzo = (value * unit);
+                this.tot = this.cart[name].prezzo;
                 this.setTotal();
                 this.store();
             }
@@ -242,7 +217,7 @@ export default {
          */
         setTotal(){
             for(let item in this.cart){
-                this.tot+=this.cart[item].price;
+                this.tot+=this.cart[item].prezzo;
             };
         },
 

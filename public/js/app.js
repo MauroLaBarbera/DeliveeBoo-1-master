@@ -5905,7 +5905,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -6003,31 +6002,6 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /**
-     * Add Button in Cart
-     */
-    add: function add(name, unit) {
-      this.cart[name].quantità++;
-      this.cart[name].price += unit;
-      this.tot += unit;
-      this.store();
-    },
-
-    /**
-     * Remove Button in Cart
-     */
-    remove: function remove(name, unit) {
-      if (this.cart[name].quantità == 1) {
-        delete this.cart[name];
-      } else {
-        this.cart[name].quantità--;
-        this.cart[name].price -= unit;
-      }
-
-      this.tot -= unit;
-      this.store();
-    },
-
-    /**
      * Remove one record in Cart
      */
     removeAll: function removeAll(item, price) {
@@ -6047,14 +6021,14 @@ __webpack_require__.r(__webpack_exports__);
       if (value > 0) {
         console.log(value);
         this.cart[name].quantità = value;
-        this.cart[name].price = value * unit;
+        this.cart[name].prezzo = value * unit;
         this.tot = 0;
         this.setTotal();
         this.store();
       } else {
         this.cart[name].quantità = 1;
-        this.cart[name].price = unit;
-        this.tot = 0;
+        this.cart[name].prezzo = value * unit;
+        this.tot = this.cart[name].prezzo;
         this.setTotal();
         this.store();
       }
@@ -6065,7 +6039,7 @@ __webpack_require__.r(__webpack_exports__);
      */
     setTotal: function setTotal() {
       for (var item in this.cart) {
-        this.tot += this.cart[item].price;
+        this.tot += this.cart[item].prezzo;
       }
 
       ;
@@ -64872,19 +64846,6 @@ var render = function() {
                 "div",
                 _vm._l(_vm.cart, function(item, index) {
                   return _c("div", { key: index }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "custom-btn btn-9 arrow",
-                        on: {
-                          click: function($event) {
-                            return _vm.remove(item.name, item.unit)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fas fa-minus" })]
-                    ),
-                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -64913,19 +64874,6 @@ var render = function() {
                         }
                       }
                     }),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "custom-btn btn-9 arrow",
-                        on: {
-                          click: function($event) {
-                            return _vm.add(item.name, item.unit)
-                          }
-                        }
-                      },
-                      [_c("i", { staticClass: "fas fa-plus" })]
-                    ),
                     _vm._v(" "),
                     _c("span", { staticClass: "name" }, [
                       _vm._v(_vm._s(item.name))
