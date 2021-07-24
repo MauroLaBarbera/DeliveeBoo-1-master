@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Restaurant;
 use App\Plate;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Foreach_;
 
 class RestaurantController extends Controller
 {
@@ -50,7 +51,7 @@ class RestaurantController extends Controller
 
                 ->join('cuisines AS cucina', 'cucina.id', '=', 'cuisine_restaurant.cuisine_id')
 
-                ->select('restaurants.*')
+                ->select('restaurants.*','cucina.type')
 
                 ->whereIn('cucina.type', $str)
 
@@ -59,6 +60,8 @@ class RestaurantController extends Controller
                 ->having(DB::raw('count(restaurant_id)'),'=',count($str))
 
                 ->get();
+    foreach ($restaurants as $value)
+         $value->type =  implode(' ',$str);
 
 
 
