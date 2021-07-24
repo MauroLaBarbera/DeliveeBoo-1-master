@@ -41,9 +41,9 @@ class RestaurantController extends Controller
             'results' => $restaurants]);
     }
 
-    public function cuisine($type)
-    {
-        $str = explode('-', $type);
+     public function cuisine($type){
+
+       $str = explode('-', $type);
 
         $restaurants = DB::table('cuisine_restaurant')
                 ->join('restaurants', 'restaurants.id', '=', 'cuisine_restaurant.restaurant_id')
