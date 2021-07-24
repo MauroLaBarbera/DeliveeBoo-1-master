@@ -15,7 +15,18 @@
                 </div>
                 <div>
                     <h3 class="mar">Our Menù</h3>
-                    <Plates @addCart="addCart" :plates="{plates}" />
+                    <div class="row">
+                        <div class="col-md-5 offset-md-1 col-sm-12 dish d-flex justify-content-between"  v-for="(plate, index) in plates" :key="`plate-${index}`">
+                            <div class="d-flex flex-column justify-content-center">
+                                <div v-if="plate.visibility" class="d-flex">
+                                    <div>€ {{plate.price.toFixed(2)}}</div>
+                                    <i class="fas fa-plus-circle add" @click="addCart(plate)"></i>
+                                </div>
+                                <div v-else>Non Disponibile</div>
+                            </div>
+                            <div class="img"><img class="img-fluid" v-if="plate.image" :src="plate.image" :alt="plate.name"/></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -29,11 +40,12 @@
                 <!-- Products -->
                 <div v-if="Object.keys(cart).length" >
                     <div v-for="(item, index) in cart" :key="index">
-                        <span>Choose your quantity here -></span>
-                        <input class="inputNum col-md-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
+                        <button class="custom-btn btn-9 arrow" @click="remove(item.name, item.unit)"><i class="fas fa-minus"></i></button>
+                        <input class="inputNum" type="number" min="1" v-model="item.quantità" @change="updateQuantity($event, item.name, item.unit)">
+                        <button class="custom-btn btn-9 arrow" @click="add(item.name, item.unit)"><i class="fas fa-plus"></i></button>
                         <span class="name">{{item.name}}</span>
-                        <span>€ {{item.price}}</span>
-                        <span class="remove btn btn-danger" @click="removeAll(item.name, item.price)">X</span>
+                        <span>€ {{item.prezzo.toFixed(2)}}</span>
+                        <span class="remove" @click="removeAll(item.name, item.prezzo)"><i class="fas fa-times"></i></span>
                     </div>
                 </div>
                 <div v-else>Your cart is empty</div>
@@ -128,15 +140,21 @@ export default {
             }
         },
 
-        addCart(order, name, unitPrice) {
-            if(this.checkId()) {
-                if(this.cart[name]){
-                    this.cart[name].quantity += order.quantity;
-                    this.cart[name].price += order.price;
+        addCart(plate) {
+            if(this.checkId(plate)) {
+                if(this.cart[plate.name]){
+                    this.cart[plate.name].quantity++;
+                    this.cart[plate.name].price += plate.price;
                 } else {
-                    this.cart[name] = {...order, unitPrice};
+                    this.cart[plate.name] = {
+                        restaurant_id: plate.restaurant_id,
+                        name: plate.name,
+                        quantità: 1,
+                        prezzo: plate.price,
+                        unit: plate.price
+                    };
                 }
-                this.tot += order.price;
+                this.tot += plate.price;
                 this.store();
             }
         },
@@ -144,9 +162,9 @@ export default {
         /**
          * Check for
          */
-        checkId(){
+        checkId(plate){
             if(Object.keys(this.cart).length != 0){
-                if(this.cart[Object.keys(this.cart)[0]].restaurant_id == this.plate.restaurant_id) {
+                if(this.cart[Object.keys(this.cart)[0]].restaurant_id == plate.restaurant_id) {
                     return true;
                 }else {
                     const resp = confirm('Puoi ordinare da un solo ristorante. Vuoi cancellare il tuo ordine precedente?');
@@ -167,7 +185,7 @@ export default {
          * Add Button in Cart
          */
         add(name, unit){
-            this.cart[name].quantity ++;
+            this.cart[name].quantità ++;
             this.cart[name].price += unit;
             this.tot += unit;
             this.store();
@@ -177,10 +195,10 @@ export default {
          * Remove Button in Cart
          */
         remove(name, unit){
-            if(this.cart[name].quantity == 1){
+            if(this.cart[name].quantità == 1){
                 delete this.cart[name];
             } else {
-                this.cart[name].quantity --;
+                this.cart[name].quantità --;
                 this.cart[name].price -= unit;
             }
             this.tot -= unit;
@@ -205,13 +223,13 @@ export default {
             const value = parseFloat(e.target.value);
             if(value>0){
                 console.log(value);
-                this.cart[name].quantity = value;
+                this.cart[name].quantità = value;
                 this.cart[name].price = (value * unit);
                 this.tot = 0;
                 this.setTotal();
                 this.store();
             } else {
-                this.cart[name].quantity = 1;
+                this.cart[name].quantità = 1;
                 this.cart[name].price = unit;
                 this.tot = 0;
                 this.setTotal();

@@ -6,25 +6,25 @@
             :key="`pla-${pla.id}`"
         >
 
-        <div
-            class="plate-card"
-            v-for="plate in pla"
-            :key="`plate-${plate.id}`"
-        >
-            <div>
-                <p><strong>Name: </strong>{{plate.name}}</p>
-                <img class="img-fluid" v-if="plate.image" :src="plate.image" :alt="plate.name" />
-                <p v-else>No Image for this Plate</p>
-                <p class="mt-2"> <strong >Description: </strong> {{ plate.description }}</p>
-                <strong>Price: </strong>{{ plate.price }}€
-                <div class="mt-3" v-if="plate.visibility === 1">
-                    <button class="btn btn-primary " @click="addPlate(plate)" >Add to Cart</button>
+            <div
+                class="plate-card"
+                v-for="plate in pla"
+                :key="`plate-${plate.id}`"
+            >
+                <div>
+                    <p><strong>Name: </strong>{{plate.name}}</p>
+                    <img class="img-fluid" v-if="plate.image" :src="plate.image" :alt="plate.name" />
+                    <p v-else>No Image for this Plate</p>
+                    <p class="mt-2"> <strong >Description: </strong> {{ plate.description }}</p>
+                    <strong>Price: </strong>{{ plate.price }}€
+                    <div class="mt-3" v-if="plate.visibility === 1">
+                        <button class="btn btn-primary " @click="addPlate(plate)" >Add to Cart</button>
+                    </div>
+                    <div v-else>
+                        <button class="avaino btn btn-danger">Not avaiable</button>
+                    </div>
                 </div>
-            <div v-else>
-                <button class="avaino btn btn-danger">Not avaiable</button>
             </div>
-            </div>
-        </div>
         </div>
     </div>
 
@@ -47,14 +47,15 @@ export default {
     },
     methods: {
       addPlate(plate){
-
+          console.log(this.plates);
+          console.log(this.plate);
       let order={
         restaurant_id: plate.restaurant_id,
         name: plate.name,
         quantità: this.quantity,
         prezzo: this.price,
       }
-
+        console.log(order);
         this.$emit('addCart', order, plate.name, plate.price);
       },
       more(price){
