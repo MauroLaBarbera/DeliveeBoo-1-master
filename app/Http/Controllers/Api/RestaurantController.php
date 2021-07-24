@@ -37,10 +37,11 @@ class RestaurantController extends Controller
                 ->where('restaurants.id',$id)
                 ->get();
 
-        $tmp = '';
+        $tmp = [];
         foreach($restaurants as $val)
-        $tmp = $val->type.' '.$tmp;
+        $tmp[] = $val->type;
         $restaurants[0]->type = $tmp;
+
 
         return response()->json(['success' => true,
             'results' => $restaurants[0]]);

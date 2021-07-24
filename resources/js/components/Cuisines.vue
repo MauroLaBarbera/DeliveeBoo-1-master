@@ -1,7 +1,7 @@
 <template>
     <div>
         <span v-for="cuisine in cuisines" :key="`cuisine-${cuisine.id}`"
-            >{{ cuisine.type }}
+            >{{ cuisine}}
         </span>
     </div>
 </template>

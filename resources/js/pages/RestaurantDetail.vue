@@ -4,8 +4,8 @@
 
             <h1 >Details: {{ restaurant.results.name }}</h1>
             <div class="mar">
-                <h2 class="mb">Type of cuisines: {{restaurant.results.type}}</h2>
-                <Cuisines :cuisines="restaurant.results.cuisines" />
+                <h2 class="mb">Type of cuisines: </h2>
+                <Cuisines :cuisines="restaurant.results.type" />
             </div>
             <div class="row mt-3">
                 <div class="col-md-6">

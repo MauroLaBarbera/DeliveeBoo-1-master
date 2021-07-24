@@ -64010,7 +64010,7 @@ var render = function() {
     "div",
     _vm._l(_vm.cuisines, function(cuisine) {
       return _c("span", { key: "cuisine-" + cuisine.id }, [
-        _vm._v(_vm._s(cuisine.type) + "\n    ")
+        _vm._v(_vm._s(cuisine) + "\n    ")
       ])
     }),
     0
@@ -64765,13 +64765,9 @@ var render = function() {
         "div",
         { staticClass: "mar" },
         [
-          _c("h2", { staticClass: "mb" }, [
-            _vm._v("Type of cuisines: " + _vm._s(_vm.restaurant.results.type))
-          ]),
+          _c("h2", { staticClass: "mb" }, [_vm._v("Type of cuisines: ")]),
           _vm._v(" "),
-          _c("Cuisines", {
-            attrs: { cuisines: _vm.restaurant.results.cuisines }
-          })
+          _c("Cuisines", { attrs: { cuisines: _vm.restaurant.results.type } })
         ],
         1
       ),
