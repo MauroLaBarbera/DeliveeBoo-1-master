@@ -28,7 +28,7 @@
                                 <p><strong>Description: </strong>{{plate.description}}</p>
                                 <div v-if="plate.visibility" class="d-flex align-items-baseline mt-3">
                                     <div>€ {{plate.price.toFixed(2)}}</div>
-                                    <p class="btn btn-primary mx-3" @click="addCart(plate)">Add to Cart</p>
+                                    <p class="btn btn-primary mx-3" @click="addCart($event,plate)" >Add to Cart</p>
                                 </div>
                                 <div v-else>
                                     <p class="btn btn-danger avaiano">Not Avaiable</p>
@@ -47,7 +47,8 @@
             </div>
             <div class="card-body">
                 <!-- Products -->
-                <div v-if="Object.keys(cart).length" >
+                <div v-show="Object.keys(cart).length>0" >
+
                     <div v-for="(item, index) in cart" :key="index">
                         <input class="inputNum my-1 col-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
                         <span class="name">{{item.name}}</span>
@@ -55,16 +56,24 @@
                         <!--<span>€ {{item.unitPrice.toFixed(2)}}</span>-->
                         <span class="remove" @click="removeAll(item.name, item.unitPrice)"><i class=" click fas fa-trash-alt"></i></span>
                     </div>
+                    <!-- Tot -->
+                    <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
+                    <!-- Delete Button -->
+                    <button class="btn btn-danger my-2" @click="deleteCart()">Delete Cart</button>
+                    <!-- CheckOut Button -->
+                    <div class="mar">
+                        <router-link class="btn btn-warning" :to="{name: 'checkout'}">Go to Checkout</router-link>
+                    </div>
+
                 </div>
-                <div v-else>Your cart is empty</div>
-                <!-- Tot -->
-                <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
-            <!-- Delete Button -->
-            <button class="btn btn-danger my-2" @click="deleteCart()">Delete Cart</button>
-            <!-- CheckOut Button -->
-            <div class="mar">
-            <router-link class="btn btn-warning" :to="{name: 'checkout'}">Go to Checkout</router-link>
-            </div>
+                <div v-if="Object.keys(cart).length>=0">Your cart is empty
+
+
+
+                </div>
+
+
+
             </div>
         </div>
         </div>
@@ -150,7 +159,8 @@ export default {
             }
         },
 
-        addCart(plate) {
+        addCart(e,plate) {
+            console.log("dentro addcart",Object.keys(this.cart).length);
             if(this.checkId(plate)) {
                 if(this.cart[plate.name]){
                     this.cart[plate.name].quantity++;
@@ -165,6 +175,7 @@ export default {
                     };
                 }
                 this.tot += plate.price;
+
                 this.store();
             }
         },
@@ -186,7 +197,8 @@ export default {
                         return false;
                     }
                 }
-            }else{
+            }
+            else{
                 return true;
             }
         },

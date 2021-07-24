@@ -6,6 +6,7 @@
                     <h2>Your Cart</h2>
                 </div>
                 <div class="card-body">
+
                     <div class="cart">
                         <div v-if="Object.keys(cart).length" >
                             <div v-for="(item, index) in cart" :key="index">
@@ -17,16 +18,23 @@
                                 <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
 
                             </div>
+
+                            <h3>Tot: €{{tot.toFixed(2)}}</h3>
+                            <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+
                         </div>
-                        <div v-else>Your cart is empty</div>
-                        <h3>Tot: €{{tot.toFixed(2)}}</h3>
-                        <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+
+                        <div v-else>Your cart is empty
+
+
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
       <div class="container">
-        <div class="col-6 offset-3">
+        <div v-if="Object.keys(cart).length" class="col-6 offset-3">
             <div class="card bg-light">
                 <div class="card-header">Payment Information</div>
                 <div class="card-body">

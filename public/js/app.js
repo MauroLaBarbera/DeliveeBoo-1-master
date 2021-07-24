@@ -5321,6 +5321,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CheckOut',
@@ -5914,6 +5922,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5968,7 +5985,9 @@ __webpack_require__.r(__webpack_exports__);
         this.setTotal();
       }
     },
-    addCart: function addCart(plate) {
+    addCart: function addCart(e, plate) {
+      console.log("dentro addcart", Object.keys(this.cart).length);
+
       if (this.checkId(plate)) {
         if (this.cart[plate.name]) {
           this.cart[plate.name].quantity++;
@@ -64279,119 +64298,131 @@ var render = function() {
             Object.keys(_vm.cart).length
               ? _c(
                   "div",
-                  _vm._l(_vm.cart, function(item, index) {
-                    return _c("div", { key: index }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: item.quantity,
-                            expression: "item.quantity"
-                          }
-                        ],
-                        staticClass: "inputNum col-md-1 my-1",
-                        attrs: { type: "number", min: "1" },
-                        domProps: { value: item.quantity },
-                        on: {
-                          change: function($event) {
-                            return _vm.updateQuantity(
-                              $event,
-                              item.name,
-                              item.unitPrice
-                            )
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                  [
+                    _vm._l(_vm.cart, function(item, index) {
+                      return _c("div", { key: index }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: item.quantity,
+                              expression: "item.quantity"
                             }
-                            _vm.$set(item, "quantity", $event.target.value)
+                          ],
+                          staticClass: "inputNum col-md-1 my-1",
+                          attrs: { type: "number", min: "1" },
+                          domProps: { value: item.quantity },
+                          on: {
+                            change: function($event) {
+                              return _vm.updateQuantity(
+                                $event,
+                                item.name,
+                                item.unitPrice
+                              )
+                            },
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(item, "quantity", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "name" }, [
+                          _vm._v(_vm._s(item.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("span", [
+                          _vm._v("€ " + _vm._s(item.price.toFixed(2)))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass: "remove",
+                            on: {
+                              click: function($event) {
+                                return _vm.removeAll(item.name, item.price)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: " click fas fa-trash-alt" })]
+                        )
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _c("h3", [_vm._v("Tot: €" + _vm._s(_vm.tot.toFixed(2)))]),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        on: {
+                          click: function($event) {
+                            return _vm.deleteCart()
                           }
                         }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "name" }, [
-                        _vm._v(_vm._s(item.name))
-                      ]),
-                      _vm._v(" "),
-                      _c("span", [
-                        _vm._v("€ " + _vm._s(item.price.toFixed(2)))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          staticClass: "remove",
-                          on: {
-                            click: function($event) {
-                              return _vm.removeAll(item.name, item.price)
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: " click fas fa-trash-alt" })]
-                      )
-                    ])
-                  }),
-                  0
+                      },
+                      [_vm._v("Delete Cart")]
+                    )
+                  ],
+                  2
                 )
-              : _c("div", [_vm._v("Your cart is empty")]),
-            _vm._v(" "),
-            _c("h3", [_vm._v("Tot: €" + _vm._s(_vm.tot.toFixed(2)))]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger",
-                on: {
-                  click: function($event) {
-                    return _vm.deleteCart()
-                  }
-                }
-              },
-              [_vm._v("Delete Cart")]
-            )
+              : _c("div", [
+                  _vm._v("Your cart is empty\n\n\n\n                      ")
+                ])
           ])
         ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "col-6 offset-3" }, [
-        _c("div", { staticClass: "card bg-light" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _vm._v("Payment Information")
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm.nonce
-              ? _c("div", { staticClass: "alert alert-success" }, [
+      Object.keys(_vm.cart).length
+        ? _c("div", { staticClass: "col-6 offset-3" }, [
+            _c("div", { staticClass: "card bg-light" }, [
+              _c("div", { staticClass: "card-header" }, [
+                _vm._v("Payment Information")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "card-body" }, [
+                _vm.nonce
+                  ? _c("div", { staticClass: "alert alert-success" }, [
+                      _vm._v(
+                        "\n                      Thank you for your order!\n                  "
+                      )
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm._m(1)
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-center" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-block mt-3",
+                  on: { click: _vm.payWithCreditCard }
+                },
+                [
                   _vm._v(
-                    "\n                      Thank you for your order!\n                  "
+                    "\n                  Pay with Credit Card\n              "
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm.error
+              ? _c("div", { staticClass: "alert alert-danger" }, [
+                  _vm._v(
+                    "\n              " + _vm._s(_vm.error) + "\n          "
                   )
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm._m(1)
+              : _vm._e()
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "text-center" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-primary btn-block mt-3",
-              on: { click: _vm.payWithCreditCard }
-            },
-            [_vm._v("\n                  Pay with Credit Card\n              ")]
-          )
-        ]),
-        _vm._v(" "),
-        _vm.error
-          ? _c("div", { staticClass: "alert alert-danger" }, [
-              _vm._v("\n              " + _vm._s(_vm.error) + "\n          ")
-            ])
-          : _vm._e()
-      ])
+        : _vm._e()
     ])
   ])
 }
@@ -64847,7 +64878,7 @@ var render = function() {
                                   staticClass: "btn btn-primary mx-3",
                                   on: {
                                     click: function($event) {
-                                      return _vm.addCart(plate)
+                                      return _vm.addCart($event, plate)
                                     }
                                   }
                                 },
@@ -64877,94 +64908,108 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            Object.keys(_vm.cart).length
-              ? _c(
-                  "div",
-                  _vm._l(_vm.cart, function(item, index) {
-                    return _c("div", { key: index }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: item.quantity,
-                            expression: "item.quantity"
-                          }
-                        ],
-                        staticClass: "inputNum my-1 col-1",
-                        attrs: { type: "number", min: "1" },
-                        domProps: { value: item.quantity },
-                        on: {
-                          change: function($event) {
-                            return _vm.updateQuantity(
-                              $event,
-                              item.name,
-                              item.unit
-                            )
-                          },
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(item, "quantity", $event.target.value)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c("span", { staticClass: "name" }, [
-                        _vm._v(_vm._s(item.name))
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "span",
-                        {
-                          staticClass: "remove",
-                          on: {
-                            click: function($event) {
-                              return _vm.removeAll(item.name, item.unitPrice)
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: " click fas fa-trash-alt" })]
-                      )
-                    ])
-                  }),
-                  0
-                )
-              : _c("div", [_vm._v("Your cart is empty")]),
-            _vm._v(" "),
-            _c("h3", { staticClass: "mt-3" }, [
-              _vm._v("Total: €" + _vm._s(_vm.tot.toFixed(2)))
-            ]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-danger my-2",
-                on: {
-                  click: function($event) {
-                    return _vm.deleteCart()
-                  }
-                }
-              },
-              [_vm._v("Delete Cart")]
-            ),
-            _vm._v(" "),
             _c(
               "div",
-              { staticClass: "mar" },
-              [
-                _c(
-                  "router-link",
+              {
+                directives: [
                   {
-                    staticClass: "btn btn-warning",
-                    attrs: { to: { name: "checkout" } }
+                    name: "show",
+                    rawName: "v-show",
+                    value: Object.keys(_vm.cart).length > 0,
+                    expression: "Object.keys(cart).length>0"
+                  }
+                ]
+              },
+              [
+                _vm._l(_vm.cart, function(item, index) {
+                  return _c("div", { key: index }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: item.quantity,
+                          expression: "item.quantity"
+                        }
+                      ],
+                      staticClass: "inputNum my-1 col-1",
+                      attrs: { type: "number", min: "1" },
+                      domProps: { value: item.quantity },
+                      on: {
+                        change: function($event) {
+                          return _vm.updateQuantity(
+                            $event,
+                            item.name,
+                            item.unit
+                          )
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(item, "quantity", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "name" }, [
+                      _vm._v(_vm._s(item.name))
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass: "remove",
+                        on: {
+                          click: function($event) {
+                            return _vm.removeAll(item.name, item.unitPrice)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: " click fas fa-trash-alt" })]
+                    )
+                  ])
+                }),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mt-3" }, [
+                  _vm._v("Total: €" + _vm._s(_vm.tot.toFixed(2)))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger my-2",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteCart()
+                      }
+                    }
                   },
-                  [_vm._v("Go to Checkout")]
+                  [_vm._v("Delete Cart")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "mar" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-warning",
+                        attrs: { to: { name: "checkout" } }
+                      },
+                      [_vm._v("Go to Checkout")]
+                    )
+                  ],
+                  1
                 )
               ],
-              1
-            )
+              2
+            ),
+            _vm._v(" "),
+            Object.keys(_vm.cart).length >= 0
+              ? _c("div", [_vm._v("Your cart is empty\n\n\n\n            ")])
+              : _vm._e()
           ])
         ]
       )
