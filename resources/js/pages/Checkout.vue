@@ -11,13 +11,11 @@
 
                         <div v-if="Object.keys(cart).length" >
                             <div v-for="(item, index) in cart" :key="index">
-
                                 <input class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
 
                                 <span class="name">{{item.name}}</span>
                                 <span>€ {{item.price.toFixed(2)}}</span>
                                 <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
-
                             </div>
 
                             <h3>Tot: €{{tot.toFixed(2)}}</h3>
@@ -163,13 +161,13 @@ export default {
             const value = parseFloat(e.target.value);
             if(value>0){
                 console.log(value);
-                this.cart[name].quantità = value;
+                this.cart[name].quantity = value;
                 this.cart[name].price = (value * unit);
                 this.tot = 0;
                 this.setTotal();
                 this.store();
             } else {
-                this.cart[name].quantità = 1;
+                this.cart[name].quantity = 1;
                 this.cart[name].price = unit;
                 this.tot = 0;
                 this.setTotal();

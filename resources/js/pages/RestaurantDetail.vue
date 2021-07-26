@@ -72,7 +72,7 @@
                     <div v-show="Object.keys(cart).length>0" >
 
                         <div v-for="(item, index) in cart" :key="index">
-
+                            {{index}}
                             <input class="inputNum my-1 col-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
                             <span class="name">{{item.name}}</span>
 
@@ -187,6 +187,7 @@ export default {
                 if(this.cart[plate.name]){
                     this.cart[plate.name].quantity++;
                     this.cart[plate.name].price += plate.price;
+                    console.log(this.cart);
                 } else {
                     this.cart[plate.name] = {
                         restaurant_id: plate.restaurant_id,
@@ -310,5 +311,4 @@ export default {
     i {
         color: #007e8a;
     }
-
 </style>

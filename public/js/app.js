@@ -5327,8 +5327,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'CheckOut',
@@ -5406,13 +5404,13 @@ __webpack_require__.r(__webpack_exports__);
 
       if (value > 0) {
         console.log(value);
-        this.cart[name].quantità = value;
+        this.cart[name].quantity = value;
         this.cart[name].price = value * unit;
         this.tot = 0;
         this.setTotal();
         this.store();
       } else {
-        this.cart[name].quantità = 1;
+        this.cart[name].quantity = 1;
         this.cart[name].price = unit;
         this.tot = 0;
         this.setTotal();
@@ -6014,6 +6012,7 @@ __webpack_require__.r(__webpack_exports__);
         if (this.cart[plate.name]) {
           this.cart[plate.name].quantity++;
           this.cart[plate.name].price += plate.price;
+          console.log(this.cart);
         } else {
           this.cart[plate.name] = {
             restaurant_id: plate.restaurant_id,
@@ -64945,6 +64944,11 @@ var render = function() {
               [
                 _vm._l(_vm.cart, function(item, index) {
                   return _c("div", { key: index }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(index) +
+                        "\n                        "
+                    ),
                     _c("input", {
                       directives: [
                         {
@@ -81496,8 +81500,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\ManueldG\Desktop\ultima\DeliveeBoo-1-master\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ManueldG\Desktop\ultima\DeliveeBoo-1-master\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/alfonsobuononato/Desktop/Deliveeboo/DeliveeBoo-1-master/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/alfonsobuononato/Desktop/Deliveeboo/DeliveeBoo-1-master/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
