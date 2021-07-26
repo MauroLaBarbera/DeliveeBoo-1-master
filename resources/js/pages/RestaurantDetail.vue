@@ -150,6 +150,7 @@ export default {
         this.popCart();
 
         this.loader= true;
+        console.log('created RD')
 
     },
     methods: {
@@ -188,6 +189,7 @@ export default {
             if(window.localStorage.getItem('cart')){
                 this.cart = JSON.parse(window.localStorage.getItem('cart'));
                 this.setTotal();
+                console.log('popcart');
             }
         },
 
