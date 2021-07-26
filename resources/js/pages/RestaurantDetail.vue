@@ -26,21 +26,29 @@
                 <div class="row">
 
                     <div class="col-md-3 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"  v-for="(plate, index) in plates" :key="`plate-${index}`">
-                        <div v-if="plate.image" class="img my-2"><img class="img-fluid"  :src="plate.image" :alt="plate.name"/>
+
+                        <div v-if="plate.image" class="img my-2">
+                            <img class="img-fluid"  :src="plate.image" :alt="plate.name"/>
                         </div>
+
                             <div v-else>No Image avaiable</div>
+
                             <div class="card-header">
                                 <p><strong>Name: </strong>{{plate.name}}</p>
                             </div>
+
                             <div class="d-flex flex-column justify-content-center card-body">
                                 <p><strong>Description: </strong>{{plate.description}}</p>
+
                                 <div v-if="plate.visibility" class="d-flex align-items-baseline mt-3">
                                     <div>€ {{plate.price.toFixed(2)}}</div>
                                     <p class="btn btn-primary mx-3" @click="addCart($event,plate)" >Add to Cart</p>
                                 </div>
+
                                 <div v-else>
                                     <p class="btn btn-danger avaiano">Not Avaiable</p>
                                 </div>
+
                             </div>
                     </div>
 
