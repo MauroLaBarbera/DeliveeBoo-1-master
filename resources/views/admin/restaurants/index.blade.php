@@ -41,7 +41,7 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="mt-5 row justify-content-md-center">
+        <div class="mt-5 text-center">
              <a class="btn btn-primary mr-2" href="{{ route('admin.restaurants.create') }}">Add your restaurant</a>
         </div> 
     </main>

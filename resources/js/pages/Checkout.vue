@@ -74,7 +74,7 @@
                     Pay with Credit Card
                 </button>
             </div>
-            <div class="alert alert-danger" v-if="error">
+            <div class="alert alert-danger mt-3" v-if="error">
                 {{ error }}
             </div>
         </div>
