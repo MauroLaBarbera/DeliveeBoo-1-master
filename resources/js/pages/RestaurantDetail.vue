@@ -31,7 +31,9 @@
                             <img class="img-fluid"  :src="plate.image" :alt="plate.name"/>
                         </div>
 
-                            <div v-else>No Image avaiable</div>
+                            <div v-else class="not-av">
+                                <img src="https://redi.it/wp-content/uploads/2015/08/not-available.png" alt="not-avaiable">
+                            </div>
 
                             <div class="card-header">
                                 <p><strong>Name: </strong>{{plate.name}}</p>
@@ -297,6 +299,12 @@ export default {
     }
 }
 
+.not-av {
+    img {
+    width: 100%;
+    height: 200px;
+    }
+}
 .contacts {
     h3 {
         padding-left: 2rem;
