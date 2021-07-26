@@ -115,16 +115,15 @@
             </div>
 
             <!-- Cart -->
-            <div class="cart my-5 card bg-light col-5 offset-4 text-center">
+            <div class="cart my-5 card bg-light col-5 offset-4">
                 <div class="card-header">
-                    <h2>Your Cart <i class="fas fa-shopping-basket"></i></h2>
+                    <h2 class="text-center">Your Cart <i class="fas fa-shopping-basket"></i></h2>
                 </div>
 
                 <div class="card-body">
                     <!-- Products -->
                     <div v-show="Object.keys(cart).length > 0">
                         <div v-for="(item, index) in cart" :key="index">
-                            {{ index }}
                             <input
                                 class="inputNum my-1 col-1"
                                 type="number"
@@ -134,9 +133,7 @@
                                     updateQuantity($event, item.name, item.unit)
                                 "
                             />
-                            <!-- <span class="name">{{ item.name }}</span> -->
-
-                            <!--<span>€ {{item.unitPrice}}</span>-->
+                            <span class="name">{{ item.name }}</span>
                             <span
                                 class="remove"
                                 @click="removeAll(item.name, item.price)"
@@ -144,25 +141,27 @@
                             ></span>
                         </div>
 
-                        <!-- Tot -->
-                        <h3 class="mt-3">Total: €{{ tot.toFixed(2) }}</h3>
+                        <div class="text-center">
+                            <!-- Tot -->
+                            <h3 class="mt-3">Total: €{{ tot.toFixed(2) }}</h3>
 
-                        <!-- Delete Button -->
-                        <button
-                            class="btn btn-danger my-2"
-                            @click="deleteCart()"
-                        >
-                            Delete Cart
-                        </button>
-
-                        <!-- CheckOut Button -->
-                        <div class="mar">
-                            <router-link
-                                class="btn btn-warning"
-                                :to="{ name: 'checkout' }"
-                                >Go to Checkout</router-link
+                            <!-- Delete Button -->
+                            <button
+                                class="btn btn-danger my-2"
+                                @click="deleteCart()"
                             >
+                                Delete Cart
+                            </button>
+                            <!-- CheckOut Button -->
+                            <div class="mar">
+                                <router-link
+                                    class="btn btn-warning"
+                                    :to="{ name: 'checkout' }"
+                                    >Go to Checkout</router-link
+                                >
+                            </div>
                         </div>
+
                     </div>
 
                     <div v-show="Object.keys(cart).length === 0">
