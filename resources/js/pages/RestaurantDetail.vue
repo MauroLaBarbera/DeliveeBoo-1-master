@@ -43,14 +43,14 @@
                             <div class="d-flex flex-column justify-content-center card-body">
                                 <p><strong>Description: </strong>{{plate.description}}</p>
 
-                                <div  class="d-flex align-items-baseline mt-3">
+                                <div v-if="plate.visibility" class="d-flex align-items-baseline mt-3">
                                     <div>€ {{plate.price.toFixed(2)}}</div>
                                     <p class="btn btn-primary mx-3" @click="addCart($event,plate)" >Add to Cart</p>
                                 </div>
 
-                                <!-- <div v-else>
-                                    <p class="btn btn-danger" disabled >Not Avaiable</p>
-                                </div> -->
+                                <div v-else>
+                                    <button class="btn btn-danger" disabled>Not Avaiable</button>
+                                </div>
 
                             </div>
                     </div>
