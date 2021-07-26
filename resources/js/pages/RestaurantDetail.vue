@@ -141,10 +141,10 @@
                             ></span>
                         </div>
 
+                        <!-- Tot -->
+                        <h3 class="mt-5">Total: €{{ tot.toFixed(2) }}</h3>
+                        
                         <div class="text-center">
-                            <!-- Tot -->
-                            <h3 class="mt-3">Total: €{{ tot.toFixed(2) }}</h3>
-
                             <!-- Delete Button -->
                             <button
                                 class="btn btn-danger my-2"
