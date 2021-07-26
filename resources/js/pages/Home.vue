@@ -29,19 +29,19 @@
                 v-for="restaurant in restaurants.results"
                 :key="`res-${restaurant.id}`"
             >
-                <div class="card-rest card bg-light">
+                <div class="card-rest card text-center bg-light">
                     <h2>{{ restaurant.name }}</h2>
 
                     <img
                         v-if="restaurant.image"
-                        class="img-fluid img my-2"
+                        class="img my-2"
                         :src="restaurant.image"
                         :alt="restaurant.name"
                     />
 
                     <img
                         v-else
-                        class="img-fluid img my-2"
+                        class="img my-2"
                         src="https://redi.it/wp-content/uploads/2015/08/not-available.png"
                         :alt="restaurant.name"
                     />
@@ -119,6 +119,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
+img {
+    width: 100%;
+    height: 176px;
+}
+
 .cuisines {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -148,6 +153,7 @@ h2 {
 .card-rest {
     display: inline-grid;
     width: calc(100% / 4 - 20px);
+    min-height: 360px;
     margin: 10px;
     padding: 1rem;
 

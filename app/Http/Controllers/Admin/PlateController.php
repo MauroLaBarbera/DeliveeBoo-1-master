@@ -67,7 +67,7 @@ class PlateController extends Controller
 
         $new_plate->save();
 
-        return redirect()->route('admin.restaurants.index');
+        return redirect()->route('admin.restaurants.show', $new_plate->restaurant_id);
     
     }
 

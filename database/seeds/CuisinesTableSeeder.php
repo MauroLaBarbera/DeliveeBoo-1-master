@@ -14,13 +14,14 @@ class CuisinesTableSeeder extends Seeder
     {
 
         $types = [
-            'italiano',
-            'giapponese',
-            'cinese',
-            'greco',
-            'messicano',
-            'indiano',
-            'pizza'
+            'Italian',
+            'Japanese',
+            'Chinese',
+            'Greek',
+            'Mexican',
+            'Indian',
+            'Pizza',
+            'American'
         ];
 
         foreach($types as $type) {
