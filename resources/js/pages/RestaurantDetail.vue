@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main" >
 
         <!--<div v-show="loader" class="hungry-4">
         </div>
@@ -50,7 +50,7 @@
 
                                 <div v-if="plate.visibility" class="d-flex align-items-baseline mt-3">
                                     <div>€ {{plate.price.toFixed(2)}}</div>
-                                    <p class="btn btn-primary mx-3" @click="addCart($event,plate)" >Add to Cart</p>
+                                    <p id="btn" class="btn btn-primary mx-3" @click="addCart($event,plate)" >Add to Cart</p>
                                 </div>
 
                                 <div v-else>
@@ -97,7 +97,7 @@
 
                         <!-- CheckOut Button -->
                         <div class="mar">
-                            <router-link class="btn btn-warning" :to="{name: 'checkout'}">Go to Checkout</router-link>
+                            <router-link class="btn btn-warning" :to="{name: 'checkout#inizio'}">Go to Checkout</router-link>
                         </div>
 
                     </div>
@@ -159,8 +159,6 @@ export default {
     updated() {
 
         this.loader= false;
-
-        window.scrollTo(0,0);
 
     },
 

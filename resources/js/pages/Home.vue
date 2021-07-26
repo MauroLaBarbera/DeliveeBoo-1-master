@@ -35,7 +35,8 @@
                             <router-link class="btn btn-warning"
                                 :to="{
                                     name: 'restaurant-detail',
-                                    params: { name: restaurant.id }
+                                    params: { name: restaurant.id },
+                                    hash: '#inizio'
                                 }"
                                 >Restaurant Detail</router-link
                             >
