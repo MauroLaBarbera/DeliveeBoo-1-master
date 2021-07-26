@@ -15,7 +15,13 @@
 
      <div class="row mt-5">
             <div class="col-md-6">
+                @if ($plates->image > '')
                 <img class="img-fluid rounded" src="{{$plates->image}}" alt="{{$plates->name}}">
+                
+                @elseif ($plates->image == '')
+                <img class="img-fluid rounded" src="https://redi.it/wp-content/uploads/2015/08/not-available.png" alt="{{$plates->name}}">
+                
+                @endif
             </div>
             <div class="col-md-6">
                 {{ $plates->description }}
