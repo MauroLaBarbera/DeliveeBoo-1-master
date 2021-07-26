@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name*</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
                         @error('name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -35,7 +35,7 @@
                     <div class="row">
                     <div class=" col-md-6 mb-3">
                         <label for="address" class="form-label">Address*</label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" required>
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -43,7 +43,7 @@
                     
                     <div class="mb-3  col-md-4">
                         <label for="city" class="form-label">City*</label>
-                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}">
+                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}" required>
                         @error('city')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -52,7 +52,7 @@
 
                     <div class="mb-3  col-md-2">
                         <label for="cap" class="form-label">CAP*</label>
-                        <input type="text" class="form-control @error('cap') is-invalid @enderror" id="cap" name="cap" value="{{ old('cap') }}">
+                        <input type="number" class="form-control @error('cap') is-invalid @enderror" id="cap" name="cap" value="{{ old('cap') }}" required>
                         @error('cap')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -61,7 +61,7 @@
 
                     <div class="mb-3">
                         <label for="phone_number" class="form-label">Phone Number*</label>
-                        <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ old('phone_number') }}">
+                        <input type="tel" pattern="[+]{1}[0-9]{10,14}" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ old('phone_number') }}" required>
                         @error('phone_number')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -70,10 +70,11 @@
                     {{-- CUISINES --}}
                     <h5 class="mb-3">Cuisines*</h5>
 
-                    <div class="mb-3 @error('cuisines') text-danger @enderror">
+                    <div class="mb-3 @error('cuisines') text-danger @enderror" >
                         @foreach ($cuisines as $cuisine)
                             <span class="d-inline-block mr-3">
                                 <input type="checkbox" name="cuisines[]" class="cuisines" id="cuisine{{ $loop->iteration }}"
+                                
                                 value="{{$cuisine->id}}"
                                 @if (in_array($cuisine->id, old('cuisines', []))) checked @endif>
                                 <label for="cuisine{{ $loop->iteration }}">

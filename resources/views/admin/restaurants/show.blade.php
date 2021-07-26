@@ -17,7 +17,12 @@
 
         <div class="row mt-3">
             <div class="col-md-6">
+                @if($restaurant->image > '')
                 <img class="img-fluid rounded" src="{{$restaurant->image}}" alt="{{$restaurant->name}}">
+                
+                @elseif ($restaurant->image == '')
+                <img class="img-fluid rounded" src="https://redi.it/wp-content/uploads/2015/08/not-available.png" alt="{{$restaurant->name}}">
+                @endif
             </div>
             <div class="col-md-6">
                 {{ $restaurant->description }}

@@ -8,7 +8,9 @@
             <div class="cuisines mb-5">
                 <ul v-for="cuisine in cuisines" :key="cuisine.id">
                     <li>
-                        <label class="btn btn-success" :for="cuisine.type">{{ cuisine.type }}</label>
+                        <label class="btn btn-success" :for="cuisine.type">{{
+                            cuisine.type
+                        }}</label>
                         <input
                             type="checkbox"
                             :id="cuisine.type"
@@ -21,27 +23,39 @@
             </div>
 
             <!-- RESTAURANT LIST -->
-            
-                <div class="rest" v-for="restaurant in restaurants.results"
-                    :key="`res-${restaurant.id}`">
-                    <div class="card-rest card bg-light" >
-                            <h2>{{ restaurant.name }}</h2>
-                        
-                            <img
-                                class="img-fluid img my-2"
-                                :src="restaurant.image"
-                                alt=""
-                            />
-                            <router-link class="btn btn-warning"
-                                :to="{
-                                    name: 'restaurant-detail',
-                                    params: { name: restaurant.id }
-                                }"
-                                >Restaurant Detail</router-link
-                            >
-                        
-                    </div>
+
+            <div
+                class="rest"
+                v-for="restaurant in restaurants.results"
+                :key="`res-${restaurant.id}`"
+            >
+                <div class="card-rest card bg-light">
+                    <h2>{{ restaurant.name }}</h2>
+
+                    <img
+                        v-if="restaurant.image"
+                        class="img-fluid img my-2"
+                        :src="restaurant.image"
+                        :alt="restaurant.name"
+                    />
+
+                    <img
+                        v-else
+                        class="img-fluid img my-2"
+                        src="https://redi.it/wp-content/uploads/2015/08/not-available.png"
+                        :alt="restaurant.name"
+                    />
+
+                    <router-link
+                        class="btn btn-warning"
+                        :to="{
+                            name: 'restaurant-detail',
+                            params: { name: restaurant.id }
+                        }"
+                        >Restaurant Detail</router-link
+                    >
                 </div>
+            </div>
         </div>
     </div>
 </template>
@@ -69,11 +83,12 @@ export default {
     created() {
         this.getRestaurants();
         this.getCuisines();
+        window.scrollTo(0, 0);
     },
     methods: {
         getRestaurants: function(e) {
             axios
-                .get(this.apiURL + "/" + (this.temp.join("-")) )
+                .get(this.apiURL + "/" + this.temp.join("-"))
                 .then(res => {
                     this.restaurants = res.data;
 
@@ -130,15 +145,14 @@ h2 {
 .rest {
     display: inline;
 }
-    .card-rest {
-        display: inline-grid;
-        width: calc(100% / 4 - 20px);
-        margin: 10px;
-        padding: 1rem;
+.card-rest {
+    display: inline-grid;
+    width: calc(100% / 4 - 20px);
+    margin: 10px;
+    padding: 1rem;
 
-        img {
-            border-radius: 5px;
-        }
+    img {
+        border-radius: 5px;
     }
-
+}
 </style>

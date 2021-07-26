@@ -26,8 +26,10 @@ const router = new VueRouter({
         },
         {
             path: "/restaurant/:name",
+            component: RestaurantDetail,
             name: "restaurant-detail",
-            component: RestaurantDetail
+            props: { loader: true }
+
         },
         {
             path: "/checkout",
@@ -37,8 +39,16 @@ const router = new VueRouter({
         {
             path: "*",
             component: NotFound
-        }
-    ]
+        },
+    ],
+    scrollBehavior() {
+        return {x: 0, y: 0}
+    }
 });
 
+
 export default router;
+
+
+
+

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -8,19 +8,19 @@
             rel="stylesheet"
         />
 
-        <div v-show="loader">
-             <div class="hungry-4"></div>
+        <Header />
+
+        <div class="container">
+
+            <div v-show="loader" class="hungry-4">
+            </div>
+
+            <div v-show="!loader" >
+                <router-view></router-view>
+            </div>
+
         </div>
-
-
-
-        <div v-show="notLoader">
-            <Header />
-            <router-view></router-view>
-            <Footer />
-        </div>
-
-
+        <Footer />
 
     </div>
 </template>
@@ -37,17 +37,27 @@ export default {
     data() {
         return {
             loader: true,
-            notLoader: false,
         };
     },
-    mounted:function(){
-        this.loader=false;
-        this.notLoader=true;
+    created:function(){
+
+        setTimeout(()=>{
+            this.loader=false;
+            },1000);
+        window.scrollTo(0,0);
+        this.$forceUpdate();
+    },
+    updated:function(){
+
+
+        window.scrollTo(0,0);
+
     }
 }
 </script>
 
 <style lang="scss">
+
 * {
     padding: 0;
     margin: 0;
@@ -66,13 +76,17 @@ body {
 }
 
 .hungry-4 {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 8px solid #d1914b;
-  --c:radial-gradient(farthest-side, #d64123 94%,#0000);
-  --b:radial-gradient(farthest-side, #000 94%,#0000);
-  background:
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 8px solid #d1914b;
+    --c:radial-gradient(farthest-side, #d64123 94%,#0000);
+    --b:radial-gradient(farthest-side, #000 94%,#0000);
+    background:
     var(--c) 11px 15px,
     var(--b) 6px 15px,
     var(--c) 35px 23px,
@@ -84,9 +98,9 @@ body {
     var(--c) 47px 43px,
     var(--b) 31px 48px,
     #f6d353;
-  background-size: 15px 15px,6px 6px;
-  background-repeat: no-repeat;
-  animation: hu4 3s infinite;
+    background-size: 15px 15px,6px 6px;
+    background-repeat: no-repeat;
+    animation: hu4 1s infinite;
 }
 @keyframes hu4 {
   0%     {-webkit-mask:conic-gradient(#0000 0     ,#000 0)}
@@ -97,6 +111,7 @@ body {
   83.33% {-webkit-mask:conic-gradient(#0000 300deg,#000 0)}
   100%   {-webkit-mask:conic-gradient(#0000 360deg,#000 0)}
 }
+
 
 ul {
     list-style-type: none;

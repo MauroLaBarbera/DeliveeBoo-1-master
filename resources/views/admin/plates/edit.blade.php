@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name*</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $plate->name) }}">
+                        <input required type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $plate->name) }}">
                         @error('name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -34,9 +34,9 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input @error('visibility') is-invalid @enderror" name="visibility" id="visibility1" value="1" {{ old('visibility', $plate->visibility) == 1 ? 'checked' : '' }}>
-                            <label for="visibility1" class="custom-control-label">Avaiable</label>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input @error('visibility') is-invalid @enderror" name="visibility" id="visibility1" value="1" {{ old('visibility', $plate->visibility) == 1 ? 'checked' : '' }}>
+                            <label for="visibility1" class="form-check-label">Avaiable</label>
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">€</div>
                             </div>
-                            <input type="number" placeholder="0.00" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price', $plate->price) }}">
+                            <input required type="number" placeholder="0.00" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price', $plate->price) }}">
                             @error('price')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror

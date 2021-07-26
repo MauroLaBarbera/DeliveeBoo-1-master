@@ -11,7 +11,7 @@
 
                         <div v-if="Object.keys(cart).length" >
                             <div v-for="(item, index) in cart" :key="index">
-                                <input class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
+                                <input  class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
 
                                 <span class="name">{{item.name}}</span>
                                 <span>€ {{item.price.toFixed(2)}}</span>
@@ -99,6 +99,7 @@ export default {
     },
     created(){
         this.getBill();
+        window.scrollTo(0,0);
     },
      mounted() {
         braintree.client
@@ -213,10 +214,6 @@ export default {
 </script>
 
 <style>
-    body {
-        padding: 5px;
-
-    }
     .form-control{
             height: 30px;
         }
