@@ -8,6 +8,7 @@
                 <div class="card-body">
 
                     <div class="cart">
+
                         <div v-if="Object.keys(cart).length" >
                             <div v-for="(item, index) in cart" :key="index">
 
