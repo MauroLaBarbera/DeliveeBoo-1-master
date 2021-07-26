@@ -88,9 +88,7 @@
                 <li><strong>Address: </strong>{{ restaurant.results.address }}</li>
                 <li><strong>City: </strong>{{ restaurant.results.city }}</li>
                 <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
-                <li>
-                    <strong>Phone number: </strong>{{ restaurant.results.phone_number }}
-                </li>
+                <li><strong>Phone number: </strong>{{ restaurant.results.phone_number }}</li>
             </ul>
         </div>
 
