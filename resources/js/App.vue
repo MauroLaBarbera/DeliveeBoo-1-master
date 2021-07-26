@@ -45,6 +45,14 @@ export default {
             this.loader=false;
             },1000);
         window.scrollTo(0,0);
+        this.$forceUpdate();
+    },
+    updated:function(){
+        this.loader=true;
+        setTimeout(()=>{
+            this.loader=false;
+            },1000);
+        window.scrollTo(0,0);
 
     }
 }

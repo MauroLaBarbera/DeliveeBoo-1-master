@@ -117,7 +117,7 @@
                 </ul>
             </div>
 
-        
+
     </div>
 
 
@@ -151,12 +151,18 @@ export default {
         this.getPlate();
 
         this.popCart();
-        console.log('created RD1',this.loader);
+
+
+    },
+    updated() {
+
         this.loader= false;
-        console.log('created RD2',this.loader);
+
         window.scrollTo(0,0);
 
     },
+
+
     methods: {
 
         getPlate() {
