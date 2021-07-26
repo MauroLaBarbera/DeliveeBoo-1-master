@@ -48,7 +48,7 @@ export default {
         this.$forceUpdate();
     },
     updated:function(){
-        this.loader=true;
+        
         setTimeout(()=>{
             this.loader=false;
             },1000);
