@@ -1,16 +1,17 @@
 <template>
     <div class="container">
         <div class="col-6 offset-3 my-3">
-            <div class="card bg-light">
-                <div class="card-header">
-                    <h2>Your Cart</h2>
+            <div class="card bg-light ">
+                <div class="card-header text-center">
+                    <h2>Your Cart <i class="fas fa-shopping-basket"></i></h2>
                 </div>
                 <div class="card-body">
 
                     <div class="cart">
 
                         <div v-if="Object.keys(cart).length" >
-                            <div v-for="(item, index) in cart" :key="index">
+                            <div class="text-left" v-for="(item, index) in cart" :key="index">
+
                                 <input  class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
 
                                 <span class="name">{{item.name}}</span>
@@ -18,8 +19,12 @@
                                 <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
                             </div>
 
-                            <h3>Tot: €{{tot.toFixed(2)}}</h3>
-                            <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+
+                            <h3 class="mt-5">Tot: €{{tot.toFixed(2)}}</h3>
+
+                            <div class="text-center">
+                                <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+                            </div>
 
                         </div>
 
@@ -217,4 +222,7 @@ export default {
     .form-control{
             height: 30px;
         }
+    i{
+    color: #007e8a;
+    }
 </style>

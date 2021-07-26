@@ -9,7 +9,7 @@
         </ul>
         <ul>
             <li class="nav-dx">
-                <a href="/checkout"><i class="fas fa-shopping-cart"></i>Cart</a>
+                <a href="/checkout"><i class="fas fa-shopping-basket"></i>Cart</a>
             </li>
             <li class="nav-dx">
                 <a href="/admin" target="_blank"><i class="fas fa-home"></i>Log In</a>
