@@ -72,12 +72,12 @@
                     <div v-show="Object.keys(cart).length>0" >
 
                         <div v-for="(item, index) in cart" :key="index">
-
+                            {{index}}
                             <input class="inputNum my-1 col-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
                             <span class="name">{{item.name}}</span>
 
                             <!--<span>€ {{item.unitPrice.toFixed(2)}}</span>-->
-                            <span class="remove" @click="removeAll(item.name, item.unitPrice)"><i class=" click fas fa-trash-alt"></i></span>
+                            <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
 
                         </div>
 

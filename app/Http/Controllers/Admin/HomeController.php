@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index () {
 
         //MAIL
-        Mail::to('test@test.it')->send(new SendNewMail());
+        //Mail::to('test@test.it')->send(new SendNewMail());
         return view('admin.home');
     }
 }
