@@ -33,7 +33,8 @@
                          <textarea name="description" id="description" rows="6" class="form-control  @error('description') is-invalid @enderror">{{ old('description', $restaurant->description) }}</textarea>
                     </div>
 
-                    <div class="mb-3">
+                    <div class=" row">
+                    <div class="mb-3 col-md-6">
                         <label for="address" class="form-label">Address*</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address', $restaurant->address) }}">
                         @error('address')
@@ -41,7 +42,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 col-md-4">
                         <label for="city" class="form-label">City*</label>
                         <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city', $restaurant->city) }}">
                         @error('city')
@@ -50,12 +51,13 @@
                     </div>
 
 
-                    <div class="mb-3">
+                    <div class="mb-3 col-md-2">
                         <label for="cap" class="form-label">CAP*</label>
                         <input type="text" class="form-control @error('cap') is-invalid @enderror" id="cap" name="cap" value="{{ old('cap', $restaurant->cap) }}">
                         @error('cap')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
+                    </div>
                     </div>
 
                     <div class="mb-3">
