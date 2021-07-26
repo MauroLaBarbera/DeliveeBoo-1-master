@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="loader">
-        <div class="hungry-4"></div>
+            <div class="hungry-4"></div>
         </div>
         <div v-else class="container">
 
@@ -15,11 +15,12 @@
             <div class="row mt-3">
 
                 <div class="col-md-6">
-                <img class="img-fluid rounded" :src="restaurant.results.image" :alt="restaurant.name" />
+                    <img class="img-fluid rounded" :src="restaurant.results.image" :alt="restaurant.name" />
                 </div>
 
                 <div class="col-md-6">
-                <p class="mar">{{ restaurant.results.description }}</p>
+                    <p class="mar">{{ restaurant.results.description }}</p>
+                </div>
             </div>
 
             <div>
@@ -59,10 +60,7 @@
 
                 </div>
 
-                </div>
-
             </div>
-
 
             <!-- Cart -->
             <div class="cart mt-5 card bg-light col-5 offset-4 text-center">
@@ -103,7 +101,7 @@
                     </div>
 
                 </div>
-
+            </div>
         </div>
 
         <div class="mar contacts">
@@ -114,7 +112,6 @@
                 <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
                 <li><strong>Phone number: </strong>{{ restaurant.results.phone_number }}</li>
             </ul>
-        </div>
         </div>
     </div>
 
