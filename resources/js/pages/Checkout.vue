@@ -222,7 +222,7 @@ export default {
     .form-control{
             height: 30px;
         }
-    i {
+    i{
     color: #007e8a;
     }
 </style>
