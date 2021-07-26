@@ -14,9 +14,15 @@
 
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <img
+                    <img v-if="restaurant.image"
                         class="img-fluid rounded"
                         :src="restaurant.results.image"
+                        :alt="restaurant.name"
+                    />
+
+                    <img v-else
+                        class="img-fluid rounded"
+                        src="https://redi.it/wp-content/uploads/2015/08/not-available.png"
                         :alt="restaurant.name"
                     />
                 </div>
@@ -365,10 +371,6 @@ export default {
     h3 {
         padding-left: 2rem;
     }
-    min-width: 1300px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     background: #007e8a;
     color: #fff;
     margin: 30px 0;

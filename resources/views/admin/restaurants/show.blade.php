@@ -10,7 +10,7 @@
             @if (count($restaurant->cuisines) > 0)
             <h4>Tipologie cucine</h4>
             @foreach ($restaurant->cuisines as $cuisine)
-                <span class="badge badge-primary">{{$cuisine->type}}</span>
+                <span class="badge bg-primary">{{$cuisine->type}}</span>
             @endforeach
         @endif 
         </header>
