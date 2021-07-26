@@ -1,9 +1,7 @@
 <template>
     <div>
-        <div v-if="loader">
-        <div class="hungry-4"></div>
-        </div>
-        <div v-else class="container">
+
+        <div class="container">
 
             <h1 >Details: {{ restaurant.results.name }}</h1>
 
@@ -104,17 +102,18 @@
 
                 </div>
 
-        </div>
+            </div>
 
-        <div class="mar contacts">
-            <h3>Contacts</h3>
-            <ul>
-                <li><strong>Address: </strong>{{ restaurant.results.address }}</li>
-                <li><strong>City: </strong>{{ restaurant.results.city }}</li>
-                <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
-                <li><strong>Phone number: </strong>{{ restaurant.results.phone_number }}</li>
-            </ul>
-        </div>
+            <div class="mar contacts">
+                <h3>Contacts</h3>
+                <ul>
+                    <li><strong>Address: </strong>{{ restaurant.results.address }}</li>
+                    <li><strong>City: </strong>{{ restaurant.results.city }}</li>
+                    <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
+                    <li><strong>Phone number: </strong>{{ restaurant.results.phone_number }}</li>
+                </ul>
+            </div>
+
         </div>
     </div>
 
@@ -136,19 +135,21 @@ export default {
             restaurant: '',
             plates: [],
             plate: {},
-            visibility: false,
             cart: {},
             tot: 0,
-            loader: true,
+            loader: false
+
         };
     },
     created() {
+
         this.getRestaurantDetail();
 
         this.getPlate();
 
         this.popCart();
 
+        this.loader= true;
 
     },
     methods: {
@@ -322,45 +323,6 @@ export default {
     margin: 30px 0;
     padding: 20px 0;
 }
-
-.hungry-4 {
-position: relative;
-top: 50%;
-left:50%;
-transform: translate(-50% , -50%);
-width: 80px;
-height: 80px;
-border-radius: 50%;
-border: 8px solid #d1914b;
---c:radial-gradient(farthest-side, #d64123 94%,#0000);
---b:radial-gradient(farthest-side, #000 94%,#0000);
-background:
-    var(--c) 11px 15px,
-    var(--b) 6px 15px,
-    var(--c) 35px 23px,
-    var(--b) 29px 15px,
-    var(--c) 11px 46px,
-    var(--b) 11px 34px,
-    var(--c) 36px 0px,
-    var(--b) 50px 31px,
-    var(--c) 47px 43px,
-    var(--b) 31px 48px,
-    #f6d353;
-  background-size: 15px 15px,6px 6px;
-  background-repeat: no-repeat;
-  animation: hu4 3s infinite;
-}
-@keyframes hu4 {
-  0%     {-webkit-mask:conic-gradient(#0000 0     ,#000 0)}
-  16.67% {-webkit-mask:conic-gradient(#0000 60deg ,#000 0)}
-  33.33% {-webkit-mask:conic-gradient(#0000 120deg,#000 0)}
-  50%    {-webkit-mask:conic-gradient(#0000 180deg,#000 0)}
-  66.67% {-webkit-mask:conic-gradient(#0000 240deg,#000 0)}
-  83.33% {-webkit-mask:conic-gradient(#0000 300deg,#000 0)}
-  100%   {-webkit-mask:conic-gradient(#0000 360deg,#000 0)}
-}
-
-
 
 i {
         color: #007e8a;
