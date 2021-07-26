@@ -31,15 +31,13 @@
                     </div>
                     
                     <div class="mb-3">
-                         <label for="description" class="form-label">Description</label>
-                         <textarea name="description" id="description" rows="6" class="form-control  @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+                         <label for="description" class="form-label">Description*</label>
+                         <textarea required name="description" id="description" rows="6" class="form-control  @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
                     </div>
 
-                    <div class="form-group">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input @error('visibility') is-invalid @enderror" name="visibility" id="visibility1" value="1" {{ old('visibility') == 1 ? 'checked' : '' }}>
-                            <label for="visibility1" class="custom-control-label">Avaiable</label>
-                        </div>
+                    <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input @error('visibility') is-invalid @enderror" name="visibility" id="visibility1" value="1" {{ old('visibility') == 1 ? 'checked' : '' }}>
+                            <label for="visibility1" class="form-check-label">Avaiable</label>
                     </div>
 
                     <div class="mb-3 w-25">

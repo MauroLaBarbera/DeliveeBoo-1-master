@@ -34,9 +34,9 @@
                     </div>
 
                     <div class="form-group">
-                        <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input @error('visibility') is-invalid @enderror" name="visibility" id="visibility1" value="1" {{ old('visibility', $plate->visibility) == 1 ? 'checked' : '' }}>
-                            <label for="visibility1" class="custom-control-label">Avaiable</label>
+                        <div class="form-check form-switch">
+                            <input type="checkbox" class="form-check-input @error('visibility') is-invalid @enderror" name="visibility" id="visibility1" value="1" {{ old('visibility', $plate->visibility) == 1 ? 'checked' : '' }}>
+                            <label for="visibility1" class="form-check-label">Avaiable</label>
                         </div>
                     </div>
 
