@@ -6,25 +6,34 @@
                     <h2>Your Cart</h2>
                 </div>
                 <div class="card-body">
+
                     <div class="cart">
                         <div v-if="Object.keys(cart).length" >
                             <div v-for="(item, index) in cart" :key="index">
-                                {{item}}
-                                <input class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.price)">
+
+                                <input class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unitPrice)">
+
                                 <span class="name">{{item.name}}</span>
-                                <span>€ {{item.price.toFixed(2)}}</span> 
+                                <span>€ {{item.price.toFixed(2)}}</span>
                                 <span class="remove" @click="removeAll(item.name, item.price)"><i class=" click fas fa-trash-alt"></i></span>
                             </div>
+
+                            <h3>Tot: €{{tot.toFixed(2)}}</h3>
+                            <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+
                         </div>
-                        <div v-else>Your cart is empty</div>
-                        <h3>Tot: €{{tot.toFixed(2)}}</h3>
-                        <button class="btn btn-danger" @click="deleteCart()">Delete Cart</button>
+
+                        <div v-else>Your cart is empty
+
+
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
       <div class="container">
-        <div class="col-6 offset-3">
+        <div v-if="Object.keys(cart).length" class="col-6 offset-3">
             <div class="card bg-light">
                 <div class="card-header">Payment Information</div>
                 <div class="card-body">
@@ -168,7 +177,7 @@ export default {
         setTotal(){
             for(let item in this.cart){
                 this.tot+=this.cart[item].price;
-            }; 
+            };
         },
         store(){
             window.localStorage.setItem('cart', JSON.stringify(this.cart));
@@ -177,9 +186,9 @@ export default {
             const resp = confirm('Vuoi cancellare il tuo ordine?');
             if(resp){
                 this.cart = {};
-                this.tot = 0; 
+                this.tot = 0;
                 window.localStorage.clear();
-            } 
+            }
         },
          payWithCreditCard() {
             if (this.hostedFieldInstance) {
@@ -199,12 +208,16 @@ export default {
                     });
             }
         }
-    }    
+    }
 }
 </script>
 
 <style>
     body {
         padding: 5px;
+
     }
+    .form-control{
+            height: 30px;
+        }
 </style>

@@ -23,7 +23,7 @@ export default {
     data(){
         return{
             tot: 0,
-            cart: [],
+            cart: [0],
         }
     },
     created(){
