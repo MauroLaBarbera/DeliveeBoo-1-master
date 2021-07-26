@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="container">
 
             <h1 >Details: {{ restaurant.results.name }}</h1>
@@ -136,6 +137,7 @@ export default {
             visibility: false,
             cart: {},
             tot: 0,
+            loader: true,
         };
     },
     created() {
@@ -144,6 +146,8 @@ export default {
         this.getPlate();
 
         this.popCart();
+
+        this.loader = false;
     },
     methods: {
 
@@ -315,6 +319,9 @@ export default {
     margin: 30px 0;
     padding: 20px 0;
 }
+
+
+
 
     i {
         color: #007e8a;
