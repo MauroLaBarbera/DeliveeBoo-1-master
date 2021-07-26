@@ -5931,6 +5931,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -65019,7 +65020,7 @@ var render = function() {
                   }
                 ]
               },
-              [_vm._v("Your cart is empty\n\n\n\n            ")]
+              [_vm._v("Your cart is empty\n            ")]
             )
           ])
         ]
