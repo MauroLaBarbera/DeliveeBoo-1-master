@@ -1,6 +1,6 @@
 <template>
     <div>
-        <span v-for="cuisine in cuisines" :key="`cuisine-${cuisine.id}`"
+        <span class="badge bg-primary" v-for="cuisine in cuisines" :key="`cuisine-${cuisine.id}`"
             >{{ cuisine}}
         </span>
     </div>
@@ -18,13 +18,7 @@ div {
     display: flex;
 
     span {
-        justify-content: center;
-        align-self: center;
         margin-right: 5px;
-        background: dodgerblue;
-        padding: 5px;
-        border-radius: 10px;
-        color: white;
     }
 }
 </style>

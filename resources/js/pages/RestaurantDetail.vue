@@ -6,7 +6,7 @@
             <h1 >Details: {{ restaurant.results.name }}</h1>
 
             <div class="mar">
-                <h2 class="mb">Type of cuisines: </h2>
+                <h5 class="mb">Type of cuisines: </h5>
                 <Cuisines :cuisines="restaurant.results.type" />
             </div>
 
@@ -43,14 +43,14 @@
                             <div class="d-flex flex-column justify-content-center card-body">
                                 <p><strong>Description: </strong>{{plate.description}}</p>
 
-                                <div v-if="plate.visibility" class="d-flex align-items-baseline mt-3">
+                                <div  class="d-flex align-items-baseline mt-3">
                                     <div>€ {{plate.price.toFixed(2)}}</div>
                                     <p class="btn btn-primary mx-3" @click="addCart($event,plate)" >Add to Cart</p>
                                 </div>
 
-                                <div v-else>
+                                <!-- <div v-else>
                                     <p class="btn btn-danger" disabled >Not Avaiable</p>
-                                </div>
+                                </div> -->
 
                             </div>
                     </div>
@@ -103,7 +103,7 @@
                 </div>
 
             </div>
-
+</div>
             <div class="mar contacts">
                 <h3>Contacts</h3>
                 <ul>
@@ -114,7 +114,7 @@
                 </ul>
             </div>
 
-        </div>
+        
     </div>
 
 
