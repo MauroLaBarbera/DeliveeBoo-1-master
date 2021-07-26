@@ -5044,13 +5044,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      loader: true,
-      notLoader: false
+      loader: true
     };
   },
-  mounted: function mounted() {
-    this.loader = false;
-    this.notLoader = true;
+  created: function created() {
+    var _this = this;
+
+    setTimeout(function () {
+      _this.loader = false;
+    }, 1000);
+    window.scrollTo(0, 0);
+    this.$forceUpdate();
+  },
+  updated: function updated() {
+    window.scrollTo(0, 0);
   }
 });
 
@@ -5365,6 +5372,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getBill();
+    window.scrollTo(0, 0);
   },
   mounted: function mounted() {
     var _this = this;
@@ -5542,6 +5550,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5564,6 +5586,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.getRestaurants();
     this.getCuisines();
+    window.scrollTo(0, 0);
   },
   methods: {
     getRestaurants: function getRestaurants(e) {
@@ -5977,6 +6000,48 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -5988,10 +6053,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      restaurant: '',
+      restaurant: "",
       plates: [],
       plate: {},
-      visibility: false,
       cart: {},
       tot: 0,
       loader: true
@@ -6001,6 +6065,10 @@ __webpack_require__.r(__webpack_exports__);
     this.getRestaurantDetail();
     this.getPlate();
     this.popCart();
+  },
+  updated: function updated() {
+    this.loader = false;
+    window.scrollTo(0, 0);
   },
   methods: {
     getPlate: function getPlate() {
@@ -6028,9 +6096,10 @@ __webpack_require__.r(__webpack_exports__);
      * Populate Cart with localStorage
      */
     popCart: function popCart() {
-      if (window.localStorage.getItem('cart')) {
-        this.cart = JSON.parse(window.localStorage.getItem('cart'));
+      if (window.localStorage.getItem("cart")) {
+        this.cart = JSON.parse(window.localStorage.getItem("cart"));
         this.setTotal();
+        console.log("popcart");
       }
     },
     addCart: function addCart(e, plate) {
@@ -6064,7 +6133,7 @@ __webpack_require__.r(__webpack_exports__);
         if (this.cart[Object.keys(this.cart)[0]].restaurant_id == plate.restaurant_id) {
           return true;
         } else {
-          var resp = confirm('Puoi ordinare da un solo ristorante. Vuoi cancellare il tuo ordine precedente?');
+          var resp = confirm("Puoi ordinare da un solo ristorante. Vuoi cancellare il tuo ordine precedente?");
 
           if (resp) {
             this.cart = {};
@@ -6119,22 +6188,20 @@ __webpack_require__.r(__webpack_exports__);
       for (var item in this.cart) {
         this.tot += this.cart[item].price;
       }
-
-      ;
     },
 
     /**
      * Save Cart in localStorage
      */
     store: function store() {
-      window.localStorage.setItem('cart', JSON.stringify(this.cart));
+      window.localStorage.setItem("cart", JSON.stringify(this.cart));
     },
 
     /**
      * Eliminate Entire Cart
      */
     deleteCart: function deleteCart() {
-      var resp = confirm('Vuoi cancellare il tuo ordine?');
+      var resp = confirm("Vuoi cancellare il tuo ordine?");
 
       if (resp) {
         this.cart = {};
@@ -31776,7 +31843,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "* {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n  font-family: \"Raleway\", sans-serif;\n}\nbody {\n  min-height: 100vh;\n}\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n  min-height: 100vh;\n}\n.hungry-4 {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 8px solid #d1914b;\n  --c:radial-gradient(farthest-side, #d64123 94%,#0000);\n  --b:radial-gradient(farthest-side, #000 94%,#0000);\n  background: var(--c) 11px 15px, var(--b) 6px 15px, var(--c) 35px 23px, var(--b) 29px 15px, var(--c) 11px 46px, var(--b) 11px 34px, var(--c) 36px 0px, var(--b) 50px 31px, var(--c) 47px 43px, var(--b) 31px 48px, #f6d353;\n  background-size: 15px 15px, 6px 6px;\n  background-repeat: no-repeat;\n  -webkit-animation: hu4 3s infinite;\n          animation: hu4 3s infinite;\n}\n@-webkit-keyframes hu4 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\n@keyframes hu4 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\nul {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\nul li {\n  margin: 10px 0;\n}", ""]);
+exports.push([module.i, "* {\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n  font-family: \"Raleway\", sans-serif;\n}\nbody {\n  min-height: 100vh;\n}\n.container {\n  max-width: 1200px;\n  margin: 0 auto;\n  min-height: 100vh;\n}\n.hungry-4 {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 8px solid #d1914b;\n  --c:radial-gradient(farthest-side, #d64123 94%,#0000);\n  --b:radial-gradient(farthest-side, #000 94%,#0000);\n  background: var(--c) 11px 15px, var(--b) 6px 15px, var(--c) 35px 23px, var(--b) 29px 15px, var(--c) 11px 46px, var(--b) 11px 34px, var(--c) 36px 0px, var(--b) 50px 31px, var(--c) 47px 43px, var(--b) 31px 48px, #f6d353;\n  background-size: 15px 15px, 6px 6px;\n  background-repeat: no-repeat;\n  -webkit-animation: hu4 1s infinite;\n          animation: hu4 1s infinite;\n}\n@-webkit-keyframes hu4 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\n@keyframes hu4 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\nul {\n  list-style-type: none;\n  padding: 0;\n  margin: 0;\n}\nul li {\n  margin: 10px 0;\n}", ""]);
 
 // exports
 
@@ -31795,7 +31862,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "div[data-v-13383ccc] {\n  display: flex;\n}\ndiv span[data-v-13383ccc] {\n  justify-content: center;\n  align-self: center;\n  margin-right: 5px;\n  background: dodgerblue;\n  padding: 5px;\n  border-radius: 10px;\n  color: white;\n}", ""]);
+exports.push([module.i, "div[data-v-13383ccc] {\n  display: flex;\n}\ndiv span[data-v-13383ccc] {\n  margin-right: 5px;\n}", ""]);
 
 // exports
 
@@ -31909,7 +31976,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".img img[data-v-1efe1077] {\n  width: 100%;\n  height: 200px;\n}\n.not-av img[data-v-1efe1077] {\n  width: 100%;\n  height: 200px;\n}\n.contacts[data-v-1efe1077] {\n  background: #007e8a;\n  color: #fff;\n  margin: 30px 0;\n  padding: 20px 0;\n}\n.contacts h3[data-v-1efe1077] {\n  padding-left: 2rem;\n}\n.hungry-4[data-v-1efe1077] {\n  position: relative;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 8px solid #d1914b;\n  --c:radial-gradient(farthest-side, #d64123 94%,#0000);\n  --b:radial-gradient(farthest-side, #000 94%,#0000);\n  background: var(--c) 11px 15px, var(--b) 6px 15px, var(--c) 35px 23px, var(--b) 29px 15px, var(--c) 11px 46px, var(--b) 11px 34px, var(--c) 36px 0px, var(--b) 50px 31px, var(--c) 47px 43px, var(--b) 31px 48px, #f6d353;\n  background-size: 15px 15px, 6px 6px;\n  background-repeat: no-repeat;\n  -webkit-animation: hu4-data-v-1efe1077 3s infinite;\n          animation: hu4-data-v-1efe1077 3s infinite;\n}\n@-webkit-keyframes hu4-data-v-1efe1077 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\n@keyframes hu4-data-v-1efe1077 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\ni[data-v-1efe1077] {\n  color: #007e8a;\n}", ""]);
+exports.push([module.i, ".img img[data-v-1efe1077] {\n  width: 100%;\n  height: 200px;\n}\n.not-av img[data-v-1efe1077] {\n  width: 100%;\n  height: 200px;\n}\n.contacts[data-v-1efe1077] {\n  min-width: 1300px;\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n  background: #007e8a;\n  color: #fff;\n  margin: 30px 0;\n  padding: 20px 0;\n}\n.contacts h3[data-v-1efe1077] {\n  padding-left: 2rem;\n}\n.hungry-4[data-v-1efe1077] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  border: 8px solid #d1914b;\n  --c: radial-gradient(farthest-side, #d64123 94%, #0000);\n  --b: radial-gradient(farthest-side, #000 94%, #0000);\n  background: var(--c) 11px 15px, var(--b) 6px 15px, var(--c) 35px 23px, var(--b) 29px 15px, var(--c) 11px 46px, var(--b) 11px 34px, var(--c) 36px 0px, var(--b) 50px 31px, var(--c) 47px 43px, var(--b) 31px 48px, #f6d353;\n  background-size: 15px 15px, 6px 6px;\n  background-repeat: no-repeat;\n  -webkit-animation: hu4-data-v-1efe1077 2s infinite;\n          animation: hu4-data-v-1efe1077 2s infinite;\n}\n@-webkit-keyframes hu4-data-v-1efe1077 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\n@keyframes hu4-data-v-1efe1077 {\n0% {\n    -webkit-mask: conic-gradient(#0000 0, #000 0);\n}\n16.67% {\n    -webkit-mask: conic-gradient(#0000 60deg, #000 0);\n}\n33.33% {\n    -webkit-mask: conic-gradient(#0000 120deg, #000 0);\n}\n50% {\n    -webkit-mask: conic-gradient(#0000 180deg, #000 0);\n}\n66.67% {\n    -webkit-mask: conic-gradient(#0000 240deg, #000 0);\n}\n83.33% {\n    -webkit-mask: conic-gradient(#0000 300deg, #000 0);\n}\n100% {\n    -webkit-mask: conic-gradient(#0000 360deg, #000 0);\n}\n}\ni[data-v-1efe1077] {\n  color: #007e8a;\n}", ""]);
 
 // exports
 
@@ -31928,7 +31995,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nbody {\n    padding: 5px;\n}\n.form-control{\n        height: 30px;\n}\n", ""]);
+exports.push([module.i, "\n.form-control{\n        height: 30px;\n}\n", ""]);
 
 // exports
 
@@ -64020,58 +64087,66 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("link", {
-      attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" }
-    }),
-    _vm._v(" "),
-    _c("link", {
-      attrs: {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossorigin: ""
-      }
-    }),
-    _vm._v(" "),
-    _c("link", {
-      attrs: {
-        href:
-          "https://fonts.googleapis.com/css2?family=Raleway:wght@500;800&display=swap",
-        rel: "stylesheet"
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
+  return _c(
+    "div",
+    { staticClass: "main" },
+    [
+      _c("link", {
+        attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" }
+      }),
+      _vm._v(" "),
+      _c("link", {
+        attrs: {
+          rel: "preconnect",
+          href: "https://fonts.gstatic.com",
+          crossorigin: ""
+        }
+      }),
+      _vm._v(" "),
+      _c("link", {
+        attrs: {
+          href:
+            "https://fonts.googleapis.com/css2?family=Raleway:wght@500;800&display=swap",
+          rel: "stylesheet"
+        }
+      }),
+      _vm._v(" "),
+      _c("Header"),
+      _vm._v(" "),
+      _c("div", { staticClass: "container" }, [
+        _c("div", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.loader,
+              expression: "loader"
+            }
+          ],
+          staticClass: "hungry-4"
+        }),
+        _vm._v(" "),
+        _c(
+          "div",
           {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.loader,
-            expression: "loader"
-          }
-        ]
-      },
-      [_c("div", { staticClass: "hungry-4" })]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.notLoader,
-            expression: "notLoader"
-          }
-        ]
-      },
-      [_c("Header"), _vm._v(" "), _c("router-view"), _vm._v(" "), _c("Footer")],
-      1
-    )
-  ])
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: !_vm.loader,
+                expression: "!loader"
+              }
+            ]
+          },
+          [_c("router-view")],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("Footer")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -64098,9 +64173,11 @@ var render = function() {
   return _c(
     "div",
     _vm._l(_vm.cuisines, function(cuisine) {
-      return _c("span", { key: "cuisine-" + cuisine.id }, [
-        _vm._v(_vm._s(cuisine) + "\n    ")
-      ])
+      return _c(
+        "span",
+        { key: "cuisine-" + cuisine.id, staticClass: "badge bg-primary" },
+        [_vm._v(_vm._s(cuisine) + "\n    ")]
+      )
     }),
     0
   )
@@ -64648,10 +64725,19 @@ var render = function() {
                 [
                   _c("h2", [_vm._v(_vm._s(restaurant.name))]),
                   _vm._v(" "),
-                  _c("img", {
-                    staticClass: "img-fluid img my-2",
-                    attrs: { src: restaurant.image, alt: "" }
-                  }),
+                  restaurant.image
+                    ? _c("img", {
+                        staticClass: "img-fluid img my-2",
+                        attrs: { src: restaurant.image, alt: restaurant.name }
+                      })
+                    : _c("img", {
+                        staticClass: "img-fluid img my-2",
+                        attrs: {
+                          src:
+                            "https://redi.it/wp-content/uploads/2015/08/not-available.png",
+                          alt: restaurant.name
+                        }
+                      }),
                   _vm._v(" "),
                   _c(
                     "router-link",
@@ -64858,269 +64944,280 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.loader
-      ? _c("div", [_c("div", { staticClass: "hungry-4" })])
-      : _c("div", { staticClass: "container" }, [
-          _c("h1", [_vm._v("Details: " + _vm._s(_vm.restaurant.results.name))]),
+  return _c("div", { staticClass: "main" }, [
+    _c("div", { staticClass: "container" }, [
+      _c("h1", [_vm._v("Details: " + _vm._s(_vm.restaurant.results.name))]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "mar" },
+        [
+          _c("h5", { staticClass: "mb" }, [_vm._v("Type of cuisines:")]),
+          _vm._v(" "),
+          _c("Cuisines", { attrs: { cuisines: _vm.restaurant.results.type } })
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "row mt-3" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("img", {
+            staticClass: "img-fluid rounded",
+            attrs: {
+              src: _vm.restaurant.results.image,
+              alt: _vm.restaurant.name
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-6" }, [
+          _c("p", { staticClass: "mar" }, [
+            _vm._v(_vm._s(_vm.restaurant.results.description))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("h3", { staticClass: "my-5 text-center" }, [_vm._v("Our Menù")]),
           _vm._v(" "),
           _c(
             "div",
-            { staticClass: "mar" },
-            [
-              _c("h2", { staticClass: "mb" }, [_vm._v("Type of cuisines: ")]),
-              _vm._v(" "),
-              _c("Cuisines", {
-                attrs: { cuisines: _vm.restaurant.results.type }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "row mt-3" }, [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("img", {
-                staticClass: "img-fluid rounded",
-                attrs: {
-                  src: _vm.restaurant.results.image,
-                  alt: _vm.restaurant.name
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("p", { staticClass: "mar" }, [
-                _vm._v(_vm._s(_vm.restaurant.results.description))
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", [
-            _c("h3", { staticClass: "my-5 text-center" }, [_vm._v("Our Menù")]),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "row" },
-              _vm._l(_vm.plates, function(plate, index) {
-                return _c(
-                  "div",
-                  {
-                    key: "plate-" + index,
-                    staticClass:
-                      "col-md-3 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"
-                  },
-                  [
-                    plate.image
-                      ? _c("div", { staticClass: "img my-2" }, [
-                          _c("img", {
-                            staticClass: "img-fluid",
-                            attrs: { src: plate.image, alt: plate.name }
-                          })
-                        ])
-                      : _c("div", { staticClass: "not-av" }, [
-                          _c("img", {
-                            attrs: {
-                              src:
-                                "https://redi.it/wp-content/uploads/2015/08/not-available.png",
-                              alt: "not-avaiable"
-                            }
-                          })
-                        ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "card-header" }, [
-                      _c("p", [
-                        _c("strong", [_vm._v("Name: ")]),
-                        _vm._v(_vm._s(plate.name))
+            { staticClass: "row" },
+            _vm._l(_vm.plates, function(plate, index) {
+              return _c(
+                "div",
+                {
+                  key: "plate-" + index,
+                  staticClass:
+                    "col-md-3 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"
+                },
+                [
+                  plate.image
+                    ? _c("div", { staticClass: "img my-2" }, [
+                        _c("img", {
+                          staticClass: "img-fluid",
+                          attrs: { src: plate.image, alt: plate.name }
+                        })
                       ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "d-flex flex-column justify-content-center card-body"
-                      },
-                      [
-                        _c("p", [
-                          _c("strong", [_vm._v("Description: ")]),
-                          _vm._v(_vm._s(plate.description))
-                        ]),
-                        _vm._v(" "),
-                        plate.visibility
-                          ? _c(
-                              "div",
+                    : _c("div", { staticClass: "not-av" }, [
+                        _c("img", {
+                          attrs: {
+                            src:
+                              "https://redi.it/wp-content/uploads/2015/08/not-available.png",
+                            alt: "not-avaiable"
+                          }
+                        })
+                      ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-header" }, [
+                    _c("p", [
+                      _c("strong", [_vm._v("Name: ")]),
+                      _vm._v(_vm._s(plate.name))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "d-flex flex-column justify-content-center card-body"
+                    },
+                    [
+                      _c("p", [
+                        _c("strong", [_vm._v("Description: ")]),
+                        _vm._v(
+                          _vm._s(plate.description) +
+                            "\n                            "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      plate.visibility
+                        ? _c(
+                            "div",
+                            { staticClass: "d-flex align-items-baseline mt-3" },
+                            [
+                              _c("div", [
+                                _vm._v("€ " + _vm._s(plate.price.toFixed(2)))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "p",
+                                {
+                                  staticClass: "btn btn-primary mx-3",
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.addCart($event, plate)
+                                    }
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    Add to Cart\n                                "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        : _c("div", [
+                            _c(
+                              "button",
                               {
-                                staticClass: "d-flex align-items-baseline mt-3"
+                                staticClass: "btn btn-danger",
+                                attrs: { disabled: "" }
                               },
                               [
-                                _c("div", [
-                                  _vm._v("€ " + _vm._s(plate.price.toFixed(2)))
-                                ]),
-                                _vm._v(" "),
-                                _c(
-                                  "p",
-                                  {
-                                    staticClass: "btn btn-primary mx-3",
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.addCart($event, plate)
-                                      }
-                                    }
-                                  },
-                                  [_vm._v("Add to Cart")]
+                                _vm._v(
+                                  "\n                                    Not Avaiable\n                                "
                                 )
                               ]
                             )
-                          : _c("div", [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  attrs: { disabled: "" }
-                                },
-                                [_vm._v("Not Avaiable")]
-                              )
-                            ])
-                      ]
-                    )
-                  ]
-                )
-              }),
-              0
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "cart mt-5 card bg-light col-5 offset-4 text-center"
-            },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c(
-                  "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: Object.keys(_vm.cart).length > 0,
-                        expression: "Object.keys(cart).length>0"
-                      }
+                          ])
                     ]
-                  },
-                  [
-                    _vm._l(_vm.cart, function(item, index) {
-                      return _c("div", { key: index }, [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(index) +
-                            "\n                        "
-                        ),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: item.quantity,
-                              expression: "item.quantity"
-                            }
-                          ],
-                          staticClass: "inputNum my-1 col-1",
-                          attrs: { type: "number", min: "1" },
-                          domProps: { value: item.quantity },
-                          on: {
-                            change: function($event) {
-                              return _vm.updateQuantity(
-                                $event,
-                                item.name,
-                                item.unit
-                              )
-                            },
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(item, "quantity", $event.target.value)
-                            }
+                  )
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "cart mt-5 card bg-light col-5 offset-4 text-center" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: Object.keys(_vm.cart).length > 0,
+                    expression: "Object.keys(cart).length > 0"
+                  }
+                ]
+              },
+              [
+                _vm._l(_vm.cart, function(item, index) {
+                  return _c("div", { key: index }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(index) +
+                        "\n                        "
+                    ),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: item.quantity,
+                          expression: "item.quantity"
+                        }
+                      ],
+                      staticClass: "inputNum my-1 col-1",
+                      attrs: { type: "number", min: "1" },
+                      domProps: { value: item.quantity },
+                      on: {
+                        change: function($event) {
+                          return _vm.updateQuantity(
+                            $event,
+                            item.name,
+                            item.unit
+                          )
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
                           }
-                        }),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "name" }, [
-                          _vm._v(_vm._s(item.name))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "span",
-                          {
-                            staticClass: "remove",
-                            on: {
-                              click: function($event) {
-                                return _vm.removeAll(item.name, item.price)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: " click fas fa-trash-alt" })]
-                        )
-                      ])
+                          _vm.$set(item, "quantity", $event.target.value)
+                        }
+                      }
                     }),
                     _vm._v(" "),
-                    _c("h3", { staticClass: "mt-3" }, [
-                      _vm._v("Total: €" + _vm._s(_vm.tot.toFixed(2)))
+                    _c("span", { staticClass: "name" }, [
+                      _vm._v(_vm._s(item.name))
                     ]),
                     _vm._v(" "),
                     _c(
-                      "button",
+                      "span",
                       {
-                        staticClass: "btn btn-danger my-2",
+                        staticClass: "remove",
                         on: {
                           click: function($event) {
-                            return _vm.deleteCart()
+                            return _vm.removeAll(item.name, item.price)
                           }
                         }
                       },
-                      [_vm._v("Delete Cart")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "mar" },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "btn btn-warning",
-                            attrs: { to: { name: "checkout" } }
-                          },
-                          [_vm._v("Go to Checkout")]
-                        )
-                      ],
-                      1
+                      [_c("i", { staticClass: " click fas fa-trash-alt" })]
                     )
-                  ],
-                  2
+                  ])
+                }),
+                _vm._v(" "),
+                _c("h3", { staticClass: "mt-3" }, [
+                  _vm._v("Total: €" + _vm._s(_vm.tot.toFixed(2)))
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger my-2",
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteCart()
+                      }
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Delete Cart\n                    "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
                   "div",
-                  {
-                    directives: [
+                  { staticClass: "mar" },
+                  [
+                    _c(
+                      "router-link",
                       {
-                        name: "show",
-                        rawName: "v-show",
-                        value: Object.keys(_vm.cart).length === 0,
-                        expression: "Object.keys(cart).length===0"
-                      }
-                    ]
-                  },
-                  [_vm._v("Your cart is empty\n                ")]
+                        staticClass: "btn btn-warning",
+                        attrs: { to: { name: "checkout" } }
+                      },
+                      [_vm._v("Go to Checkout")]
+                    )
+                  ],
+                  1
                 )
-              ])
-            ]
-          )
-        ]),
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: Object.keys(_vm.cart).length === 0,
+                    expression: "Object.keys(cart).length === 0"
+                  }
+                ]
+              },
+              [
+                _vm._v(
+                  "\n                    Your cart is empty\n                "
+                )
+              ]
+            )
+          ])
+        ]
+      )
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "mar contacts" }, [
       _c("h3", [_vm._v("Contacts")]),
@@ -65128,7 +65225,7 @@ var render = function() {
       _c("ul", [
         _c("li", [
           _c("strong", [_vm._v("Address: ")]),
-          _vm._v(_vm._s(_vm.restaurant.results.address))
+          _vm._v(_vm._s(_vm.restaurant.results.address) + "\n            ")
         ]),
         _vm._v(" "),
         _c("li", [
@@ -65143,7 +65240,7 @@ var render = function() {
         _vm._v(" "),
         _c("li", [
           _c("strong", [_vm._v("Phone number: ")]),
-          _vm._v(_vm._s(_vm.restaurant.results.phone_number))
+          _vm._v(_vm._s(_vm.restaurant.results.phone_number) + "\n            ")
         ])
       ])
     ])
@@ -81537,8 +81634,11 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _pages_Payment_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   }, {
     path: "/restaurant/:name",
+    component: _pages_RestaurantDetail_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     name: "restaurant-detail",
-    component: _pages_RestaurantDetail_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    props: {
+      loader: true
+    }
   }, {
     path: "/checkout",
     name: "checkout",
@@ -81546,7 +81646,13 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: "*",
     component: _pages_NotFound_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }]
+  }],
+  scrollBehavior: function scrollBehavior() {
+    return {
+      x: 0,
+      y: 0
+    };
+  }
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 

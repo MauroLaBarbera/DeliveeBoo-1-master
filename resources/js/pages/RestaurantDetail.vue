@@ -1,12 +1,6 @@
 <template>
-<<<<<<< HEAD
-    <div>
-        <div v-if="loader">
-            <div class="hungry-4"></div>
-=======
     <div class="main">
         <!--<div v-show="loader" class="hungry-4">
->>>>>>> 9fa7311f35c8ff0489a83f73eeefd206d29b244b
         </div>
 
         <div v-show="!loader" class="container">-->
@@ -20,32 +14,16 @@
 
             <div class="row mt-3">
                 <div class="col-md-6">
-<<<<<<< HEAD
-                    <img class="img-fluid rounded" :src="restaurant.results.image" :alt="restaurant.name" />
-=======
                     <img
                         class="img-fluid rounded"
                         :src="restaurant.results.image"
                         :alt="restaurant.name"
                     />
->>>>>>> 9fa7311f35c8ff0489a83f73eeefd206d29b244b
                 </div>
 
                 <div class="col-md-6">
                     <p class="mar">{{ restaurant.results.description }}</p>
                 </div>
-<<<<<<< HEAD
-            </div>
-
-            <div>
-                <h3 class="my-5 text-center">Our Menù</h3>
-
-                <!-- ADD PLATE -->
-                <div class="row">
-
-                    <div class="col-md-3 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"  v-for="(plate, index) in plates" :key="`plate-${index}`">
-=======
->>>>>>> 9fa7311f35c8ff0489a83f73eeefd206d29b244b
 
                 <div>
                     <h3 class="my-5 text-center">Our Menù</h3>
@@ -105,13 +83,7 @@
                             </div>
                         </div>
                     </div>
-<<<<<<< HEAD
-
                 </div>
-
-=======
-                </div>
->>>>>>> 9fa7311f35c8ff0489a83f73eeefd206d29b244b
             </div>
 
             <!-- Cart -->
