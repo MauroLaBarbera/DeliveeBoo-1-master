@@ -8,6 +8,7 @@
                 <div class="card-body">
 
                     <div class="cart">
+
                         <div v-if="Object.keys(cart).length" >
                             <div v-for="(item, index) in cart" :key="index">
                                 <input class="inputNum col-md-1 my-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
@@ -73,7 +74,7 @@
                     Pay with Credit Card
                 </button>
             </div>
-            <div class="alert alert-danger" v-if="error">
+            <div class="alert alert-danger mt-3" v-if="error">
                 {{ error }}
             </div>
         </div>

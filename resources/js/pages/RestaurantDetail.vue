@@ -1,6 +1,9 @@
 <template>
     <div>
-        <div class="container">
+        <div v-if="loader">
+        <div class="hungry-4"></div>
+        </div>
+        <div v-else class="container">
 
             <h1 >Details: {{ restaurant.results.name }}</h1>
 
@@ -31,7 +34,9 @@
                             <img class="img-fluid"  :src="plate.image" :alt="plate.name"/>
                         </div>
 
-                            <div v-else>No Image avaiable</div>
+                            <div v-else class="not-av">
+                                <img src="https://redi.it/wp-content/uploads/2015/08/not-available.png" alt="not-avaiable">
+                            </div>
 
                             <div class="card-header">
                                 <p><strong>Name: </strong>{{plate.name}}</p>
@@ -46,7 +51,7 @@
                                 </div>
 
                                 <div v-else>
-                                    <p class="btn btn-danger avaiano">Not Avaiable</p>
+                                    <button class="btn btn-danger" disabled >Not Avaiable</button>
                                 </div>
 
                             </div>
@@ -98,7 +103,7 @@
                     </div>
 
                 </div>
-            </div>
+
         </div>
 
         <div class="mar contacts">
@@ -110,7 +115,7 @@
                 <li><strong>Phone number: </strong>{{ restaurant.results.phone_number }}</li>
             </ul>
         </div>
-
+        </div>
     </div>
 
 
@@ -134,6 +139,7 @@ export default {
             visibility: false,
             cart: {},
             tot: 0,
+            loader: true,
         };
     },
     created() {
@@ -142,6 +148,8 @@ export default {
         this.getPlate();
 
         this.popCart();
+
+
     },
     methods: {
 
@@ -166,6 +174,7 @@ export default {
 
                     this.restaurant = res.data;
                     console.log(this.restaurant.results.name);
+                    this.loader = false;
                 })
                 .catch(err => {
                     console.log(err);
@@ -294,9 +303,15 @@ export default {
     img {
     width: 100%;
     height: 200px;
-}
+    }
 }
 
+.not-av {
+    img {
+    width: 100%;
+    height: 200px;
+    }
+}
 .contacts {
     h3 {
         padding-left: 2rem;
@@ -308,7 +323,47 @@ export default {
     padding: 20px 0;
 }
 
-    i {
+.hungry-4 {
+position: relative;
+top: 50%;
+left:50%;
+transform: translate(-50% , -50%);
+width: 80px;
+height: 80px;
+border-radius: 50%;
+border: 8px solid #d1914b;
+--c:radial-gradient(farthest-side, #d64123 94%,#0000);
+--b:radial-gradient(farthest-side, #000 94%,#0000);
+background:
+    var(--c) 11px 15px,
+    var(--b) 6px 15px,
+    var(--c) 35px 23px,
+    var(--b) 29px 15px,
+    var(--c) 11px 46px,
+    var(--b) 11px 34px,
+    var(--c) 36px 0px,
+    var(--b) 50px 31px,
+    var(--c) 47px 43px,
+    var(--b) 31px 48px,
+    #f6d353;
+  background-size: 15px 15px,6px 6px;
+  background-repeat: no-repeat;
+  animation: hu4 3s infinite;
+}
+@keyframes hu4 {
+  0%     {-webkit-mask:conic-gradient(#0000 0     ,#000 0)}
+  16.67% {-webkit-mask:conic-gradient(#0000 60deg ,#000 0)}
+  33.33% {-webkit-mask:conic-gradient(#0000 120deg,#000 0)}
+  50%    {-webkit-mask:conic-gradient(#0000 180deg,#000 0)}
+  66.67% {-webkit-mask:conic-gradient(#0000 240deg,#000 0)}
+  83.33% {-webkit-mask:conic-gradient(#0000 300deg,#000 0)}
+  100%   {-webkit-mask:conic-gradient(#0000 360deg,#000 0)}
+}
+
+
+
+i {
         color: #007e8a;
     }
+
 </style>
