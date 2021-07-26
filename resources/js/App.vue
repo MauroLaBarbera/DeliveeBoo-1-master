@@ -8,16 +8,20 @@
             rel="stylesheet"
         />
 
-        <div v-if="loader">
+        <div v-show="loader">
              <div class="hungry-4"></div>
-         </div>
+        </div>
 
-        <div v-else>
+
+
+        <div v-show="notLoader">
             <Header />
-
             <router-view></router-view>
             <Footer />
         </div>
+
+
+
     </div>
 </template>
 
@@ -33,10 +37,12 @@ export default {
     data() {
         return {
             loader: true,
+            notLoader: false,
         };
     },
     mounted:function(){
         this.loader=false;
+        this.notLoader=true;
     }
 }
 </script>
