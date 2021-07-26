@@ -64340,7 +64340,7 @@ var render = function() {
                               return _vm.updateQuantity(
                                 $event,
                                 item.name,
-                                item.unitPrice
+                                item.unit
                               )
                             },
                             input: function($event) {
@@ -64984,7 +64984,7 @@ var render = function() {
                         staticClass: "remove",
                         on: {
                           click: function($event) {
-                            return _vm.removeAll(item.name, item.unitPrice)
+                            return _vm.removeAll(item.name, item.price)
                           }
                         }
                       },
