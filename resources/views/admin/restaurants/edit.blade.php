@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name*</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $restaurant->name) }}">
+                        <input rewuired type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $restaurant->name) }}">
                         @error('name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -36,7 +36,7 @@
                     <div class=" row">
                     <div class="mb-3 col-md-6">
                         <label for="address" class="form-label">Address*</label>
-                        <input type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address', $restaurant->address) }}">
+                        <input required type="text" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address', $restaurant->address) }}">
                         @error('address')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -44,7 +44,7 @@
 
                     <div class="mb-3 col-md-4">
                         <label for="city" class="form-label">City*</label>
-                        <input type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city', $restaurant->city) }}">
+                        <input required type="text" class="form-control @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city', $restaurant->city) }}">
                         @error('city')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -53,7 +53,7 @@
 
                     <div class="mb-3 col-md-2">
                         <label for="cap" class="form-label">CAP*</label>
-                        <input type="text" class="form-control @error('cap') is-invalid @enderror" id="cap" name="cap" value="{{ old('cap', $restaurant->cap) }}">
+                        <input required type="number" class="form-control @error('cap') is-invalid @enderror" id="cap" name="cap" value="{{ old('cap', $restaurant->cap) }}">
                         @error('cap')
                         <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -62,7 +62,7 @@
 
                     <div class="mb-3">
                         <label for="phone_number" class="form-label">Phone Number*</label>
-                        <input type="text" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ old('phone_number', $restaurant->phone_number) }}">
+                        <input type="tel" pattern="[+]{1}[0-9]{10,14}" required class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" value="{{ old('phone_number', $restaurant->phone_number) }}">
                         @error('phone_number')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror

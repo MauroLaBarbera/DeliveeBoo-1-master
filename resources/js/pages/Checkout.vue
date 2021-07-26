@@ -214,10 +214,6 @@ export default {
 </script>
 
 <style>
-    body {
-        padding: 5px;
-
-    }
     .form-control{
             height: 30px;
         }

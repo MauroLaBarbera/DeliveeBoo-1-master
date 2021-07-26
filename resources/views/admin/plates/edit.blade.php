@@ -22,7 +22,7 @@
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name*</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $plate->name) }}">
+                        <input required type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $plate->name) }}">
                         @error('name')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -46,7 +46,7 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">€</div>
                             </div>
-                            <input type="number" placeholder="0.00" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price', $plate->price) }}">
+                            <input required type="number" placeholder="0.00" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price', $plate->price) }}">
                             @error('price')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
