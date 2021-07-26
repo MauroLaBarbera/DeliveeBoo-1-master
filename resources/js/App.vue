@@ -58,7 +58,7 @@ export default {
 }
 
 body {
-    background: lightgray;
+    min-height: 100vh;
 }
 
 .main{
