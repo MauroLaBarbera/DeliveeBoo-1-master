@@ -48,10 +48,8 @@ export default {
         this.$forceUpdate();
     },
     updated:function(){
-        
-        setTimeout(()=>{
-            this.loader=false;
-            },1000);
+
+
         window.scrollTo(0,0);
 
     }

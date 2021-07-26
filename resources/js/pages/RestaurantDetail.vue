@@ -1,10 +1,12 @@
 <template>
     <div class="main">
 
-        <div v-show="loader" class="hungry-4">
+        <!--<div v-show="loader" class="hungry-4">
         </div>
 
-        <div v-show="!loader" class="container">
+        <div v-show="!loader" class="container">-->
+        <div class="container">
+
 
             <h1 >Details: {{ restaurant.results.name }}</h1>
 
