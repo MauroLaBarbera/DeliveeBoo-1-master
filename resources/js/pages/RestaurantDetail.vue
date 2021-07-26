@@ -3,24 +3,32 @@
         <div class="container">
 
             <h1 >Details: {{ restaurant.results.name }}</h1>
+
             <div class="mar">
                 <h2 class="mb">Type of cuisines: </h2>
                 <Cuisines :cuisines="restaurant.results.type" />
             </div>
+
             <div class="row mt-3">
+
                 <div class="col-md-6">
                 <img class="img-fluid rounded" :src="restaurant.results.image" :alt="restaurant.name" />
                 </div>
+
                 <div class="col-md-6">
                 <p class="mar">{{ restaurant.results.description }}</p>
-                </div>
-                <div>
-                    <h3 class="my-5 text-center">Our Menù</h3>
-                    <!-- ADD PLATE -->
-                    <div class="row">
-                        <div class="col-md-3 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"  v-for="(plate, index) in plates" :key="`plate-${index}`">
-                                <div v-if="plate.image" class="img my-2"><img class="img-fluid"  :src="plate.image" :alt="plate.name"/></div>
-                                <div v-else>No Image avaiable</div>
+            </div>
+
+            <div>
+                <h3 class="my-5 text-center">Our Menù</h3>
+
+                <!-- ADD PLATE -->
+                <div class="row">
+
+                    <div class="col-md-3 offset-md-1 col-sm-12 dish d-flex justify-content-between card bg-light my-2"  v-for="(plate, index) in plates" :key="`plate-${index}`">
+                        <div v-if="plate.image" class="img my-2"><img class="img-fluid"  :src="plate.image" :alt="plate.name"/>
+                        </div>
+                            <div v-else>No Image avaiable</div>
                             <div class="card-header">
                                 <p><strong>Name: </strong>{{plate.name}}</p>
                             </div>
@@ -34,9 +42,12 @@
                                     <p class="btn btn-danger avaiano">Not Avaiable</p>
                                 </div>
                             </div>
-                        </div>
                     </div>
+
                 </div>
+
+                </div>
+
             </div>
 
 
