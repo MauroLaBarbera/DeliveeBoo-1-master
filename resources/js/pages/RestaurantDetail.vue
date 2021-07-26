@@ -13,16 +13,44 @@
             </div>
 
             <div class="row mt-3">
+                
                 <div class="col-md-6">
                     <img
+                        v-if="restaurant.results.image"
                         class="img-fluid rounded"
                         :src="restaurant.results.image"
                         :alt="restaurant.name"
                     />
-                </div>
 
-                <div class="col-md-6">
-                    <p class="mar">{{ restaurant.results.description }}</p>
+                    <img
+                        v-else
+                        class="img-fluid rounded"
+                        src="https://redi.it/wp-content/uploads/2015/08/not-available.png"
+                        :alt="restaurant.name"
+                    />
+                    
+                </div>
+                <div class="contacts col-md-6">
+                    <h3>Contacts</h3>
+                    <ul>
+                        <li>
+                            <strong>Address: </strong
+                            >{{ restaurant.results.address }}
+                        </li>
+                        <li>
+                            <strong>City: </strong>{{ restaurant.results.city }}
+                        </li>
+                        <li>
+                            <strong>Cap: </strong>{{ restaurant.results.cap }}
+                        </li>
+                        <li>
+                            <strong>Phone number: </strong
+                            >{{ restaurant.results.phone_number }}
+                        </li>
+                    </ul>
+                    <div class="mt-5">
+                        <p class="my-3 descr"><strong>Description: </strong>{{ restaurant.results.description }}</p>
+                    </div>
                 </div>
 
                 <div>
@@ -87,7 +115,7 @@
             </div>
 
             <!-- Cart -->
-            <div class="cart mt-5 card bg-light col-5 offset-4 text-center">
+            <div class="cart my-5 card bg-light col-5 offset-4 text-center">
                 <div class="card-header">
                     <h2>Your Cart <i class="fas fa-shopping-basket"></i></h2>
                 </div>
@@ -106,7 +134,7 @@
                                     updateQuantity($event, item.name, item.unit)
                                 "
                             />
-                            <span class="name">{{ item.name }}</span>
+                            <!-- <span class="name">{{ item.name }}</span> -->
 
                             <!--<span>€ {{item.unitPrice}}</span>-->
                             <span
@@ -142,20 +170,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mar contacts">
-            <h3>Contacts</h3>
-            <ul>
-                <li>
-                    <strong>Address: </strong>{{ restaurant.results.address }}
-                </li>
-                <li><strong>City: </strong>{{ restaurant.results.city }}</li>
-                <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
-                <li>
-                    <strong>Phone number: </strong
-                    >{{ restaurant.results.phone_number }}
-                </li>
-            </ul>
         </div>
     </div>
 </template>
@@ -355,6 +369,10 @@ export default {
     }
 }
 
+.descr {
+    padding-left: 2rem;
+}
+
 .not-av {
     img {
         width: 100%;
@@ -365,14 +383,8 @@ export default {
     h3 {
         padding-left: 2rem;
     }
-    min-width: 1300px;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background: #007e8a;
-    color: #fff;
-    margin: 30px 0;
     padding: 20px 0;
+    border-radius: 5px;
 }
 
 .hungry-4 {
