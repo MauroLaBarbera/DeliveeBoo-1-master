@@ -99,6 +99,7 @@ export default {
     },
     created(){
         this.getBill();
+        window.scrollTo(0,0);
     },
      mounted() {
         braintree.client
