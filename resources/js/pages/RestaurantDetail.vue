@@ -46,7 +46,7 @@
                                 </div>
 
                                 <div v-else>
-                                    <p class="btn btn-danger avaiano">Not Avaiable</p>
+                                    <button class="btn btn-danger" disabled >Not Avaiable</button>
                                 </div>
 
                             </div>
@@ -294,7 +294,7 @@ export default {
     img {
     width: 100%;
     height: 200px;
-}
+    }
 }
 
 .contacts {
