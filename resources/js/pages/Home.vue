@@ -21,12 +21,12 @@
             </div>
 
             <!-- RESTAURANT LIST -->
-            
+
                 <div class="rest" v-for="restaurant in restaurants.results"
                     :key="`res-${restaurant.id}`">
                     <div class="card-rest card bg-light" >
                             <h2>{{ restaurant.name }}</h2>
-                        
+
                             <img
                                 class="img-fluid img my-2"
                                 :src="restaurant.image"
@@ -39,7 +39,7 @@
                                 }"
                                 >Restaurant Detail</router-link
                             >
-                        
+
                     </div>
                 </div>
         </div>
@@ -69,6 +69,7 @@ export default {
     created() {
         this.getRestaurants();
         this.getCuisines();
+        window.scrollTo(0,0);
     },
     methods: {
         getRestaurants: function(e) {
