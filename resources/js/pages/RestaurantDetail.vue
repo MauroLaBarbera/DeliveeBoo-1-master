@@ -40,56 +40,60 @@
             </div>
 
 
-        <!-- Cart -->
-        <div class="cart mt-5 card bg-light col-5 offset-4 text-center">
-            <div class="card-header">
-                <h2>Your Cart <i class="fas fa-shopping-basket"></i></h2>
-            </div>
-            <div class="card-body">
+            <!-- Cart -->
+            <div class="cart mt-5 card bg-light col-5 offset-4 text-center">
 
-                <!-- Products -->
-                <div v-show="Object.keys(cart).length>0" >
+                <div class="card-header">
+                    <h2>Your Cart <i class="fas fa-shopping-basket"></i></h2>
+                </div>
 
-                    <div v-for="(item, index) in cart" :key="index">
+                <div class="card-body">
 
-                        <input class="inputNum my-1 col-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
-                        <span class="name">{{item.name}}</span>
+                    <!-- Products -->
+                    <div v-show="Object.keys(cart).length>0" >
 
-                        <!--<span>€ {{item.unitPrice.toFixed(2)}}</span>-->
-                        <span class="remove" @click="removeAll(item.name, item.unitPrice)"><i class=" click fas fa-trash-alt"></i></span>
+                        <div v-for="(item, index) in cart" :key="index">
+
+                            <input class="inputNum my-1 col-1" type="number" min="1" v-model="item.quantity" @change="updateQuantity($event, item.name, item.unit)">
+                            <span class="name">{{item.name}}</span>
+
+                            <!--<span>€ {{item.unitPrice.toFixed(2)}}</span>-->
+                            <span class="remove" @click="removeAll(item.name, item.unitPrice)"><i class=" click fas fa-trash-alt"></i></span>
+
+                        </div>
+
+                        <!-- Tot -->
+                        <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
+
+                        <!-- Delete Button -->
+                        <button class="btn btn-danger my-2" @click="deleteCart()">Delete Cart</button>
+
+                        <!-- CheckOut Button -->
+                        <div class="mar">
+                            <router-link class="btn btn-warning" :to="{name: 'checkout'}">Go to Checkout</router-link>
+                        </div>
+
                     </div>
 
-                    <!-- Tot -->
-                    <h3 class="mt-3">Total: €{{tot.toFixed(2)}}</h3>
-
-                    <!-- Delete Button -->
-                    <button class="btn btn-danger my-2" @click="deleteCart()">Delete Cart</button>
-
-                    <!-- CheckOut Button -->
-                    <div class="mar">
-                        <router-link class="btn btn-warning" :to="{name: 'checkout'}">Go to Checkout</router-link>
+                    <div v-show="Object.keys(cart).length===0">Your cart is empty
                     </div>
 
                 </div>
-
-                <div v-show="Object.keys(cart).length===0">Your cart is empty
-                </div>
-
             </div>
         </div>
+
+        <div class="mar contacts">
+            <h3>Contacts</h3>
+            <ul>
+                <li><strong>Address: </strong>{{ restaurant.results.address }}</li>
+                <li><strong>City: </strong>{{ restaurant.results.city }}</li>
+                <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
+                <li>
+                    <strong>Phone number: </strong>{{ restaurant.results.phone_number }}
+                </li>
+            </ul>
         </div>
-            <div class="mar contacts">
-                <h3>Contacts</h3>
-                <ul>
-                    <li><strong>Address: </strong>{{ restaurant.results.address }}</li>
-                    <li><strong>City: </strong>{{ restaurant.results.city }}</li>
-                    <li><strong>Cap: </strong>{{ restaurant.results.cap }}</li>
-                    <li>
-                        <strong>Phone number: </strong
-                        >{{ restaurant.results.phone_number }}
-                    </li>
-                </ul>
-            </div>
+
     </div>
 
 

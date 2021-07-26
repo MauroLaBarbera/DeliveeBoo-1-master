@@ -5932,6 +5932,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -65020,7 +65024,7 @@ var render = function() {
                   }
                 ]
               },
-              [_vm._v("Your cart is empty\n            ")]
+              [_vm._v("Your cart is empty\n                ")]
             )
           ])
         ]
@@ -65048,9 +65052,7 @@ var render = function() {
         _vm._v(" "),
         _c("li", [
           _c("strong", [_vm._v("Phone number: ")]),
-          _vm._v(
-            _vm._s(_vm.restaurant.results.phone_number) + "\n                "
-          )
+          _vm._v(_vm._s(_vm.restaurant.results.phone_number) + "\n            ")
         ])
       ])
     ])
