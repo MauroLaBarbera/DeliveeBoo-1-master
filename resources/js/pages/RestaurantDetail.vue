@@ -32,9 +32,9 @@
                             <img class="img-fluid"  :src="plate.image" :alt="plate.name"/>
                         </div>
 
-                            <div v-else class="not-av">
-                                <img src="https://redi.it/wp-content/uploads/2015/08/not-available.png" alt="not-avaiable">
-                            </div>
+                       <div v-else class="not-av">
+                           <img src="https://redi.it/wp-content/uploads/2015/08/not-available.png" alt="not-avaiable">
+                       </div>
 
                             <div class="card-header">
                                 <p><strong>Name: </strong>{{plate.name}}</p>
@@ -49,7 +49,7 @@
                                 </div>
 
                                 <div v-else>
-                                    <button class="btn btn-danger" disabled >Not Avaiable</button>
+                                    <p class="btn btn-danger" disabled >Not Avaiable</p>
                                 </div>
 
                             </div>
@@ -319,7 +319,10 @@ export default {
     h3 {
         padding-left: 2rem;
     }
-
+    min-width: 1300px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     background: #007e8a;
     color: #fff;
     margin: 30px 0;
