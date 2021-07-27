@@ -5569,23 +5569,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -64807,39 +64790,7 @@ var render = function() {
               )
             ]
           )
-        }),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary",
-            attrs: {
-              to: {
-                name: "homeP",
-                params: {
-                  page: _vm.page - 1
-                }
-              }
-            }
-          },
-          [_vm._v("\n                    prev")]
-        ),
-        _vm._v(" "),
-        _c(
-          "router-link",
-          {
-            staticClass: "btn btn-primary",
-            attrs: {
-              to: {
-                name: "homeP",
-                params: {
-                  page: _vm.page + 1
-                }
-              }
-            }
-          },
-          [_vm._v("\n                    next")]
-        )
+        })
       ],
       2
     )

@@ -59,23 +59,6 @@
                 </div>
 
             </div>
-
-                <router-link class="btn btn-primary"
-                        :to="{
-                            name: 'homeP',
-                            params: {
-                                      page: page-1  },
-
-                        }">
-                        prev</router-link>
-                <router-link class="btn btn-primary"
-                        :to="{
-                            name: 'homeP',
-                            params: {
-                                      page: page+1  },
-
-                        }">
-                        next</router-link>
         </div>
     </div>
 </template>
