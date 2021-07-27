@@ -94,7 +94,7 @@
                                     v-if="plate.visibility"
                                     class="d-flex align-items-baseline mt-3"
                                 >
-                                    <div>€ {{ plate.price.toFixed(2) }}</div>
+                                    <div><strong>price  {{ plate.price.toFixed(2)  }} €</strong></div>
                                     <p
                                         class="btn btn-primary mx-3"
                                         @click="addCart($event, plate)"

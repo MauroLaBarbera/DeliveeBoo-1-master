@@ -19,7 +19,7 @@ class RestaurantController extends Controller
                 ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number')
                 ->distinct()
                 ->limit(20)
-                ->paginate(15);
+                ->paginate(3);
 
 
                 return response()->json(['success' => true,
@@ -36,7 +36,7 @@ class RestaurantController extends Controller
                 ->distinct()
                 ->limit(20)
                 ->where('restaurants.id',$id)
-                ->paginate(15);
+                ->paginate(3);
 
         $tmp = [];
         foreach($restaurants as $val)

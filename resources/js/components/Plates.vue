@@ -15,8 +15,11 @@
                     <p><strong>Name: </strong>{{plate.name}}</p>
                     <img class="img-fluid" v-if="plate.image" :src="plate.image" :alt="plate.name" />
                     <p v-else>No Image for this Plate</p>
+
                     <p class="mt-2"> <strong >Description: </strong> {{ plate.description }}</p>
+
                     <strong>Price: </strong>{{ plate.price }}€
+
                     <div class="mt-3" v-if="plate.visibility === 1">
                         <button class="btn btn-primary " @click="addPlate(plate)" >Add to Cart</button>
                     </div>

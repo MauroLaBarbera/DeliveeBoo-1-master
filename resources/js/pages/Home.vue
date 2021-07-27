@@ -60,23 +60,52 @@
 
             </div>
 
-                <router-link class="btn btn-primary" @click.native="getRestaurants($event)"
+
+
+        </div>
+
+        <nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+
+        <router-link class="page-link" @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
                                       page: (page===first)? first : page-1 },
 
                         }" >
-                        prev</router-link>
-                <router-link class="btn btn-primary" @click.native="getRestaurants($event)"
+                        Previous</router-link>
+
+        </li>
+
+    <li class="page-item" v-for="i in (last-1)" :key="i">
+
+        <router-link class="page-link" @click.native="getRestaurants($event)"
+                        :to="{
+                            name: 'homeP',
+                            params: {
+                                      page: i},
+
+                        }" >
+                        {{i}}</router-link>
+
+    </li>
+
+    <li class="page-item">
+
+        <router-link class="page-link" @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
                                       page: (page===last)? 1: page+1  },
 
                         }" >
-                        next</router-link>
-        </div>
+                        Next</router-link>
+        </li>
+  </ul>
+</nav>
+
     </div>
 </template>
 
