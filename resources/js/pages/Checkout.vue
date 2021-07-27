@@ -218,7 +218,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
     .form-control{
             height: 30px;
         }
