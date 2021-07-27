@@ -3,7 +3,7 @@
         <div v-show="loader" class="hungry-4"></div>
 
         <!--<div v-show="!loader" class="container">-->
-        <div class="container">
+        <div class="container mt-5">
             <h1>Details: {{ restaurant.results.name }}</h1>
 
             <div class="mar">
@@ -78,12 +78,16 @@
                                 />
                             </div>
 
-                            <div class="card-header">
-                                <p><strong>Name: </strong>{{ plate.name }}</p>
+                            <div
+                                class="card-header d-flex justify-content-center"
+                            >
+                                <h5>
+                                    <strong>{{ plate.name }} </strong>
+                                </h5>
                             </div>
 
                             <div
-                                class="d-flex flex-column justify-content-center card-body"
+                                class=" flex-column justify-content-center card-body"
                             >
                                 <p>
                                     <strong>Description: </strong
@@ -365,7 +369,7 @@ export default {
 .img {
     img {
         width: 100%;
-        height: 200px;
+        height: 230px;
     }
 }
 
@@ -376,7 +380,7 @@ export default {
 .not-av {
     img {
         width: 100%;
-        height: 200px;
+        height: 230px;
     }
 }
 .contacts {
