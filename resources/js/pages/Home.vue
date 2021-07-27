@@ -26,7 +26,7 @@
 
             <div
                 class="rest"
-                v-for="restaurant in restaurants.results.data"
+                v-for="(restaurant) in restaurants.results.data"
                 :key="`res-${restaurant.id}`"
             >
                 <div class="card-rest card text-center bg-light">
@@ -76,20 +76,20 @@
                     >
                 </li>
 
-                
 
-                <li class="page-item" v-for="i in parseInt(last) " :key="i">
+
+                <li class="page-item" v-for="index in parseInt(last)" :key="index">
                     <router-link
                         class="page-link"
                         @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
-                                page: i
+                                page: index
                             }
                         }"
                     >
-                        {{ i }}</router-link
+                        {{ index }}</router-link
                     >
                 </li>
 
@@ -150,6 +150,11 @@ export default {
                 pg='';
             }
 
+            if (e) {
+                this.$router.push('/')
+            }
+
+
 
 
             axios
@@ -159,11 +164,12 @@ export default {
                     this.restaurants = res.data;
 
                     this.page = res.data.results.current_page;
-                    this.last = res.data.count/4;
+                    this.last = ((res.data.count/4)).toFixed();
+                    console.log(e);
 
 
 
-                    console.log(parseInt(this.restaurants.results.total/this.restaurants.results.per_page));
+
                     //console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route));
                 })
                 .catch(err => {
