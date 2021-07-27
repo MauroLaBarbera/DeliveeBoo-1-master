@@ -76,9 +76,9 @@
                     >
                 </li>
 
-                <li class="page-item" v-for="i in last - 1" :key="i"></li>
+                
 
-                <li class="page-item" v-for="i in last - 1" :key="i">
+                <li class="page-item" v-for="i in parseInt(last) " :key="i">
                     <router-link
                         class="page-link"
                         @click.native="getRestaurants($event)"
