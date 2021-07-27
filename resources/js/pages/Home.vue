@@ -72,7 +72,7 @@
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: (page===first)? first : page-1 },
+                                      page: (page===first)? first : --page },
 
                         }" >
                         Previous</router-link>
@@ -98,7 +98,7 @@
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: (page===last)? 1: page+1  },
+                                      page: (page==last)? last : ++page   },
 
                         }" >
                         Next</router-link>
