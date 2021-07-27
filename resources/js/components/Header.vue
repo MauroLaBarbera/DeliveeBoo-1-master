@@ -9,15 +9,13 @@
         </ul>
         <ul>
             <li class="nav-dx">
-                
-                                <router-link
-                                    :to="{ name: 'checkout',
-                                            hash: '#start'
-                                     }"
-                                    >
-                                    Cart <i class="fas fa-shopping-basket">
-                                        </router-link>
-                
+                <router-link
+                    class="btn"
+                    :to="{ name: 'checkout', hash: '#start' }"
+                >
+                    <i class="fas fa-shopping-basket"></i>
+                    Cart
+                </router-link>
             </li>
             <li class="nav-dx">
                 <a href="/admin" target="_blank"
