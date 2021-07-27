@@ -68,13 +68,15 @@
                         :to="{
                             name: 'homeP',
                             params: {
-                                page: page === first ? first : page - 1
+                                page: page === first ? first : --page
                             }
                         }"
                     >
-                        Prev</router-link
+                        Previous</router-link
                     >
                 </li>
+
+                <li class="page-item" v-for="i in last - 1" :key="i"></li>
 
                 <li class="page-item" v-for="i in last - 1" :key="i">
                     <router-link
@@ -98,7 +100,7 @@
                         :to="{
                             name: 'homeP',
                             params: {
-                                page: page === last ? 1 : page + 1
+                                page: page == last ? last : ++page
                             }
                         }"
                     >
