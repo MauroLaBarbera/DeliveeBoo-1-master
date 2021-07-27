@@ -1,5 +1,5 @@
 <template>
-    <header >
+    <header>
         <ul>
             <li>
                 <a href="/">
@@ -9,10 +9,20 @@
         </ul>
         <ul>
             <li class="nav-dx">
-                <a href="/checkout"><i class="fas fa-shopping-basket"></i>Cart</a>
+                
+                                <router-link
+                                    :to="{ name: 'checkout',
+                                            hash: '#start'
+                                     }"
+                                    >
+                                    Cart <i class="fas fa-shopping-basket">
+                                        </router-link>
+                
             </li>
             <li class="nav-dx">
-                <a href="/admin" target="_blank"><i class="fas fa-home"></i>Log In</a>
+                <a href="/admin" target="_blank"
+                    ><i class="fas fa-home"></i>Log In</a
+                >
             </li>
         </ul>
     </header>
@@ -31,7 +41,6 @@ header {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid #ccc;
-    margin-bottom: 50px;
 
     ul {
         list-style: none;

@@ -51,13 +51,11 @@
                         :to="{
                             name: 'restaurant-detail',
                             params: { name: restaurant.id },
-                            hash: '#inizio',
+                            hash: '#inizio'
                         }"
                         >Restaurant Detail</router-link
                     >
-
                 </div>
-
             </div>
         </div>
     </div>
@@ -82,9 +80,8 @@ export default {
             temp: [],
             query: "",
             page: 1,
-            first:1,
-            last: 1,
-
+            first: 1,
+            last: 1
         };
     },
     created() {
@@ -95,15 +92,26 @@ export default {
     methods: {
         getRestaurants: function(e) {
             axios
-                .get(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route.params.page))
+                .get(
+                    this.apiURL +
+                        "/" +
+                        this.temp.join("-") +
+                        "?page=" +
+                        parseInt(this.$route.params.page)
+                )
                 .then(res => {
                     this.restaurants = res.data;
 
                     this.page = this.restaurants.results.current_page;
                     this.last = this.restaurants.results.last_page;
 
-
-                    console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route.params.page));
+                    console.log(
+                        this.apiURL +
+                            "/" +
+                            this.temp.join("-") +
+                            "?page=" +
+                            parseInt(this.$route.params.page)
+                    );
                 })
                 .catch(err => {
                     console.log(err);
@@ -124,9 +132,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-img {
-    width: 100%;
-    height: 176px;
+.card {
+    img {
+        width: 100%;
+        height: 176px;
+    }
 }
 
 .cuisines {

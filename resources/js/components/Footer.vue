@@ -51,7 +51,7 @@ footer {
     background: #2e3333;
     color: #ffff;
     height: 30%;
-    margin-top: 10px;
+    margin-top: 30px;
 
     .tab {
         display: flex;

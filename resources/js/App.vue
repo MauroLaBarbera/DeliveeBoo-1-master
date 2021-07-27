@@ -1,6 +1,5 @@
 <template>
     <div id="inizio" class="main">
-
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -10,18 +9,14 @@
 
         <Header />
 
-        <div class="container">
+        <div class="alf">
+            <div v-show="loader" class="hungry-4"></div>
 
-            <div v-show="loader" class="hungry-4">
-            </div>
-
-            <div v-show="!loader" >
+            <div v-show="!loader">
                 <router-view></router-view>
             </div>
-
         </div>
         <Footer />
-
     </div>
 </template>
 
@@ -36,28 +31,21 @@ export default {
     },
     data() {
         return {
-            loader: true,
+            loader: true
         };
     },
-    created:function(){
-
-        setTimeout(()=>{
-            this.loader=false;
-            },2000);
+    created: function() {
+        setTimeout(() => {
+            this.loader = false;
+        }, 2000);
 
         this.$forceUpdate();
     },
-    updated:function(){
-
-
-
-
-    }
-}
+    updated: function() {}
+};
 </script>
 
 <style lang="scss">
-
 * {
     padding: 0;
     margin: 0;
@@ -69,9 +57,7 @@ body {
     min-height: 100vh;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
+.alf {
     min-height: 100vh;
 }
 
@@ -117,14 +103,22 @@ body {
     top: 50%;
     left: 50%;
 
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    background:conic-gradient(#0000 10%,#25b09b);
-    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
-    animation:s3 1s infinite linear;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(#0000 10%, #25b09b);
+    -webkit-mask: radial-gradient(
+        farthest-side,
+        #0000 calc(100% - 8px),
+        #000 0
+    );
+    animation: s3 1s infinite linear;
 }
-@keyframes s3 {to{transform: rotate(1turn)}}
+@keyframes s3 {
+    to {
+        transform: rotate(1turn);
+    }
+}
 
 ul {
     list-style-type: none;
