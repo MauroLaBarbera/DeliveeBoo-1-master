@@ -79,7 +79,7 @@
 
         </li>
 
-    <li class="page-item" v-for="i in (last-1)" :key="i">
+    <li class="page-item" v-for="i in last" :key="i">
 
         <router-link class="page-link" @click.native="getRestaurants($event)"
                         :to="{
@@ -98,7 +98,7 @@
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: (page==last)? last : ++page   },
+                                      page: (page>last)? last : ++page   },
 
                         }" >
                         Next</router-link>
@@ -133,23 +133,36 @@ export default {
 
         };
     },
-    created() {
+    mounted() {
         this.getRestaurants();
         this.getCuisines();
-        window.scrollTo(0, 0);
+
     },
     methods: {
         getRestaurants: function(e) {
+            let pg;
+            if (parseInt(this.$route.params.page)){
+                pg = "?page="+parseInt(this.$route.params.page);
+            }
+            else{
+                pg='';
+            }
+
+
+
             axios
-                .get(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route.params.page))
+                .get(this.apiURL + "/" + this.temp.join("-")+pg)
                 .then(res => {
+                    console.log(res.data);
                     this.restaurants = res.data;
 
-                    this.page = this.restaurants.results.current_page;
-                    this.last = this.restaurants.results.last_page;
+                    this.page = res.data.results.current_page;
+                    this.last = res.data.count/4;
 
 
-                    console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route));
+
+                    console.log(parseInt(this.restaurants.results.total/this.restaurants.results.per_page));
+                    //console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route));
                 })
                 .catch(err => {
                     console.log(err);
@@ -160,6 +173,7 @@ export default {
                 .get("http://127.0.0.1:8000/api/cuisines/")
                 .then(res => {
                     this.cuisines = res.data;
+
                 })
                 .catch(err => {
                     console.log(err);

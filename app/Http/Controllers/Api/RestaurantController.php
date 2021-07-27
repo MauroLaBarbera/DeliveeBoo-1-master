@@ -18,12 +18,13 @@ class RestaurantController extends Controller
                 ->join('cuisines', 'cuisines.id', '=', 'cuisine_restaurant.cuisine_id')
                 ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number')
                 ->distinct()
-                ->limit(20)
                 ->paginate(4);
+                //->get();
 
+        $count = DB::table('restaurants')->count();
 
                 return response()->json(['success' => true,
-                'results' => $restaurants]);
+                'results' => $restaurants,'count'=>($count)]);
     }
 
 
@@ -34,9 +35,9 @@ class RestaurantController extends Controller
                 ->join('cuisines', 'cuisines.id', '=', 'cuisine_restaurant.cuisine_id')
                 ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number','cuisines.type')
                 ->distinct()
-                ->limit(20)
                 ->where('restaurants.id',$id)
-                ->paginate(4);
+                ->get();
+
 
         $tmp = [];
         foreach($restaurants as $val)
@@ -65,14 +66,18 @@ class RestaurantController extends Controller
 
                 ->having(DB::raw('count(restaurant_id)'),'=',count($str))
 
-                ->paginate(15);
+                ->paginate(4);
+                //->get();
+
+
+
     foreach ($restaurants as $value)
          $value->type =  implode(' ',$str);
 
-
+         $count = DB::table('users')->count();
 
         return response()->json(['success' => true,
-            'results' => $restaurants]);
+            'results' => $restaurants,'count'=>$count]);
 
     }
 }
