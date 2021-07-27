@@ -5170,6 +5170,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Header"
 });
@@ -64313,36 +64321,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("header", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("ul", [
+      _c(
+        "li",
+        { staticClass: "nav-dx" },
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "btn",
+              attrs: { to: { name: "checkout", hash: "#start" } }
+            },
+            [
+              _c("i", { staticClass: "fas fa-shopping-basket" }),
+              _vm._v("\n                Cart\n            ")
+            ]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._m(1)
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("header", [
-      _c("ul", [
-        _c("li", [
-          _c("a", { attrs: { href: "/" } }, [
-            _c("img", { attrs: { src: __webpack_require__(/*! ../img/delive.png */ "./resources/js/img/delive.png"), alt: "" } })
-          ])
+    return _c("ul", [
+      _c("li", [
+        _c("a", { attrs: { href: "/" } }, [
+          _c("img", { attrs: { src: __webpack_require__(/*! ../img/delive.png */ "./resources/js/img/delive.png"), alt: "" } })
         ])
-      ]),
-      _vm._v(" "),
-      _c("ul", [
-        _c("li", { staticClass: "nav-dx" }, [
-          _c("a", { attrs: { href: "/checkout" } }, [
-            _c("i", { staticClass: "fas fa-shopping-basket" }),
-            _vm._v("Cart")
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-dx" }, [
-          _c("a", { attrs: { href: "/admin", target: "_blank" } }, [
-            _c("i", { staticClass: "fas fa-home" }),
-            _vm._v("Log In")
-          ])
-        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-dx" }, [
+      _c("a", { attrs: { href: "/admin", target: "_blank" } }, [
+        _c("i", { staticClass: "fas fa-home" }),
+        _vm._v("Log In")
       ])
     ])
   }
