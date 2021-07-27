@@ -51,61 +51,64 @@
                         :to="{
                             name: 'restaurant-detail',
                             params: { name: restaurant.id },
-                            hash: '#inizio',
+                            hash: '#inizio'
                         }"
                         >Restaurant Detail</router-link
                     >
-
                 </div>
-
             </div>
-
-
-
         </div>
 
         <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item">
-
-        <router-link class="page-link" @click.native="getRestaurants($event)"
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <router-link
+                        class="page-link"
+                        @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: (page===first)? first : --page },
+                                page: page === first ? first : --page
+                            }
+                        }"
+                    >
+                        Previous</router-link
+                    >
+                </li>
 
-                        }" >
-                        Previous</router-link>
+                <li class="page-item" v-for="i in last - 1" :key="i"></li>
 
-        </li>
-
-    <li class="page-item" v-for="i in last" :key="i">
-
-        <router-link class="page-link" @click.native="getRestaurants($event)"
+                <li class="page-item" v-for="i in last - 1" :key="i">
+                    <router-link
+                        class="page-link"
+                        @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: i},
+                                page: i
+                            }
+                        }"
+                    >
+                        {{ i }}</router-link
+                    >
+                </li>
 
-                        }" >
-                        {{i}}</router-link>
-
-    </li>
-
-    <li class="page-item">
-
-        <router-link class="page-link" @click.native="getRestaurants($event)"
+                <li class="page-item">
+                    <router-link
+                        class="page-link"
+                        @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: (page>last)? last : ++page   },
-
-                        }" >
-                        Next</router-link>
-        </li>
-  </ul>
-</nav>
-
+                                page: page == last ? last : ++page
+                            }
+                        }"
+                    >
+                        Next</router-link
+                    >
+                </li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -128,9 +131,8 @@ export default {
             temp: [],
             query: "",
             page: 1,
-            first:1,
-            last: 1,
-
+            first: 1,
+            last: 1
         };
     },
     mounted() {
@@ -227,5 +229,9 @@ h2 {
     img {
         border-radius: 5px;
     }
+}
+
+.page-link {
+    color: #00a396;
 }
 </style>
