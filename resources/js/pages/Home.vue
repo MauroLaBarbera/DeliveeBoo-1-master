@@ -60,21 +60,21 @@
 
             </div>
 
-                <router-link class="btn btn-primary"
+                <router-link class="btn btn-primary" @click="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: page-1  },
+                                      page: (page===first)? first : page-1 },
 
-                        }">
+                        }" event>
                         prev</router-link>
-                <router-link class="btn btn-primary"
+                <router-link class="btn btn-primary" @click="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
-                                      page: page+1  },
+                                      page: (page===last)? 1: page+1  },
 
-                        }">
+                        }" event>
                         next</router-link>
         </div>
     </div>
@@ -120,7 +120,7 @@ export default {
                     this.last = this.restaurants.results.last_page;
 
 
-                    console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route.params.page));
+                    console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route));
                 })
                 .catch(err => {
                     console.log(err);
