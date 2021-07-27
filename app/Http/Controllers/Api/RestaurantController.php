@@ -19,7 +19,7 @@ class RestaurantController extends Controller
                 ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number')
                 ->distinct()
                 ->limit(20)
-                ->paginate(2);
+                ->paginate(15);
 
 
                 return response()->json(['success' => true,
