@@ -10,7 +10,7 @@
 
         <Header />
 
-        <div>
+        <div class="Alf">
 
             <div v-show="loader" class="hungry-4">
             </div>
@@ -20,6 +20,7 @@
             </div>
 
         </div>
+
         <Footer />
 
     </div>
@@ -69,8 +70,8 @@ body {
     min-height: 100vh;
 }
 
-.container {
-    max-width: 1200px;
+.Alf {
+
     margin: 0 auto;
     min-height: 100vh;
 }

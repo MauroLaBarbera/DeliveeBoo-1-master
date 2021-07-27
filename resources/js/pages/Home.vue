@@ -65,7 +65,7 @@
         </div>
 
         <nav aria-label="Page navigation example">
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
     <li class="page-item">
 
         <router-link class="page-link" @click.native="getRestaurants($event)"
