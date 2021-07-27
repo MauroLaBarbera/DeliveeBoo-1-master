@@ -1,5 +1,5 @@
 <template>
-    <header id="inizio">
+    <header >
         <ul>
             <li>
                 <a href="/">

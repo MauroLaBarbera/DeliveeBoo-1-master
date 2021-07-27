@@ -19,7 +19,8 @@ class RestaurantController extends Controller
                 ->select('restaurants.id','restaurants.name','restaurants.description','restaurants.image','restaurants.address','restaurants.city','restaurants.cap','restaurants.phone_number')
                 ->distinct()
                 ->limit(20)
-                ->get();
+                ->paginate(15);
+
 
                 return response()->json(['success' => true,
                 'results' => $restaurants]);
@@ -35,7 +36,7 @@ class RestaurantController extends Controller
                 ->distinct()
                 ->limit(20)
                 ->where('restaurants.id',$id)
-                ->get();
+                ->paginate(15);
 
         $tmp = [];
         foreach($restaurants as $val)
@@ -64,7 +65,7 @@ class RestaurantController extends Controller
 
                 ->having(DB::raw('count(restaurant_id)'),'=',count($str))
 
-                ->get();
+                ->paginate(15);
     foreach ($restaurants as $value)
          $value->type =  implode(' ',$str);
 

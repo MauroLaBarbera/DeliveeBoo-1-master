@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div id="start" class="container">
         <div class="col-6 offset-3 my-3">
             <div class="card bg-light ">
                 <div class="card-header text-center">

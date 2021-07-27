@@ -26,7 +26,7 @@
 
             <div
                 class="rest"
-                v-for="restaurant in restaurants.results"
+                v-for="restaurant in restaurants.results.data"
                 :key="`res-${restaurant.id}`"
             >
                 <div class="card-rest card text-center bg-light">
@@ -55,8 +55,27 @@
                         }"
                         >Restaurant Detail</router-link
                     >
+
                 </div>
+
             </div>
+
+                <router-link class="btn btn-primary"
+                        :to="{
+                            name: 'homeP',
+                            params: {
+                                      page: page-1  },
+
+                        }">
+                        prev</router-link>
+                <router-link class="btn btn-primary"
+                        :to="{
+                            name: 'homeP',
+                            params: {
+                                      page: page+1  },
+
+                        }">
+                        next</router-link>
         </div>
     </div>
 </template>
@@ -78,7 +97,11 @@ export default {
             results: [],
             cuisines: [],
             temp: [],
-            query: ""
+            query: "",
+            page: 1,
+            first:1,
+            last: 1,
+
         };
     },
     created() {
@@ -89,17 +112,15 @@ export default {
     methods: {
         getRestaurants: function(e) {
             axios
-                .get(this.apiURL + "/" + this.temp.join("-"))
+                .get(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route.params.page))
                 .then(res => {
                     this.restaurants = res.data;
 
-                    /* this.restaurants.forEach(restaurant => {
-                        restaurant.types.forEach(type => {
-                            if(!this.types.includes(type.name)){
-                                this.types.push(type.name);
-                            }
-                        });
-                    }); */
+                    this.page = this.restaurants.results.current_page;
+                    this.last = this.restaurants.results.last_page;
+
+
+                    console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route.params.page));
                 })
                 .catch(err => {
                     console.log(err);

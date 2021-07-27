@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div id="inizio" class="main">
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,14 +43,14 @@ export default {
 
         setTimeout(()=>{
             this.loader=false;
-            },1000);
-        window.scrollTo(0,0);
+            },2000);
+
         this.$forceUpdate();
     },
     updated:function(){
 
 
-        window.scrollTo(0,0);
+
 
     }
 }
@@ -75,7 +75,7 @@ body {
     min-height: 100vh;
 }
 
-.hungry-4 {
+/*.hungry-4 {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -110,8 +110,21 @@ body {
   66.67% {-webkit-mask:conic-gradient(#0000 240deg,#000 0)}
   83.33% {-webkit-mask:conic-gradient(#0000 300deg,#000 0)}
   100%   {-webkit-mask:conic-gradient(#0000 360deg,#000 0)}
-}
+}*/
 
+.hungry-4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:conic-gradient(#0000 10%,#25b09b);
+    -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation:s3 1s infinite linear;
+}
+@keyframes s3 {to{transform: rotate(1turn)}}
 
 ul {
     list-style-type: none;

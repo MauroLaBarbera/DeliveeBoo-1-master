@@ -1,9 +1,9 @@
 <template>
     <div class="main">
-        <!--<div v-show="loader" class="hungry-4">
+        <div v-show="loader" class="hungry-4">
         </div>
 
-        <div v-show="!loader" class="container">-->
+        <!--<div v-show="!loader" class="container">-->
         <div class="container">
             <h1>Details: {{ restaurant.results.name }}</h1>
 
@@ -156,7 +156,9 @@
                             <div class="mar">
                                 <router-link
                                     class="btn btn-warning"
-                                    :to="{ name: 'checkout' }"
+                                    :to="{ name: 'checkout',
+                                            hash: '#start'
+                                     }"
                                     >Go to Checkout</router-link
                                 >
                             </div>
@@ -199,11 +201,10 @@ export default {
         this.getPlate();
 
         this.popCart();
+        this.loader= false;
+
     },
     updated() {
-        this.loader = false;
-
-        this.loader= false;
 
     },
 
