@@ -60,21 +60,21 @@
 
             </div>
 
-                <router-link class="btn btn-primary" @click="getRestaurants($event)"
+                <router-link class="btn btn-primary" @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
                                       page: (page===first)? first : page-1 },
 
-                        }" event>
+                        }" >
                         prev</router-link>
-                <router-link class="btn btn-primary" @click="getRestaurants($event)"
+                <router-link class="btn btn-primary" @click.native="getRestaurants($event)"
                         :to="{
                             name: 'homeP',
                             params: {
                                       page: (page===last)? 1: page+1  },
 
-                        }" event>
+                        }" >
                         next</router-link>
         </div>
     </div>
