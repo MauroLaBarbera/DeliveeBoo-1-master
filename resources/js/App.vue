@@ -10,7 +10,7 @@
 
         <Header />
 
-        <div class="container">
+        <div>
 
             <div v-show="loader" class="hungry-4">
             </div>

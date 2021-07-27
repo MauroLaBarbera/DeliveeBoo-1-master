@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img class="jumbo" src="../img/jumbo.jpeg" alt="" />
+        <img class="jumbo " src="../img/jumbo.jpeg" alt="" />
         <div class="container">
             <h1>Homepage</h1>
 
@@ -141,9 +141,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-img {
-    width: 100%;
-    height: 176px;
+.card {
+    img {
+        width: 100%;
+        height: 176px;
+    }
 }
 
 .cuisines {
