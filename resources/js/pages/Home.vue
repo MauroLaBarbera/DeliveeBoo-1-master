@@ -8,9 +8,9 @@
             <div class="cuisines mb-5">
                 <ul v-for="cuisine in cuisines" :key="cuisine.id">
                     <li>
-                        <label class="btn btn-success" :for="cuisine.type">{{
-                            cuisine.type
-                        }}</label>
+                        <label class="btn btn-success" :for="cuisine.type">
+                            {{ cuisine.type }}
+                        </label>
                         <input
                             type="checkbox"
                             :id="cuisine.type"
@@ -30,7 +30,7 @@
                 :key="`res-${restaurant.id}`"
             >
                 <div class="card-rest card text-center bg-light">
-                    <h2>{{ restaurant.name }}</h2>
+                    <h4>{{ restaurant.name }}</h4>
 
                     <img
                         v-if="restaurant.image"
@@ -47,7 +47,7 @@
                     />
 
                     <router-link
-                        class="btn btn-warning"
+                        class="btn btn-warning d-flex justify-content-center align-items-center"
                         :to="{
                             name: 'restaurant-detail',
                             params: { name: restaurant.id },

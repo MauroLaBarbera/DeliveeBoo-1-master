@@ -1,7 +1,6 @@
 <template>
     <div class="main">
-        <div v-show="loader" class="hungry-4">
-        </div>
+        <div v-show="loader" class="hungry-4"></div>
 
         <!--<div v-show="!loader" class="container">-->
         <div class="container">
@@ -13,7 +12,6 @@
             </div>
 
             <div class="row mt-3">
-
                 <div class="col-md-6">
                     <img
                         v-if="restaurant.results.image"
@@ -28,7 +26,6 @@
                         src="https://redi.it/wp-content/uploads/2015/08/not-available.png"
                         :alt="restaurant.name"
                     />
-
                 </div>
                 <div class="contacts col-md-6">
                     <h3>Contacts</h3>
@@ -49,7 +46,10 @@
                         </li>
                     </ul>
                     <div class="mt-5">
-                        <p class="my-3 descr"><strong>Description: </strong>{{ restaurant.results.description }}</p>
+                        <p class="my-3 descr">
+                            <strong>Description: </strong
+                            >{{ restaurant.results.description }}
+                        </p>
                     </div>
                 </div>
 
@@ -90,20 +90,23 @@
                                     >{{ plate.description }}
                                 </p>
 
-                                <div
-                                    v-if="plate.visibility"
-                                    class="d-flex align-items-baseline mt-3"
-                                >
-                                    <div>€ {{ plate.price.toFixed(2) }}</div>
-                                    <p
-                                        class="btn btn-primary mx-3"
-                                        @click="addCart($event, plate)"
-                                    >
-                                        Add to Cart
-                                    </p>
+                                <div v-if="plate.visibility" class=" mt-3">
+                                    <div class="text-center">
+                                        <strong>Price: </strong> €
+                                        {{ plate.price.toFixed(2) }}
+                                    </div>
+
+                                    <div class="text-center">
+                                        <button
+                                            class="btn btn-primary mt-3"
+                                            @click="addCart($event, plate)"
+                                        >
+                                            Add to Cart
+                                        </button>
+                                    </div>
                                 </div>
 
-                                <div v-else>
+                                <div class="text-center" v-else>
                                     <button class="btn btn-danger" disabled>
                                         Not Avaiable
                                     </button>
@@ -117,7 +120,9 @@
             <!-- Cart -->
             <div class="cart my-5 card bg-light col-5 offset-4">
                 <div class="card-header">
-                    <h2 class="text-center">Your Cart <i class="fas fa-shopping-basket"></i></h2>
+                    <h2 class="text-center">
+                        Your Cart <i class="fas fa-shopping-basket"></i>
+                    </h2>
                 </div>
 
                 <div class="card-body">
@@ -156,14 +161,11 @@
                             <div class="mar">
                                 <router-link
                                     class="btn btn-warning"
-                                    :to="{ name: 'checkout',
-                                            hash: '#start'
-                                     }"
+                                    :to="{ name: 'checkout', hash: '#start' }"
                                     >Go to Checkout</router-link
                                 >
                             </div>
                         </div>
-
                     </div>
 
                     <div v-show="Object.keys(cart).length === 0">
@@ -201,12 +203,9 @@ export default {
         this.getPlate();
 
         this.popCart();
-        this.loader= false;
-
+        this.loader = false;
     },
-    updated() {
-
-    },
+    updated() {},
 
     methods: {
         getPlate() {

@@ -37,7 +37,7 @@ export default {
     created: function() {
         setTimeout(() => {
             this.loader = false;
-        }, 2000);
+        }, 1000);
 
         this.$forceUpdate();
     },
