@@ -5667,12 +5667,16 @@ __webpack_require__.r(__webpack_exports__);
         pg = '';
       }
 
+      if (e) {
+        this.$router.push('/');
+      }
+
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(this.apiURL + "/" + this.temp.join("-") + pg).then(function (res) {
         console.log(res.data);
         _this.restaurants = res.data;
         _this.page = res.data.results.current_page;
-        _this.last = res.data.count / 4;
-        console.log(parseInt(_this.restaurants.results.total / _this.restaurants.results.per_page)); //console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route));
+        _this.last = (res.data.count / 4).toFixed();
+        console.log(e); //console.log(this.apiURL + "/" + this.temp.join("-")+"?page="+parseInt(this.$route));
       })["catch"](function (err) {
         console.log(err);
       });
@@ -64917,14 +64921,10 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _vm._l(_vm.last - 1, function(i) {
-            return _c("li", { key: i, staticClass: "page-item" })
-          }),
-          _vm._v(" "),
-          _vm._l(_vm.last - 1, function(i) {
+          _vm._l(parseInt(_vm.last), function(index) {
             return _c(
               "li",
-              { key: i, staticClass: "page-item" },
+              { key: index, staticClass: "page-item" },
               [
                 _c(
                   "router-link",
@@ -64934,7 +64934,7 @@ var render = function() {
                       to: {
                         name: "homeP",
                         params: {
-                          page: i
+                          page: index
                         }
                       }
                     },
@@ -64944,7 +64944,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("\n                    " + _vm._s(i))]
+                  [_vm._v("\n                    " + _vm._s(index))]
                 )
               ],
               1
